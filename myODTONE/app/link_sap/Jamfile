@@ -1,0 +1,52 @@
+#===============================================================================
+# Brief   : Link SAP Application Sample Project Build
+# Authors : Carlos Guimaraes <cguimaraes@av.it.pt>
+#           Bruno Santos     <bsantos@av.it.pt>
+#-------------------------------------------------------------------------------
+# ODTONE - Open Dot Twenty One
+#
+# Copyright (C) 2009-2013 Universidade Aveiro
+# Copyright (C) 2009-2013 Instituto de Telecomunicações - Pólo Aveiro
+#
+# This software is distributed under a license. The full license
+# agreement can be found in the file LICENSE in this distribution.
+# This software may not be copied, modified, sold or distributed
+# other than expressed in the named license agreement.
+#
+# This software is distributed without any warranty.
+#===============================================================================
+
+project link_sap
+	: requirements
+		<toolset>gcc:<linkflags>"-lrt"
+		<toolset>gcc-android:<linkflags>"-lrt"
+	;
+
+odtone.explicit-alias source-list
+	: linux/main.cpp
+	  linux/netlink.cpp
+	  linux/rtnetlink.cpp
+	: <target-os>linux
+	;
+
+odtone.explicit-alias source-list
+	: win32/main.cpp
+	  win32/win32.cpp
+	: <target-os>windows
+	;
+
+exe link_sap
+	: link_sap.cpp
+	  interface/interface.cpp
+	  interface/if_802.cpp
+	  source-list
+	  ../../lib/odtone//odtone
+	  /boost//program_options
+	  /boost//thread
+	;
+
+install install
+	: link_sap
+	  link_sap.conf
+	: <location>../../dist
+	;

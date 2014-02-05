@@ -1,0 +1,101 @@
+[/==============================================================================
+ / Brief   : MIIS Server App Documentation
+ / Authors : Carlos Guimarães <cguimaraes@av.it.pt>
+ /------------------------------------------------------------------------------
+ / ODTONE - Open Dot Twenty One
+ /
+ / Copyright (C) 2009-2012 Universidade Aveiro
+ / Copyright (C) 2009-2012 Instituto de Telecomunicações - Pólo Aveiro
+ /
+ / This software is distributed under a license. The full license
+ / agreement can be found in the file LICENSE in this distribution.
+ / This software may not be copied, modified, sold or distributed
+ / other than expressed in the named license agreement.
+ /
+ / This software is distributed without any warranty.
+ /=============================================================================]
+
+[section:miis_index MIIS Server]
+
+The MIIS Server provides details about the characteristics and
+services provided by the serving and neighbor networks. The information
+enables effective system access and effective handover decisions.
+
+This MIIS Server serves only as an example which uses the Redland RDF
+libraries for parsing and querying a sqlite database.
+
+[section:miis_getStart Getting Started]
+
+[section Registering with the MIHF]
+
+When registering with the MIHF, the MIH-User defines which queries it supports.
+
+Therefore at the reception of a request message belonging to the information service,
+it will be forwarded to the MIIS Server.
+
+[endsect]
+
+[section Detailed Description]
+
+This MIIS Server example uses the Redland RDF libraries for parsing and querying
+a sqlite database (other databases can be used too). Check the
+[@http://librdf.org/docs/ Redland documentation] for more details.
+
+Although an example database is provided (example-database), other database
+previously created can be used.
+
+[variablelist
+
+    [[base-schema.xml]
+    [is the base schema provided in the standard.]]
+
+    [[example-data.ttl]
+    [is a Turtle file with some random data for testing queries.
+    Check [@http://www.w3.org/TeamSubmission/turtle http://www.w3.org/TeamSubmission/turtle]
+    for more details. The example is in this format because it is more clearer
+	than the equivalent XML.]]
+
+    [[example-database]
+    [is a sqlite database built from base-schema.xml and
+	example-data.ttl.]]
+]
+
+When a MIH_Get_Information.indication is received the message is deserialized
+and the Sparql queries are fetch. The queries are executed and the results serialized
+and sent in a MIH_Get_Information.response message to the MIHF.
+
+[endsect]
+
+[section Configuration]
+
+	MIH Usr Configuration:
+	   --help                                  Display configuration options
+	   --conf.file arg (=miis_rdf_server.conf) Configuration file
+	   --conf.port arg (=1236)                 Listening port
+	   --conf.recv_buff_len arg (=4096)        Receive buffer length
+	   --user.id arg (=miis)                   MIIS server ID
+	   --user.queries arg                      MIIS Server supported queries
+	   --mihf.ip arg (=127.0.0.1)              Local MIHF IP address
+	   --mihf.local_port arg (=1025)           Local MIHF communication port
+	   --database arg (=database)              /path/to MIIS server sqlite database
+
+MIIS Server can be configured either through a configuration file or passing
+directly, in command line, the configuration options.
+
+The path to the database can be passed with the --database option.
+
+[*How to build a database:]
+
+1) Create a sqlite database and parse a base schema which is in rdfxml syntax:
+
+    rdfproc -s sqlite database_name parse file:/path/to/schema.xml
+
+2) Parse and add some data, in Turtle format, to the database:
+
+    rdfproc -s sqlite database_name parse file:/path/to/data.xml turtle
+
+[endsect]
+
+[endsect]
+
+[endsect]

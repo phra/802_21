@@ -1,0 +1,4 @@
+sudo ./odtone-sap_80211 --link.link_addr 00:26:b6:4e:af:6c
+sudo ./odtone-sap_8023 --link.link_addr 00:13:77:bf:f0:ef
+./odtone-mih_usr --dest mihf1
+

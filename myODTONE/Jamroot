@@ -1,0 +1,127 @@
+#==============================================================================
+# Brief   : Odtone Project Build
+# Authors : Carlos Guimaraes <cguimaraes@av.it.pt>
+#           Bruno Santos     <bsantos@av.it.pt>
+#------------------------------------------------------------------------------
+# ODTONE - Open Dot Twenty One
+#
+# Copyright (C) 2009-2013 Universidade Aveiro
+# Copyright (C) 2009-2013 Instituto de Telecomunicações - Pólo Aveiro
+#
+# This software is distributed under a license. The full license
+# agreement can be found in the file LICENSE in this distribution.
+# This software may not be copied, modified, sold or distributed
+# other than expressed in the named license agreement.
+#
+# This software is distributed without any warranty.
+#==============================================================================
+
+import os ;
+import errors ;
+import option ;
+import debian ;
+import path ;
+
+project odtone
+	: requirements
+		<include>inc
+		<link>static
+		<runtime-link>static
+		<toolset>gcc:<cxxflags>-std=c++0x
+		<toolset>gcc-android:<runtime-link>static
+		<toolset>msvc:<define>BOOST_ALL_NO_LIB
+		<toolset>msvc:<define>_CRT_SECURE_NO_DEPRECATE
+		<toolset>msvc:<define>_SCL_SECURE_NO_DEPRECATE
+		<toolset>msvc:<define>_SECURE_SCL=0
+		<target-os>windows:<define>_WIN32_WINNT=0x0600
+	: usage-requirements
+		<include>inc
+	: build-dir bin.v2
+	;
+
+path-constant odtone-root : . ;
+
+#
+# Import the boost project
+#
+local boost-major = 1 ;
+local boost-minor = 49 ;
+local boost-patch = 0 ;
+local boost-root ;
+
+boost-root ?= [ option.get boost-root ] ;
+boost-root ?= [ os.environ BOOST_ROOT ] ;
+
+if ! $(boost-root) {
+	boost-root = [ path.join $(odtone-root) ../boost_$(boost-major)_$(boost-minor)_$(boost-patch) ] ;
+
+	local version = $(boost-major).$(boost-minor).$(boost-patch) ;
+
+	ECHO "Warning: Assuming that Boost $(version) root is located at $(boost-root)" ;
+	ECHO "Warning: You can set the location of the Boost $(version) libraries root in the command line"
+	     "(--boost-root=/path/to/boost) or in the environment variable BOOST_ROOT" ;
+}
+use-project boost : $(boost-root) ;
+
+#
+# General utilities
+#
+rule explicit-alias ( main-target-name :
+                      sources * :
+                      requirements * :
+                      default-build * :
+                      usage-requirements * )
+{
+    alias $(main-target-name)
+	    : $(sources)
+	    : $(requirements)
+	    : $(default-build)
+	    : $(usage-requirements)
+	    ;
+
+    explicit $(main-target-name) ;
+}
+IMPORT $(__name__) : explicit-alias : : odtone.explicit-alias ;
+
+rule runtime-lib ( name : basename ? )
+{
+	basename ?= $(name) ;
+
+	lib $(name)
+		:
+		: <name>$(basename)
+		  <runtime-link>shared:<link>shared
+		  <runtime-link>static:<link>static
+		;
+}
+IMPORT $(__name__) : runtime-lib : : odtone.runtime-lib ;
+
+#
+# Add alias for external usage
+#
+explicit-alias odtone : lib/odtone ;
+
+#
+# Build
+#
+install odtone-dist
+	: src/mihf//odtone-mihf
+	  src/mihf/odtone.conf
+	  app/link_sap//link_sap
+	  app/link_sap/link_sap.conf
+	  app/mih_usr//mih_usr
+	  app/mih_usr/mih_usr.conf
+	: <location>dist
+	;
+
+debian odtone-mihf
+	: <bin> src/mihf//odtone-mihf
+	  <etc> src/mihf/odtone.conf
+	: <version>0.6
+	  <section>net
+	  <maintainer-name>"Bruno Santos"
+	  <maintainer-email>"bsantos@av.it.pt"
+	  <description>"ODTONE - IEEE 802.21 MIHF"
+	;
+
+explicit odtone-mihf ;

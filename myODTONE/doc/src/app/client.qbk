@@ -1,0 +1,103 @@
+[/==============================================================================
+ / Brief   : Client App Documentation
+ / Authors : Carlos Guimaraes <cguimaraes@av.it.pt>
+ /------------------------------------------------------------------------------
+ / ODTONE - Open Dot Twenty One
+ /
+ / Copyright (C) 2009-2012 Universidade Aveiro
+ / Copyright (C) 2009-2012 Instituto de Telecomunicações - Pólo Aveiro
+ /
+ / This software is distributed under a license. The full license
+ / agreement can be found in the file LICENSE in this distribution.
+ / This software may not be copied, modified, sold or distributed
+ / other than expressed in the named license agreement.
+ /
+ / This software is distributed without any warranty.
+ /=============================================================================]
+
+[section:client_index Client]
+
+The ['client] is a simple application that lets you send any kind of message
+to a particular destination. In this way, oyou can send a specific message
+to a specific destination in order to test its behaviour easily and quickly.
+
+The destination could be either a MIHF or a MIH SAP (MIH-User/Link SAP).
+
+[section:client_getStart Getting Started]
+
+[section Configuration]
+
+The configuration of the client consists in defining the
+listening port of message's destination.
+
+The listening port can be configured in two ways:
+
+* Passing it directly in command line:
+``
+	--port=<port number>
+``
+
+* or configuring it in the configuration file:
+``
+	port = <port number>
+``
+
+[endsect]
+
+[section Extending]
+
+It is possible to add new messages to the ['client] with only 3 steps:
+
+[*1st step:] Define a new configuration option.
+``
+desc.add_options()
+	// ...
+	(kConf_MIH_NewMessage, "Send a New Message")
+;
+``
+
+[*2nd step:] Define the function responsible for creating and sending the message.
+
+``
+	void send_newMessage(handler &sap, const char *dst)
+	{
+		mih::message        p;
+
+		//...
+		// Define the message to send here
+		//...
+
+		sap.send(p);
+	}
+``
+
+[*3rd step:] Add a condition in the main function to decide which message
+will be sent.
+``
+	if (cfg.count(kConf_MIH_NewMessage)) {
+		std::cout << "sent a new message" << std::endl;
+		send_newMessage(sap, argv[1]);
+	}
+``
+
+[endsect]
+
+[section Running]
+
+Before running the client, the message option corresponding to the message
+that will be sent must be defined in the command line. In the next example,
+the client will send a MIH_Link_Up.indication message.
+
+E.g.: ./client --indication.link_up
+
+By default, message's destination is ['local-mihf]. However, it is possible to
+send the message to another destination using the ['--dest] option (in
+the command line).
+
+After the ['client] send the message the application will terminate.
+
+[endsect]
+
+[endsect]
+
+[endsect]

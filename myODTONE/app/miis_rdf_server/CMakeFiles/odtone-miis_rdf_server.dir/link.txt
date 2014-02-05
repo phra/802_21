@@ -1,0 +1,1 @@
+/usr/bin/c++    -std=c++0x    CMakeFiles/odtone-miis_rdf_server.dir/miis_rdf_server.cpp.o  -o odtone-miis_rdf_server -rdynamic ../../lib/odtone/libodtone.so.0.5.0 -lrdf -lpthread -lboost_system-mt -lboost_program_options-mt -lboost_thread-mt -lpthread -Wl,-rpath,/home/phra/tesi/mih/802_21/myODTONE/lib/odtone: 

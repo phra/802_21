@@ -1,0 +1,104 @@
+#==============================================================================
+# Brief   : Quickbook Documentation Project Build
+# Authors : Carlos Guimaraes <cguimaraes@av.it.pt>
+#------------------------------------------------------------------------------
+# ODTONE - Open Dot Twenty One
+#
+# Copyright (C) 2009-2013 Universidade Aveiro
+# Copyright (C) 2009-2013 Instituto de Telecomunicações - Pólo Aveiro
+#
+# This software is distributed under a license. The full license
+# agreement can be found in the file LICENSE in this distribution.
+# This software may not be copied, modified, sold or distributed
+# other than expressed in the named license agreement.
+#
+# This software is distributed without any warranty.
+#==============================================================================
+
+import doxygen ;
+import quickbook ;
+
+project doc ;
+
+alias doxygen_parameters
+	:
+	: <doxygen:param>EXPAND_ONLY_PREDEF=YES
+	  <doxygen:param>EXTRACT_ALL=NO
+	  <doxygen:param>EXTRACT_PRIVATE=NO
+	  <doxygen:param>EXTRACT_STATIC=NO
+	  <doxygen:param>EXTRACT_LOCAL_CLASSES=NO
+	  <doxygen:param>EXTRACT_LOCAL_METHODS=NO
+	  <doxygen:param>EXTRACT_ANON_NSPACES=NO
+	  <doxygen:param>HIDE_UNDOC_MEMBERS=YES
+	  <doxygen:param>HIDE_UNDOC_CLASSES=YES
+	  <doxygen:param>HIDE_FRIEND_COMPOUNDS=YES
+	  <doxygen:param>HIDE_IN_BODY_DOCS=YES
+	  <doxygen:param>ENABLE_PREPROCESSING=YES
+	  <doxygen:param>MACRO_EXPANSION=NO
+	;
+
+doxygen libodtone
+        : [ glob ../inc/odtone/*.hpp
+            glob ../inc/odtone/mih/*.hpp
+			glob ../inc/odtone/mih/types/*.hpp
+			glob ../inc/odtone/sap/*.hpp
+			glob ../inc/odtone/net/dns/*.hpp
+            glob ../inc/odtone/net/ip/*.hpp
+            glob ../inc/odtone/net/ip/icmp/*.hpp
+            glob ../inc/odtone/net/link/*.hpp
+            	: ../inc/odtone/namespace.hpp
+            	  ../inc/odtone/mih/namespace.hpp
+            	  ../inc/odtone/sap/namespace.hpp
+            	  ../inc/odtone/net/namespace.hpp ]
+          doxygen_parameters
+        : <reftitle>"ODTONE Base Library"
+        ;
+
+
+xml odtone-doc
+	: src/odtone.qbk
+	: <dependency>libodtone
+	;
+
+boostbook doc-html
+	: odtone-doc
+	: <xsl:param>boost.image.src="./images/logo.png"
+	  <xsl:param>boost.image.alt="'ODTONE - Open Dot Twenty One'"
+	  <xsl:param>boost.image.w=100
+	  <xsl:param>boost.image.h=100
+	  <xsl:param>base.dir=../doc/html/
+
+	  <xsl:param>nav.layout=none
+	  <xsl:param>navig.graphics=1
+
+	  <xsl:param>chunk.section.depth=2
+	  <xsl:param>chunk.first.sections=1
+	  <xsl:param>toc.section.depth=2
+	  <xsl:param>toc.max.depth=4
+	  <xsl:param>generate.section.toc.level=5
+	  <xsl:param>index.on.type=1
+
+	  <xsl:param>generate.manifest=0
+	;
+
+install images
+	: [ glob src/images/*.* ]
+	: <location>html/images
+	;
+
+install callouts
+	: [ glob src/images/callouts/*.* ]
+	: <location>html/images/callouts
+	;
+
+install css
+	: src/boostbook.css
+	: <location>./html/
+	;
+
+#install pdf
+#	: doc-html/<format>pdf
+#	: <location>pdf
+#	;
+
+alias html : doc-html images css ;

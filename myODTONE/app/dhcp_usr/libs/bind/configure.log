@@ -1,0 +1,936 @@
+checking build system type... i686-pc-linux-gnu
+checking host system type... i686-pc-linux-gnu
+checking whether make sets $(MAKE)... yes
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for a sed that does not truncate output... /bin/sed
+checking for grep that handles long lines and -e... /bin/grep
+checking for egrep... /bin/grep -E
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for /usr/bin/ld option to reload object files... -r
+checking for BSD-compatible nm... /usr/bin/nm -B
+checking whether ln -s works... yes
+checking how to recognize dependent libraries... pass_all
+checking how to run the C preprocessor... gcc -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking dlfcn.h usability... yes
+checking dlfcn.h presence... yes
+checking for dlfcn.h... yes
+checking for g++... g++
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ accepts -g... yes
+checking how to run the C++ preprocessor... g++ -E
+checking for g77... no
+checking for xlf... no
+checking for f77... no
+checking for frt... no
+checking for pgf77... no
+checking for cf77... no
+checking for fort77... no
+checking for fl32... no
+checking for af77... no
+checking for xlf90... no
+checking for f90... no
+checking for pgf90... no
+checking for pghpf... no
+checking for epcf90... no
+checking for gfortran... no
+checking for g95... no
+checking for xlf95... no
+checking for f95... no
+checking for fort... no
+checking for ifort... no
+checking for ifc... no
+checking for efc... no
+checking for pgfortran... no
+checking for pgf95... no
+checking for lf95... no
+checking for ftn... no
+checking whether we are using the GNU Fortran 77 compiler... no
+checking whether  accepts -g... no
+checking the maximum length of command line arguments... 805306365
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for objdir... .libs
+checking for ar... ar
+checking for ranlib... ranlib
+checking for strip... strip
+checking if gcc supports -fno-rtti -fno-exceptions... no
+checking for gcc option to produce PIC... -fPIC
+checking if gcc PIC flag -fPIC works... yes
+checking if gcc static flag -static works... yes
+checking if gcc supports -c -o file.o... yes
+checking whether the gcc linker (/usr/bin/ld) supports shared libraries... yes
+checking whether -lc should be explicitly linked in... no
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... yes
+checking whether to build static libraries... yes
+configure: creating libtool
+appending configuration tag "CXX" to libtool
+checking for ld used by g++... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking whether the g++ linker (/usr/bin/ld) supports shared libraries... yes
+checking for g++ option to produce PIC... -fPIC
+checking if g++ PIC flag -fPIC works... yes
+checking if g++ static flag -static works... yes
+checking if g++ supports -c -o file.o... yes
+checking whether the g++ linker (/usr/bin/ld) supports shared libraries... yes
+checking dynamic linker characteristics... GNU/Linux ld.so
+(cached) (cached) checking how to hardcode library paths into programs... immediate
+appending configuration tag "F77" to libtool
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether ln -s works... yes
+checking for ar... /usr/bin/ar
+checking for etags... /usr/bin/etags
+checking for Exuberant Ctags etags... yes
+checking for perl5... no
+checking for perl... /usr/bin/perl
+checking for gcc... (cached) gcc
+checking whether we are using the GNU C compiler... (cached) yes
+checking whether gcc accepts -g... (cached) yes
+checking for gcc option to accept ISO C89... (cached) none needed
+checking for ANSI C header files... (cached) yes
+checking for fcntl.h... yes
+checking for regex.h... yes
+checking for sys/time.h... yes
+checking for unistd.h... (cached) yes
+checking for sys/sockio.h... no
+checking for sys/select.h... yes
+checking for sys/param.h... yes
+checking for sys/sysctl.h... yes
+checking for net/if6.h... no
+checking for an ANSI C-conforming const... yes
+checking for inline... inline
+checking for working volatile... yes
+checking for sysctlbyname... no
+checking for flexible array members... yes
+checking for seteuid... yes
+checking for setresuid... yes
+checking for setegid... yes
+checking for setresgid... yes
+checking for static inline breakage... yes
+checking for size_t... yes
+checking for ssize_t... yes
+checking for uintptr_t... yes
+checking for socklen_t... yes
+checking whether time.h and sys/time.h may both be included... yes
+checking for long long... yes
+checking for GCC noreturn attribute... yes
+checking for struct lifconf... no
+checking if unistd.h or sys/types.h defines fd_set... yes
+checking whether byte ordering is bigendian... no
+checking for OpenSSL library... no
+checking for PKCS11 support... disabled
+checking for PKCS11 tools... disabled
+checking for GSSAPI library... disabled
+checking for random device... /dev/random
+checking for /dev/random... yes
+checking for arc4random... no
+checking whether to build with thread support... no
+checking for libxml2 library... no
+checking for smf_enable_instance in -lscf... no
+checking for flockfile... yes
+checking for getc_unlocked... yes
+checking whether to build with threads... no
+checking if "gcc" supports -fno-strict-aliasing... yes
+checking for catgets... yes
+checking whether to use purify... no
+checking for IPv6 structures... yes
+checking for Kame IPv6 support... no
+checking for in6_addr... yes
+checking for in6addr_any... yes
+checking for in6addr_loopback... yes
+checking for sin6_scope_id in struct sockaddr_in6... yes
+checking for in6_pktinfo... yes
+checking for struct if_laddrreq... no
+checking for struct if_laddrconf... no
+checking for inet_ntop with IPv6 support... yes
+checking for working inet_pton with IPv6 support... yes
+checking for sa_len in struct sockaddr... no
+checking for struct msghdr flavor... 4.4BSD
+checking for type in_port_t... yes
+checking for struct addrinfo... yes
+checking for struct rrsetinfo... no
+checking for int sethostent... no
+checking for int endhostent... no
+checking for getnetbyaddr(in_addr_t, ...)... yes
+checking for int setnetent... no
+checking for int endnetent... no
+checking for gethostbyaddr(const void *, size_t, ...)... yes
+checking for h_errno in netdb.h... yes
+checking for getnameinfo prototype definitions... socklen_t for buflen; u_int for flags
+checking for gai_strerror prototype definitions... not match any subspecies; assume standard definition
+checking for getipnodebyname... no
+checking for getnameinfo... yes
+checking for getaddrinfo... yes
+checking for gai_strerror... yes
+checking for getifaddrs... yes
+checking for interface list sysctl... no
+checking for correctly declared strsep()... yes
+checking for memmove... yes
+checking for strtoul... yes
+checking for strlcpy... no
+checking for strlcat... no
+checking sprintf... checking for vsnprintf... yes
+checking for strerror... yes
+checking printf format modifier for 64-bit integers... ll
+checking for chroot... yes
+checking linux/capability.h usability... yes
+checking linux/capability.h presence... yes
+checking for linux/capability.h... yes
+checking sys/capability.h usability... yes
+checking sys/capability.h presence... yes
+checking for sys/capability.h... yes
+checking for cap_set_proc in -lcap... yes
+checking sys/prctl.h usability... yes
+checking sys/prctl.h presence... yes
+checking for sys/prctl.h... yes
+checking sys/un.h usability... yes
+checking sys/un.h presence... yes
+checking for sys/un.h... yes
+checking for tzset... yes
+checking for optarg declaration... yes
+checking for type rlim_t... yes
+checking for strings.h... (cached) yes
+checking for if_nametoindex... yes
+checking for nanosleep... yes
+checking architecture type for atomic operations... checking size of void *... 4
+x86_32
+checking compiler support for inline assembly code... gcc
+checking for latex... /usr/bin/latex
+checking for pdflatex... /usr/bin/pdflatex
+checking for w3m... /usr/bin/w3m
+checking for xsltproc... xsltproc
+checking for xmllint... xmllint
+checking for doxygen... doxygen
+checking for Docbook-XSL path... auto
+checking for html/docbook.xsl... "not found"
+checking for xhtml/docbook.xsl... "not found"
+checking for manpages/docbook.xsl... "not found"
+checking for html/chunk.xsl... "not found"
+checking for xhtml/chunk.xsl... "not found"
+checking for html/chunktoc.xsl... "not found"
+checking for xhtml/chunktoc.xsl... "not found"
+checking for html/maketoc.xsl... "not found"
+checking for xhtml/maketoc.xsl... "not found"
+checking for db2latex/xsl/docbook.xsl... "not found"
+checking for db2latex/xsl/figures... not found
+checking locale.h usability... yes
+checking locale.h presence... yes
+checking for locale.h... yes
+checking for setlocale... yes
+checking for dlopen in -ldl... yes
+checking for dlopen... yes
+checking for dlclose... yes
+checking for dlsym... yes
+checking for Postgres DLZ driver... no
+checking for MySQL DLZ driver... no
+checking for Berkeley DB DLZ driver... no
+checking for file system DLZ driver... no
+checking for LDAP DLZ driver... no
+checking for ODBC DLZ driver... no
+checking for stub DLZ driver... no
+checking contributed DLZ drivers... no
+configure: creating ./config.status
+config.status: creating make/rules
+config.status: creating make/includes
+config.status: creating make/Makefile
+config.status: creating make/mkdep
+config.status: creating Makefile
+config.status: creating bin/Makefile
+config.status: creating bin/check/Makefile
+config.status: creating bin/confgen/Makefile
+config.status: creating bin/confgen/unix/Makefile
+config.status: creating bin/dig/Makefile
+config.status: creating bin/dnssec/Makefile
+config.status: creating bin/named/Makefile
+config.status: creating bin/named/unix/Makefile
+config.status: creating bin/nsupdate/Makefile
+config.status: creating bin/pkcs11/Makefile
+config.status: creating bin/rndc/Makefile
+config.status: creating bin/tests/Makefile
+config.status: creating bin/tests/atomic/Makefile
+config.status: creating bin/tests/db/Makefile
+config.status: creating bin/tests/dst/Makefile
+config.status: creating bin/tests/hashes/Makefile
+config.status: creating bin/tests/headerdep_test.sh
+config.status: creating bin/tests/master/Makefile
+config.status: creating bin/tests/mem/Makefile
+config.status: creating bin/tests/names/Makefile
+config.status: creating bin/tests/net/Makefile
+config.status: creating bin/tests/rbt/Makefile
+config.status: creating bin/tests/resolver/Makefile
+config.status: creating bin/tests/sockaddr/Makefile
+config.status: creating bin/tests/system/Makefile
+config.status: creating bin/tests/system/conf.sh
+config.status: creating bin/tests/system/dlz/prereq.sh
+config.status: creating bin/tests/system/dlzexternal/Makefile
+config.status: creating bin/tests/system/dlzexternal/ns1/named.conf
+config.status: creating bin/tests/system/ecdsa/prereq.sh
+config.status: creating bin/tests/system/filter-aaaa/Makefile
+config.status: creating bin/tests/system/gost/prereq.sh
+config.status: creating bin/tests/system/lwresd/Makefile
+config.status: creating bin/tests/system/rpz/Makefile
+config.status: creating bin/tests/system/tkey/Makefile
+config.status: creating bin/tests/system/tsiggss/Makefile
+config.status: creating bin/tests/tasks/Makefile
+config.status: creating bin/tests/timers/Makefile
+config.status: creating bin/tests/virtual-time/Makefile
+config.status: creating bin/tests/virtual-time/conf.sh
+config.status: creating bin/tools/Makefile
+config.status: creating contrib/check-secure-delegation.pl
+config.status: creating contrib/zone-edit.sh
+config.status: creating doc/Makefile
+config.status: creating doc/arm/Makefile
+config.status: creating doc/doxygen/Doxyfile
+config.status: creating doc/doxygen/Makefile
+config.status: creating doc/doxygen/doxygen-input-filter
+config.status: creating doc/misc/Makefile
+config.status: creating doc/xsl/Makefile
+config.status: creating doc/xsl/isc-docbook-chunk.xsl
+config.status: creating doc/xsl/isc-docbook-html.xsl
+config.status: creating doc/xsl/isc-docbook-latex.xsl
+config.status: creating doc/xsl/isc-manpage.xsl
+config.status: creating isc-config.sh
+config.status: creating lib/Makefile
+config.status: creating lib/bind9/Makefile
+config.status: creating lib/bind9/include/Makefile
+config.status: creating lib/bind9/include/bind9/Makefile
+config.status: creating lib/dns/Makefile
+config.status: creating lib/dns/include/Makefile
+config.status: creating lib/dns/include/dns/Makefile
+config.status: creating lib/dns/include/dst/Makefile
+config.status: creating lib/dns/tests/Makefile
+config.status: creating lib/export/Makefile
+config.status: creating lib/export/dns/Makefile
+config.status: creating lib/export/dns/include/Makefile
+config.status: creating lib/export/dns/include/dns/Makefile
+config.status: creating lib/export/dns/include/dst/Makefile
+config.status: creating lib/export/irs/Makefile
+config.status: creating lib/export/irs/include/Makefile
+config.status: creating lib/export/irs/include/irs/Makefile
+config.status: creating lib/export/isc/nothreads/Makefile
+config.status: creating lib/export/isc/nothreads/include/Makefile
+config.status: creating lib/export/isc/nothreads/include/isc/Makefile
+config.status: creating lib/export/isc/Makefile
+config.status: creating lib/export/isc/include/Makefile
+config.status: creating lib/export/isc/include/isc/Makefile
+config.status: creating lib/export/isc/nls/Makefile
+config.status: creating lib/export/isc/unix/Makefile
+config.status: creating lib/export/isc/unix/include/Makefile
+config.status: creating lib/export/isc/unix/include/isc/Makefile
+config.status: creating lib/export/isccfg/Makefile
+config.status: creating lib/export/isccfg/include/Makefile
+config.status: creating lib/export/isccfg/include/isccfg/Makefile
+config.status: creating lib/export/samples/Makefile
+config.status: creating lib/export/samples/Makefile-postinstall
+config.status: creating lib/irs/Makefile
+config.status: creating lib/irs/include/Makefile
+config.status: creating lib/irs/include/irs/Makefile
+config.status: creating lib/irs/include/irs/netdb.h
+config.status: creating lib/irs/include/irs/platform.h
+config.status: creating lib/isc/x86_32/Makefile
+config.status: creating lib/isc/x86_32/include/Makefile
+config.status: creating lib/isc/x86_32/include/isc/Makefile
+config.status: creating lib/isc/nothreads/Makefile
+config.status: creating lib/isc/nothreads/include/Makefile
+config.status: creating lib/isc/nothreads/include/isc/Makefile
+config.status: creating lib/isc/Makefile
+config.status: creating lib/isc/include/Makefile
+config.status: creating lib/isc/include/isc/Makefile
+config.status: creating lib/isc/include/isc/platform.h
+config.status: creating lib/isc/tests/Makefile
+config.status: creating lib/isc/nls/Makefile
+config.status: creating lib/isc/unix/Makefile
+config.status: creating lib/isc/unix/include/Makefile
+config.status: creating lib/isc/unix/include/isc/Makefile
+config.status: creating lib/isccc/Makefile
+config.status: creating lib/isccc/include/Makefile
+config.status: creating lib/isccc/include/isccc/Makefile
+config.status: creating lib/isccfg/Makefile
+config.status: creating lib/isccfg/include/Makefile
+config.status: creating lib/isccfg/include/isccfg/Makefile
+config.status: creating lib/lwres/Makefile
+config.status: creating lib/lwres/include/Makefile
+config.status: creating lib/lwres/include/lwres/Makefile
+config.status: creating lib/lwres/include/lwres/netdb.h
+config.status: creating lib/lwres/include/lwres/platform.h
+config.status: creating lib/lwres/man/Makefile
+config.status: creating lib/lwres/unix/Makefile
+config.status: creating lib/lwres/unix/include/Makefile
+config.status: creating lib/lwres/unix/include/lwres/Makefile
+config.status: creating lib/tests/Makefile
+config.status: creating lib/tests/include/Makefile
+config.status: creating lib/tests/include/tests/Makefile
+config.status: creating unit/Makefile
+config.status: creating unit/unittest.sh
+config.status: creating config.h
+config.status: executing chmod commands
+make[5]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/make
+make[6]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/make'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[6]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/make'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/unit
+make[6]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/unit'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -rf ./atf
+make[6]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/unit'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib
+make[6]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/include
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/include/isc
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/include/isc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/include/isc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/unix
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/unix'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/unix/include
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/unix/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/unix/include/isc
+make[10]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/unix/include/isc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[10]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/unix/include/isc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/unix/include'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/unix'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/nls
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/nls'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/nls'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/nothreads
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/nothreads'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/nothreads/include
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/nothreads/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/nothreads/include/isc
+make[10]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/nothreads/include/isc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[10]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/nothreads/include/isc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/nothreads/include'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/nothreads'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/x86_32
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/x86_32'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/x86_32/include
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/x86_32/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/x86_32/include/isc
+make[10]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/x86_32/include/isc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[10]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/x86_32/include/isc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/x86_32/include'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc/x86_32'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f libisc.a libisc-nosymtbl.a libisc.la \
+	libisc-nosymtbl.la timestamp
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isc'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccc
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccc'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccc/include
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccc/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccc/include/isccc
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccc/include/isccc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccc/include/isccc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccc/include'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f libisccc.a timestamp
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccc'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/dns
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/dns'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/dns/include
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/dns/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/dns/include/dns
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/dns/include/dns'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/dns/include/dns'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/dns/include/dst
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/dns/include/dst'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/dns/include/dst'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/dns/include'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f libdns.a timestamp
+rm -f gen code.h include/dns/enumtype.h include/dns/enumclass.h
+rm -f include/dns/rdatastruct.h
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/dns'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccfg
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccfg'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccfg/include
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccfg/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccfg/include/isccfg
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccfg/include/isccfg'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccfg/include/isccfg'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccfg/include'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f libisccfg.a timestamp
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/isccfg'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/bind9
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/bind9'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/bind9/include
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/bind9/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/bind9/include/bind9
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/bind9/include/bind9'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/bind9/include/bind9'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/bind9/include'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f libbind9.a timestamp
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/bind9'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/include
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/include/lwres
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/include/lwres'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/include/lwres'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/man
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/man'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/man'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/unix
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/unix'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/unix/include
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/unix/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/unix/include/lwres
+make[10]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/unix/include/lwres'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[10]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/unix/include/lwres'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/unix/include'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres/unix'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f liblwres.a liblwres.la timestamp
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/lwres'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/tests
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/tests'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/tests/include
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/tests/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/tests/include/tests
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/tests/include/tests'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/tests/include/tests'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/tests/include'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f t_api.o libt_api.a timestamp
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/tests'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[6]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin
+make[6]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/named
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/named'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/named/unix
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/named/unix'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/named/unix'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f named lwresd builtin.o client.o config.o control.o controlconf.o interfacemgr.o listenlist.o log.o logconf.o main.o notify.o query.o server.o sortlist.o statschannel.o tkeyconf.o tsigconf.o update.o xfrout.o zoneconf.o lwaddr.o lwresd.o lwdclient.o lwderror.o lwdgabn.o lwdgnba.o lwdgrbn.o lwdnoop.o lwsearch.o  
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/named'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/rndc
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/rndc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f rndc
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/rndc'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/dig
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/dig'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f dig host nslookup
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/dig'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/dnssec
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/dnssec'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f dnssec-keygen dnssec-signzone dnssec-keyfromlabel dnssec-dsfromkey dnssec-revoke dnssec-settime
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/dnssec'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/atomic
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/atomic'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f t_atomic
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/atomic'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/db
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/db'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f t_db
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/db'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/dst
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/dst'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f dst_test t_dst gsstest randomfile
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/dst'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/master
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/master'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f t_master
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/master'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/mem
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/mem'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f t_mem
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/mem'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/hashes
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/hashes'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f t_hashes
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/hashes'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/names
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/names'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f t_names
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/names'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/net
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/net'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f t_net
+rm -f driver.o netaddr_multicast.o sockaddr_multicast.o
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/net'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/rbt
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/rbt'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f t_rbt
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/rbt'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/resolver
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/resolver'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f t_resolver
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/resolver'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/sockaddr
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/sockaddr'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f t_sockaddr
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/sockaddr'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/tasks
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/tasks'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f t_tasks
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/tasks'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/timers
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/timers'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f t_timers
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/timers'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/dlzexternal
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/dlzexternal'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f dlopen driver.so
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/dlzexternal'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/filter-aaaa
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/filter-aaaa'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f filter-aaaa
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/filter-aaaa'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/lwresd
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/lwresd'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f lwtest
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/lwresd'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/rpz
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/rpz'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f rpz
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/rpz'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/tkey
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/tkey'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f keycreate keydelete
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/tkey'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/tsiggss
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/tsiggss'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f gssapi_krb 
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system/tsiggss'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+if test -f ./cleanall.sh; then sh ./cleanall.sh; fi
+rm -f systests.output
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests/system'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f cfg_test adb_test byaddr_test backtrace_test backtrace_test_nosymtbl byname_test compress_test db_test entropy_test entropy2_test gxba_test gxbn_test hash_test fsaccess_test inter_test keyboard_test lex_test lfsr_test log_test lwres_test lwresconf_test master_test mempool_test name_test nsecify ratelimiter_test rbt_test rdata_test rwlock_test serial_test shutdown_test sig0_test sock_test sym_test task_test timer_test wire_test zone_test
+rm -f t_journal
+rm -f backtrace_test_symtbl.c
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tests'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tools
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tools'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f arpaname named-journalprint nsec3hash genrandom isc-hmac-fixup
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/tools'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/nsupdate
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/nsupdate'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f nsupdate
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/nsupdate'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/check
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/check'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f named-checkconf named-checkzone r1.htm
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/check'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/confgen
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/confgen'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/confgen/unix
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/confgen/unix'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/confgen/unix'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f rndc-confgen ddns-confgen
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin/confgen'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[6]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/bin'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/doc
+make[6]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/doc'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/doc/arm
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/doc/arm'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f Bv9ARM.aux Bv9ARM.brf Bv9ARM.glo Bv9ARM.idx Bv9ARM.toc
+rm -f Bv9ARM.log Bv9ARM.out Bv9ARM.tex Bv9ARM.tex.tmp
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/doc/arm'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/doc/misc
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/doc/misc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/doc/misc'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/doc/xsl
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/doc/xsl'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/doc/xsl'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/doc/doxygen
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/doc/doxygen'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/doc/doxygen'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[6]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/doc'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export
+make[6]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/include
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/include/isc
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/include/isc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/include/isc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/unix
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/unix'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/unix/include
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/unix/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/unix/include/isc
+make[10]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/unix/include/isc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[10]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/unix/include/isc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/unix/include'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/unix'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/nls
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/nls'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/nls'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/nothreads
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/nothreads'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/nothreads/include
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/nothreads/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/nothreads/include/isc
+make[10]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/nothreads/include/isc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[10]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/nothreads/include/isc'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/nothreads/include'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc/nothreads'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f libisc.a libisc.la timestamp
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isc'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/dns
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/dns'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/dns/include
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/dns/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/dns/include/dns
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/dns/include/dns'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/dns/include/dns'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/dns/include/dst
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/dns/include/dst'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/dns/include/dst'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/dns/include'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f libdns.a timestamp
+rm -f gen code.h include/dns/enumtype.h include/dns/enumclass.h
+rm -f include/dns/rdatastruct.h
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/dns'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isccfg
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isccfg'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isccfg/include
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isccfg/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isccfg/include/isccfg
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isccfg/include/isccfg'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isccfg/include/isccfg'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isccfg/include'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f libisccfg.a timestamp
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/isccfg'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/irs
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/irs'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/irs/include
+make[8]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/irs/include'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/irs/include/irs
+make[9]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/irs/include/irs'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[9]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/irs/include/irs'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[8]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/irs/include'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f libirs.a libirs.la timestamp
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/irs'
+making clean in /home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/samples
+make[7]: Entering directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/samples'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f sample sample-async sample-gai sample-update sample-request nsprobe
+make[7]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export/samples'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+make[6]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1/lib/export'
+rm -f *.o *.o *.lo *.la core *.core *-symtbl.c *tmp0 *tmp1 *tmp2
+rm -rf .depend .libs
+rm -f FAQ.tmp
+make[5]: Leaving directory `/home/phra/tesi/mih/ODTONE/app/dhcp_usr/libs/bind/bind-9.8.4-P1'
+BIND is being built without OpenSSL. This means it will not have DNSSEC support.
