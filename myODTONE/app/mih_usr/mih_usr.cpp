@@ -96,6 +96,89 @@ boost::optional<odtone::mih::mih_cmd_list> parse_supported_commands(const odtone
     return supp_cmd;
 }
 
+
+#define MAX_LINKS 5
+class interfaces : boost::noncopyable {
+    
+    private:
+        struct info {
+            bool up;
+            odtone::mih::mac_addr* mac;
+            odtone::mih::link_type type;
+        };
+        struct info data[MAX_LINKS];
+
+    public:
+        interfaces() {
+            //this->data = new info[MAX_LINKS];
+            memset(data,0,MAX_LINKS*sizeof(struct info));
+        }
+
+        ~interfaces() {
+            this->remove_interfaces();
+        }
+
+        odtone::sint find_interface(odtone::mih::mac_addr& mac) {
+            odtone::uint i = 0;
+            for (; i < MAX_LINKS; i++) {
+                if (this->data[i].mac != NULL && *this->data[i].mac == mac)
+                    return i;
+            }
+            return -1;
+        }
+
+        odtone::uint add_interface(odtone::mih::mac_addr& mac, odtone::mih::link_type& type) {
+            odtone::sint i = 0;
+            if ((i = this->find_interface(mac)) >= 0) {
+                log_(0,__FUNCTION__, i);
+                this->data[i].up = true;
+                return i;
+            } else i = 0;
+            while (this->data[i].up && i < MAX_LINKS) i++;
+            if (i >= MAX_LINKS) return -1;
+            this->data[i].up = true;
+            this->data[i].mac = new odtone::mih::mac_addr(mac.address());
+            this->data[i].type = type;
+            return i;
+        }
+
+        void remove_interfaces() {
+            odtone::uint i = 0;
+            for (; i < MAX_LINKS; i++)
+                if (this->data[i].up) remove_interface(i);
+        }
+
+        void remove_interface(odtone::uint i) {
+            delete data[i].mac;
+            memset(&data[i],0,sizeof(struct info));
+        }
+
+        void remove_interface(odtone::mih::mac_addr& mac) {
+            odtone::sint i = 0;
+            if ((i = this->find_interface(mac)) >= 0)
+                return remove_interface(i);
+        }
+
+        void print_interface(odtone::uint i) {
+            if (i >= MAX_LINKS)
+                log_(0,"invalid index");
+            else if (this->data[i].type == odtone::mih::link_type_802_11)
+                log_(0, "interface[", i, "] address: ", this->data[i].mac->address(), " type = 802.11");
+            else if (this->data[i].type == odtone::mih::link_type_ethernet)
+                log_(0, "interface[", i, "] address: ", this->data[i].mac->address(), " type = 802.3");
+            else
+                log_(0, "interface[", i, "] address: ", this->data[i].mac->address(), " type = OTHER");
+        }
+        
+        void print_interfaces() {
+            odtone::uint i = 0;
+            for (; i < MAX_LINKS; i++)
+                if (this->data[i].mac != NULL) print_interface(i);
+        }
+};
+
+
+
 ///////////////////////////////////////////////////////////////////////////////
 /**
  * This class provides an implementation of an IEEE 802.21 MIH-User.
@@ -148,12 +231,13 @@ class mih_user : boost::noncopyable {
          * @param ec Error Code.
          */
         void event_subscribe_response(odtone::mih::message& msg, const boost::system::error_code& ec);
-
         void send_link_get_parameters_request();
         void link_get_parameters_request_handler(odtone::mih::message& msg, const boost::system::error_code& ec);
+    
     private:
         odtone::sap::user _mihf;	/**< User SAP helper.		*/
         odtone::mih::id   _mihfid;	/**< MIHF destination ID.	*/
+        interfaces links;
 };
 
 /**
@@ -235,7 +319,7 @@ void mih_user::send_link_get_parameters_request()
     lsr._states_req.set(odtone::mih::link_states_req_op_mode);
     //lsr._param_type_list.push_back(lp);
     // lsr._desc_req.set(odtone::mih::link_desc_req_classes_of_service_supported);
-    
+
     odtone::mih::link_param_gen lpgs = odtone::mih::link_param_gen_signal_strength;
     lsr._param_type_list.push_back(lpgs);
 
@@ -264,7 +348,6 @@ void mih_user::link_get_parameters_request_handler(odtone::mih::message& msg, co
 
     odtone::uint iter,iter1;
 
-    log_(0, "");
     log_(0, "receive_MIH_Link_Get_Parameters_confirm - Begin");
 
     msg >> odtone::mih::confirm()
@@ -276,10 +359,10 @@ void mih_user::link_get_parameters_request_handler(odtone::mih::message& msg, co
     //log_(0, "\t- STATUS RSP LIST - Length: ", srl.size());
 
     /*for (odtone::mih::status_rsp_list::iterator i = srl->begin(); i != srl->end(); ++i) {
-        log_(0, "inizio");
-        log_(0, *i);
-        log_(0, "fine");
-    }*/
+      log_(0, "inizio");
+      log_(0, *i);
+      log_(0, "fine");
+      }*/
 
     for(iter=0; iter<srl.size(); iter++)
     {
@@ -351,14 +434,20 @@ void mih_user::event_handler(odtone::mih::message& msg, const boost::system::err
         send_link_get_parameters_request();
         return;
     }
-
+    odtone::mih::link_tuple_id li;
+    msg >> odtone::mih::indication()
+        & odtone::mih::tlv_link_identifier(li);
+    odtone::mih::mac_addr mac = boost::get<odtone::mih::mac_addr>(li.addr);
+    odtone::mih::link_type type = boost::get<odtone::mih::link_type>(li.type);
     switch (msg.mid()) {
         case odtone::mih::indication::link_up:
             log_(0, "MIH-User has received a local event \"link_up\"");
+            this->links.add_interface(mac,type);
             break;
 
         case odtone::mih::indication::link_down:
             log_(0, "MIH-User has received a local event \"link_down\"");
+            this->links.remove_interface(mac);
             break;
 
         case odtone::mih::indication::link_detected:
@@ -372,13 +461,16 @@ void mih_user::event_handler(odtone::mih::message& msg, const boost::system::err
         case odtone::mih::indication::link_handover_imminent:
             log_(0, "MIH-User has received a local event \"link_handover_imminent\"");
             break;
+        
         case odtone::mih::indication::link_handover_complete:
             log_(0, "MIH-User has received a local event \"link_handover_complete\"");
             break;
+        
         default:
             log_(0, "MIH-User has received a local event \"unknown\"");
             break;
     }
+    this->links.print_interfaces();
 }
 
 /**
@@ -406,19 +498,19 @@ void mih_user::capability_discover_confirm(odtone::mih::message& msg, const boos
     log_(0, "MIH-User has received a Capability_Discover.response with status ",
             st.get(), " and the following capabilities:");
 
-        /*odtone::uint i = 0;
-        odtone::uint size = ntal.size();
-        for (;i < size; i++) {
-            odtone::mih::mac_addr mac = boost::get<odtone::mih::mac_addr>(ntal[i].addr);
-            odonte::mih::network_type type = ntal[i].nettype;
-            switch type:
-            case odtone::mih::link_type_802_11:
-                log_(0, "detected wifi w/ addr = ", mac);
-                break;
-            case odtone::mih::link_type_ethernet:
-                log_(0, "detected ethernet w/ addr = ", mac);
-                break;
-        }*/
+    /*odtone::uint i = 0;
+      odtone::uint size = ntal.size();
+      for (;i < size; i++) {
+      odtone::mih::mac_addr mac = boost::get<odtone::mih::mac_addr>(ntal[i].addr);
+      odonte::mih::network_type type = ntal[i].nettype;
+      switch type:
+      case odtone::mih::link_type_802_11:
+      log_(0, "detected wifi w/ addr = ", mac);
+      break;
+      case odtone::mih::link_type_ethernet:
+      log_(0, "detected ethernet w/ addr = ", mac);
+      break;
+      }*/
 
 
 
@@ -434,14 +526,10 @@ void mih_user::capability_discover_confirm(odtone::mih::message& msg, const boos
         {
             odtone::mih::mac_addr mac = boost::get<odtone::mih::mac_addr>(i->addr);
             odtone::mih::link_type type = boost::get<odtone::mih::link_type>(i->nettype.link);
-
-            if (type == odtone::mih::link_type_802_11)
-                //mac.get() to obtain hex address
-                log_(0, "detected wifi w/ addr = ", mac.address());
-            else if (type == odtone::mih::link_type_ethernet)
-                log_(0, "detected ethernet w/ addr = ", mac.address());
+            this->links.add_interface(mac,type);
         }
     }
+    this->links.print_interfaces();
     //
     // event subscription
     //
