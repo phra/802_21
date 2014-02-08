@@ -33,6 +33,10 @@ boost/tokenizer.hpp
 -
 boost/foreach.hpp
 -
+boost/asio.hpp
+-
+boost/thread.hpp
+-
 iostream
 -
 

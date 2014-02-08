@@ -29,6 +29,8 @@
 #include <boost/bind.hpp>
 #include <boost/tokenizer.hpp>
 #include <boost/foreach.hpp>
+#include <boost/asio.hpp>
+#include <boost/thread.hpp>
 
 #include <iostream>
 
@@ -98,25 +100,79 @@ boost::optional<odtone::mih::mih_cmd_list> parse_supported_commands(const odtone
 
 
 #define MAX_LINKS 5
+#define MAX_BUF 66000
 class interfaces : boost::noncopyable {
-    
+
     private:
         struct info {
             bool up;
             odtone::mih::mac_addr* mac;
             odtone::mih::link_type type;
+            boost::asio::ip::udp::socket* sock;
         };
         struct info data[MAX_LINKS];
+        boost::asio::io_service io,iol;
+        boost::asio::ip::udp::socket lsock = boost::asio::ip::udp::socket(iol); 
+        boost::asio::ip::udp::endpoint dest = boost::asio::ip::udp::endpoint(boost::asio::ip::address::from_string("127.0.0.1"),9999);
+        char buf[MAX_BUF];
+
+        void handle_receive(const boost::system::error_code& error, size_t received_bytes) {
+            this->sendto(buf,received_bytes);
+            lsock.async_receive(
+                    boost::asio::buffer(buf,MAX_BUF),
+                    boost::bind(&interfaces::handle_receive, this,
+                        boost::asio::placeholders::error,
+                        boost::asio::placeholders::bytes_transferred));
+
+        }
 
     public:
         interfaces() {
-            //this->data = new info[MAX_LINKS];
             memset(data,0,MAX_LINKS*sizeof(struct info));
+            memset(buf,0,MAX_BUF);
+            lsock.open(boost::asio::ip::udp::v4());
+            lsock.bind(boost::asio::ip::udp::endpoint(boost::asio::ip::address::from_string("127.0.0.1"),10000));
+            lsock.async_receive(
+                    boost::asio::buffer(buf,MAX_BUF),
+                    boost::bind(&interfaces::handle_receive, this,
+                        boost::asio::placeholders::error,
+                        boost::asio::placeholders::bytes_transferred));
+            boost::thread t = boost::thread (boost::bind(&boost::asio::io_service::run, &iol));
         }
 
         ~interfaces() {
             this->remove_interfaces();
         }
+
+        odtone::sint find_best_interface() {
+            odtone::sint i = 0;
+            for (; i < MAX_LINKS; i++) {
+                if (this->data[i].up) {
+                    log_(0,__FUNCTION__, " i = ",i);
+                    return i;
+                }
+            }
+            return -1;
+        }
+        void sendto(char* buf, int len) {
+            odtone::sint i = this->find_best_interface();
+            if (i == -1) {
+                log_(0, __FUNCTION__, " no available interfaces, discarding packet");
+                return;
+            }
+            this->data[i].sock->send_to(boost::asio::buffer(buf,len),dest);
+        }
+
+        std::string mac_to_ip(odtone::mih::mac_addr& mac) {
+            odtone::mih::mac_addr wlan0mac("00:26:b6:4e:af:6c");
+            odtone::mih::mac_addr eth0mac("00:13:77:bf:f0:ef");
+            if (mac == wlan0mac)
+                return "192.168.1.147";
+            else if (mac == eth0mac)
+                return "192.168.2.2";
+            log_(0,__FUNCTION__, " -> 127.0.0.1");
+            return "127.0.0.1";
+        } 
 
         odtone::sint find_interface(odtone::mih::mac_addr& mac) {
             odtone::uint i = 0;
@@ -139,6 +195,9 @@ class interfaces : boost::noncopyable {
             this->data[i].up = true;
             this->data[i].mac = new odtone::mih::mac_addr(mac.address());
             this->data[i].type = type;
+            this->data[i].sock = new boost::asio::ip::udp::socket(this->io);
+            this->data[i].sock->open(boost::asio::ip::udp::v4());
+            this->data[i].sock->bind(boost::asio::ip::udp::endpoint(boost::asio::ip::address::from_string(this->mac_to_ip(mac).c_str()),0));
             return i;
         }
 
@@ -150,6 +209,8 @@ class interfaces : boost::noncopyable {
 
         void remove_interface(odtone::uint i) {
             delete data[i].mac;
+            data[i].sock->close();
+            delete data[i].sock;
             memset(&data[i],0,sizeof(struct info));
         }
 
@@ -169,7 +230,7 @@ class interfaces : boost::noncopyable {
             else
                 log_(0, "interface[", i, "] address: ", this->data[i].mac->address(), " type = OTHER");
         }
-        
+
         void print_interfaces() {
             odtone::uint i = 0;
             for (; i < MAX_LINKS; i++)
@@ -233,7 +294,7 @@ class mih_user : boost::noncopyable {
         void event_subscribe_response(odtone::mih::message& msg, const boost::system::error_code& ec);
         void send_link_get_parameters_request();
         void link_get_parameters_request_handler(odtone::mih::message& msg, const boost::system::error_code& ec);
-    
+
     private:
         odtone::sap::user _mihf;	/**< User SAP helper.		*/
         odtone::mih::id   _mihfid;	/**< MIHF destination ID.	*/
@@ -461,11 +522,11 @@ void mih_user::event_handler(odtone::mih::message& msg, const boost::system::err
         case odtone::mih::indication::link_handover_imminent:
             log_(0, "MIH-User has received a local event \"link_handover_imminent\"");
             break;
-        
+
         case odtone::mih::indication::link_handover_complete:
             log_(0, "MIH-User has received a local event \"link_handover_complete\"");
             break;
-        
+
         default:
             log_(0, "MIH-User has received a local event \"unknown\"");
             break;
