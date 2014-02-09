@@ -2,3 +2,9 @@ sudo ./odtone-sap_80211 --link.link_addr 00:26:b6:4e:af:6c
 sudo ./odtone-sap_8023 --link.link_addr 00:13:77:bf:f0:ef
 ./odtone-mih_usr --dest mihf1
 ./client --request.link_get_parameters
+
+
+TO COMPILE:
+sudo apt-get install cmake autoconf automake libboost-all-dev librdf0-dev libnl-3-dev libnl-route-3-dev libnl-genl-3-dev (take librdf0-dev and libnl from testing repository)
+edit /usr/include/boost/thread/xtime.hpp (sostituire TIME_UTC -> TIME_UTC_)
+cd myODTONE; cmake .; make -j8
