@@ -141,11 +141,11 @@ class interfaces : boost::noncopyable {
         struct info data[MAX_LINKS];
         struct endpoint destinations[MAX_LINKS];
         char buf[MAX_BUF];
-        boost::asio::io_service io,iol;
+        boost::asio::io_service io,iol,iot;
         boost::asio::ip::udp::socket lsock = boost::asio::ip::udp::socket(iol); 
         boost::asio::ip::udp::endpoint src = boost::asio::ip::udp::endpoint(boost::asio::ip::address::from_string(IP_SENDBACK),PORT_SENDBACK);
         boost::asio::deadline_timer* timer;
-        boost::asio::ip::udp::endpoint sender;
+        boost::asio::ip::udp::endpoint sender,lsender;
         bool sendback_active = false;
         odtone::uint port_counter = 0;
 
@@ -172,12 +172,13 @@ class interfaces : boost::noncopyable {
 
         void handle_receive_pacco(const boost::system::error_code& error, size_t received_bytes, odtone::uint i) {
             odtone::sint j = ip_to_index(this->sender.address());
+            log_(0,__FUNCTION__, "received pkt from ", this->sender.address(),":",this->sender.port());
             if (error) {
                 log_(0,__FUNCTION__," errore callback",error);
                 return;
             } 
             if (received_bytes == 0) {
-                log_(0,__FUNCTION__,"heartbeat");
+                log_(0,__FUNCTION__," heartbeat");
                 destinations[j].up = true;
                 destinations[j].lasthb = boost::posix_time::second_clock::local_time();
             } else if (this->data[i].buf != NULL && received_bytes > 0) {
@@ -195,8 +196,9 @@ class interfaces : boost::noncopyable {
 
         void handle_receive(const boost::system::error_code& error, size_t received_bytes) {
             this->sendto(buf,received_bytes);
-            lsock.async_receive(
-                    boost::asio::buffer(buf,MAX_BUF),
+            log_(0,__FUNCTION__);
+            lsock.async_receive_from(
+                    boost::asio::buffer(buf,MAX_BUF), this->lsender,
                     boost::bind(&interfaces::handle_receive, this,
                         boost::asio::placeholders::error,
                         boost::asio::placeholders::bytes_transferred));
@@ -211,9 +213,10 @@ class interfaces : boost::noncopyable {
                 data[i].up = destinations[i].up = false;
             }
             lsock.open(boost::asio::ip::udp::v4());
+            lsock.set_option(boost::asio::ip::udp::socket::reuse_address(true));
             lsock.bind(boost::asio::ip::udp::endpoint(boost::asio::ip::address::from_string("127.0.0.1"),PORT_LSOCK));
-            lsock.async_receive(
-                    boost::asio::buffer(buf,MAX_BUF),
+            lsock.async_receive_from(
+                    boost::asio::buffer(buf,MAX_BUF), this->lsender,
                     boost::bind(&interfaces::handle_receive, this,
                         boost::asio::placeholders::error,
                         boost::asio::placeholders::bytes_transferred));
@@ -221,9 +224,10 @@ class interfaces : boost::noncopyable {
             destinations[1].dest = boost::asio::ip::udp::endpoint(boost::asio::ip::udp::endpoint(boost::asio::ip::address::from_string("192.168.1.147"),PORT_DEST+1));
             destinations[0].up = true;
             destinations[0].dest = boost::asio::ip::udp::endpoint(boost::asio::ip::udp::endpoint(boost::asio::ip::address::from_string("192.168.2.2"),PORT_DEST));
-            this->timer = new boost::asio::deadline_timer(iol, boost::posix_time::seconds(HB_TIMEOUT));
+            this->timer = new boost::asio::deadline_timer(iot, boost::posix_time::seconds(HB_TIMEOUT));
             timer->async_wait(boost::bind(&interfaces::send_hb_timer, this, boost::asio::placeholders::error));
-            boost::thread t = boost::thread (boost::bind(&boost::asio::io_service::run, &iol));
+            boost::thread t = (boost::bind(&boost::asio::io_service::run, &iol));
+            boost::thread t1 = (boost::bind(&boost::asio::io_service::run, &iot));
         }
 
         ~interfaces() {
@@ -245,7 +249,9 @@ class interfaces : boost::noncopyable {
             odtone::sint i = 0;
             for (; i < MAX_LINKS; i++) {
                 boost::posix_time::time_duration diff = boost::posix_time::second_clock::local_time() - this->destinations[i].lasthb;
+                log_(0, __FUNCTION__, " total seconds: ",diff.total_seconds());
                 if (diff.total_seconds() > LINK_TIMEOUT) {
+                    log_(0,__FUNCTION__," link timeout");
                     this->destinations[i].up = false;
                 }
                 if (this->destinations[i].up) {
@@ -271,12 +277,12 @@ class interfaces : boost::noncopyable {
         }
 
         std::string mac_to_ip(odtone::mih::mac_addr& mac) {
-            odtone::mih::mac_addr wlan0mac("00:26:b6:4e:af:6c");
-            odtone::mih::mac_addr eth0mac("00:13:77:bf:f0:ef");
-            if (mac == wlan0mac)
-                return "192.168.1.147";
-            else if (mac == eth0mac)
-                return "192.168.2.2";
+            odtone::mih::mac_addr eth0mac("f4:6d:04:9c:11:38");
+            odtone::mih::mac_addr eth1mac("f4:6d:04:9c:0d:4d");
+            if (mac == eth0mac)
+                return "192.168.1.145";
+            else if (mac == eth1mac)
+                return "192.168.2.1";
             log_(0,__FUNCTION__, " -> 127.0.0.1");
             return "127.0.0.1";
         } 
@@ -301,14 +307,49 @@ class interfaces : boost::noncopyable {
             this->timer->async_wait(boost::bind(&interfaces::send_hb_timer, this,  boost::asio::placeholders::error));
         }
 
+        uint32_t IPToUInt(const std::string ip) {
+            int a, b, c, d;
+            uint32_t addr = 0;
+
+            if (sscanf(ip.c_str(), "%d.%d.%d.%d", &a, &b, &c, &d) != 4)
+                return 0;
+
+            addr = a << 24;
+            addr |= b << 16;
+            addr |= c << 8;
+            addr |= d;
+            return addr;
+        }
+
+        bool IsIPInRange(const std::string ip, const std::string network, const std::string mask) {
+            uint32_t ip_addr = IPToUInt(ip);
+            uint32_t network_addr = IPToUInt(network);
+            uint32_t mask_addr = IPToUInt(mask);
+
+            uint32_t net_lower = (network_addr & mask_addr);
+            uint32_t net_upper = (net_lower | (~mask_addr));
+
+            if (ip_addr >= net_lower &&
+                    ip_addr <= net_upper)
+                return true;
+            return false;
+        }
+
+
         void send_hb() {
             odtone::uint i,j;
             for (i = 0; i < MAX_LINKS; i++) {
                 for (j = 0; this->data[i].up && j < MAX_LINKS; j++) {
+                    bool temp1 = IsIPInRange(this->data[i].sock->local_endpoint().address().to_string(),"192.168.0.0","255.255.0.0");
+                    bool temp2 = IsIPInRange(this->destinations[j].dest.address().to_string(),"192.168.0.0.","255.255.0.0");
+                    if (temp1 && temp2 && IsIPInRange(this->data[i].sock->local_endpoint().address().to_string(),this->destinations[j].dest.address().to_string(),"255.255.255.0")) {
+                        log_(0,"scarto hb verso diversa subnet locale");
+                        continue;
+                    }
                     if (destinations[j].up) {
                         //log_(0,__FUNCTION__, "sending hb to j = ", j, " ", destinations[j].dest.address(), ":",destinations[j].dest.port());
                         try {
-                        this->data[i].sock->send_to(boost::asio::buffer("",0), destinations[j].dest);
+                            this->data[i].sock->send_to(boost::asio::buffer("",0), destinations[j].dest);
                         } catch (...) {
                             this->data[i].up = false;
                         }
@@ -324,7 +365,7 @@ class interfaces : boost::noncopyable {
                 this->data[i].up = true;
                 return i;
             } else i = 0;
-            while (this->data[i].up && i < MAX_LINKS) i++;
+            while (this->data[i].mac != NULL && i < MAX_LINKS) i++;
             if (i >= MAX_LINKS) return -1;
             this->data[i].up = true;
             this->data[i].mac = new odtone::mih::mac_addr(mac.address());
@@ -334,8 +375,8 @@ class interfaces : boost::noncopyable {
             this->data[i].sock->bind(boost::asio::ip::udp::endpoint(
                         boost::asio::ip::address::from_string(
                             this->mac_to_ip(mac).c_str()),PORT_DATA_SOCK+port_counter++));
-            
-                
+
+
             this->data[i].buf = new char[MAX_BUF];
             log_(0,__FUNCTION__," binding and receive on ", this->data[i].sock->local_endpoint().address(),":",this->data[i].sock->local_endpoint().port());
             this->data[i].sock->async_receive_from(
