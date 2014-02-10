@@ -8,4 +8,5 @@ TO COMPILE:
 sudo apt-get install cmake autoconf automake libboost-all-dev librdf0-dev libnl-3-dev libnl-route-3-dev libnl-genl-3-dev (take librdf0-dev and libnl from testing repository)
 edit /usr/include/boost/thread/xtime.hpp (sostituire TIME_UTC -> TIME_UTC_)
 cd myODTONE; cmake .; make -j8
-sudo ln -s `realpath ../../lib/odtone/libodtone.so` /usr/lib/libodtone.so.0.5
+sudo ln -s `realpath lib/odtone/libodtone.so` /usr/lib/libodtone.so.0.5
+sudo ln -s `realpath lib/external/libnl/nlwrap/libnlwrap.so` /usr/lib/libnlwrap.so.0.5
