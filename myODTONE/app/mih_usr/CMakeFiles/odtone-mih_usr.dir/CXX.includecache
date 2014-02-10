@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/phra/tesi/mih/802_21/myODTONE/app/mih_usr/mih_usr.cpp
+/home/phra/tesi/802_21/myODTONE/app/mih_usr/mih_usr.cpp
 odtone/base.hpp
 -
 odtone/debug.hpp
@@ -42,7 +42,7 @@ boost/date_time/posix_time/posix_time.hpp
 iostream
 -
 boost/date_time/posix_time/posix_time.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/mih_usr/boost/date_time/posix_time/posix_time.hpp
+/home/phra/tesi/802_21/myODTONE/app/mih_usr/boost/date_time/posix_time/posix_time.hpp
 
 app/mih_usr/../../inc/odtone/base.hpp
 cstddef

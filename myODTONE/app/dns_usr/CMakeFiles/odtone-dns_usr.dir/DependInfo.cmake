@@ -4,10 +4,10 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/dns_usr.cpp" "/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.o"
-  "/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/log.cpp" "/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/CMakeFiles/odtone-dns_usr.dir/log.cpp.o"
-  "/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/main.cpp" "/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/CMakeFiles/odtone-dns_usr.dir/main.cpp.o"
-  "/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/query_book.cpp" "/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/CMakeFiles/odtone-dns_usr.dir/query_book.cpp.o"
+  "/home/phra/tesi/802_21/myODTONE/app/dns_usr/dns_usr.cpp" "/home/phra/tesi/802_21/myODTONE/app/dns_usr/CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.o"
+  "/home/phra/tesi/802_21/myODTONE/app/dns_usr/log.cpp" "/home/phra/tesi/802_21/myODTONE/app/dns_usr/CMakeFiles/odtone-dns_usr.dir/log.cpp.o"
+  "/home/phra/tesi/802_21/myODTONE/app/dns_usr/main.cpp" "/home/phra/tesi/802_21/myODTONE/app/dns_usr/CMakeFiles/odtone-dns_usr.dir/main.cpp.o"
+  "/home/phra/tesi/802_21/myODTONE/app/dns_usr/query_book.cpp" "/home/phra/tesi/802_21/myODTONE/app/dns_usr/CMakeFiles/odtone-dns_usr.dir/query_book.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -18,7 +18,7 @@ SET(CMAKE_TARGET_DEFINITIONS
 
 # Targets to which this target links.
 SET(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/CMakeFiles/libodtone.dir/DependInfo.cmake"
+  "/home/phra/tesi/802_21/myODTONE/lib/odtone/CMakeFiles/libodtone.dir/DependInfo.cmake"
   )
 
 # The include file search paths:

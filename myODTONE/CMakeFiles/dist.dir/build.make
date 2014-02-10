@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/phra/tesi/mih/802_21/myODTONE
+CMAKE_SOURCE_DIR = /home/phra/tesi/802_21/myODTONE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/phra/tesi/mih/802_21/myODTONE
+CMAKE_BINARY_DIR = /home/phra/tesi/802_21/myODTONE
 
 # Utility rule file for dist.
 
@@ -46,7 +46,7 @@ CMAKE_BINARY_DIR = /home/phra/tesi/mih/802_21/myODTONE
 include CMakeFiles/dist.dir/progress.make
 
 CMakeFiles/dist:
-	mkdir -p /home/phra/tesi/mih/802_21/myODTONE/odtone-0.5.0 && git log > /home/phra/tesi/mih/802_21/myODTONE/odtone-0.5.0/ChangeLog && git archive --prefix=odtone-0.5.0/ HEAD --format=tar --output="/home/phra/tesi/mih/802_21/myODTONE/odtone-0.5.0.tar" && tar -C /home/phra/tesi/mih/802_21/myODTONE --owner=root --group=root -r odtone-0.5.0/ChangeLog -f /home/phra/tesi/mih/802_21/myODTONE/odtone-0.5.0.tar && bzip2 -f9 /home/phra/tesi/mih/802_21/myODTONE/odtone-0.5.0.tar && echo Source\ package\ created\ at\ /home/phra/tesi/mih/802_21/myODTONE/odtone-0.5.0.tar.bz2.
+	mkdir -p /home/phra/tesi/802_21/myODTONE/odtone-0.5.0 && git log > /home/phra/tesi/802_21/myODTONE/odtone-0.5.0/ChangeLog && git archive --prefix=odtone-0.5.0/ HEAD --format=tar --output="/home/phra/tesi/802_21/myODTONE/odtone-0.5.0.tar" && tar -C /home/phra/tesi/802_21/myODTONE --owner=root --group=root -r odtone-0.5.0/ChangeLog -f /home/phra/tesi/802_21/myODTONE/odtone-0.5.0.tar && bzip2 -f9 /home/phra/tesi/802_21/myODTONE/odtone-0.5.0.tar && echo Source\ package\ created\ at\ /home/phra/tesi/802_21/myODTONE/odtone-0.5.0.tar.bz2.
 
 
 dist: CMakeFiles/dist
@@ -62,6 +62,6 @@ CMakeFiles/dist.dir/clean:
 .PHONY : CMakeFiles/dist.dir/clean
 
 CMakeFiles/dist.dir/depend:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/phra/tesi/mih/802_21/myODTONE /home/phra/tesi/mih/802_21/myODTONE /home/phra/tesi/mih/802_21/myODTONE /home/phra/tesi/mih/802_21/myODTONE /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles/dist.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/phra/tesi/802_21/myODTONE && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/phra/tesi/802_21/myODTONE /home/phra/tesi/802_21/myODTONE /home/phra/tesi/802_21/myODTONE /home/phra/tesi/802_21/myODTONE /home/phra/tesi/802_21/myODTONE/CMakeFiles/dist.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/dist.dir/depend
 

@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/dns_usr.cpp
+/home/phra/tesi/802_21/myODTONE/app/dns_usr/dns_usr.cpp
 dns_usr.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/dns_usr.hpp
+/home/phra/tesi/802_21/myODTONE/app/dns_usr/dns_usr.hpp
 log.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/log.hpp
+/home/phra/tesi/802_21/myODTONE/app/dns_usr/log.hpp
 odtone/net/dns/types.hpp
 -
 odtone/net/dns/frame.hpp
@@ -34,9 +34,9 @@ boost/bind.hpp
 boost/foreach.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/dns_usr.hpp
+/home/phra/tesi/802_21/myODTONE/app/dns_usr/dns_usr.hpp
 query_book.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/query_book.hpp
+/home/phra/tesi/802_21/myODTONE/app/dns_usr/query_book.hpp
 odtone/sap/user.hpp
 -
 odtone/net/dns/resolver.hpp
@@ -46,21 +46,21 @@ odtone/net/dns/types.hpp
 map
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/log.cpp
+/home/phra/tesi/802_21/myODTONE/app/dns_usr/log.cpp
 log.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/log.hpp
+/home/phra/tesi/802_21/myODTONE/app/dns_usr/log.hpp
 iostream
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/log.hpp
+/home/phra/tesi/802_21/myODTONE/app/dns_usr/log.hpp
 odtone/logger.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/main.cpp
+/home/phra/tesi/802_21/myODTONE/app/dns_usr/main.cpp
 log.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/log.hpp
+/home/phra/tesi/802_21/myODTONE/app/dns_usr/log.hpp
 dns_usr.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/dns_usr.hpp
+/home/phra/tesi/802_21/myODTONE/app/dns_usr/dns_usr.hpp
 iostream
 -
 boost/program_options.hpp
@@ -70,17 +70,17 @@ boost/tokenizer.hpp
 boost/foreach.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/query_book.cpp
+/home/phra/tesi/802_21/myODTONE/app/dns_usr/query_book.cpp
 query_book.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/query_book.hpp
+/home/phra/tesi/802_21/myODTONE/app/dns_usr/query_book.hpp
 log.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/log.hpp
+/home/phra/tesi/802_21/myODTONE/app/dns_usr/log.hpp
 boost/algorithm/string.hpp
 -
 boost/foreach.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/query_book.hpp
+/home/phra/tesi/802_21/myODTONE/app/dns_usr/query_book.hpp
 odtone/base.hpp
 -
 map

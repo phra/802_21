@@ -1,4 +1,4 @@
-# Install script for directory: /home/phra/tesi/mih/802_21/myODTONE/lib/odtone
+# Install script for directory: /home/phra/tesi/802_21/myODTONE/lib/odtone
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -34,32 +34,32 @@ ENDIF(NOT DEFINED CMAKE_INSTALL_SO_NO_EXE)
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
   FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/odtone" TYPE FILE FILES
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/../../inc/odtone/base.hpp"
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/../../inc/odtone/bind_rv.hpp"
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/../../inc/odtone/buffer.hpp"
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/../../inc/odtone/cast.hpp"
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/../../inc/odtone/conf.hpp"
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/../../inc/odtone/debug.hpp"
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/../../inc/odtone/exception.hpp"
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/../../inc/odtone/list_node.hpp"
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/../../inc/odtone/logger.hpp"
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/../../inc/odtone/namespace.hpp"
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/../../inc/odtone/random.hpp"
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/../../inc/odtone/string.hpp"
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/../../inc/odtone/strutil.hpp"
+    "/home/phra/tesi/802_21/myODTONE/lib/odtone/../../inc/odtone/base.hpp"
+    "/home/phra/tesi/802_21/myODTONE/lib/odtone/../../inc/odtone/bind_rv.hpp"
+    "/home/phra/tesi/802_21/myODTONE/lib/odtone/../../inc/odtone/buffer.hpp"
+    "/home/phra/tesi/802_21/myODTONE/lib/odtone/../../inc/odtone/cast.hpp"
+    "/home/phra/tesi/802_21/myODTONE/lib/odtone/../../inc/odtone/conf.hpp"
+    "/home/phra/tesi/802_21/myODTONE/lib/odtone/../../inc/odtone/debug.hpp"
+    "/home/phra/tesi/802_21/myODTONE/lib/odtone/../../inc/odtone/exception.hpp"
+    "/home/phra/tesi/802_21/myODTONE/lib/odtone/../../inc/odtone/list_node.hpp"
+    "/home/phra/tesi/802_21/myODTONE/lib/odtone/../../inc/odtone/logger.hpp"
+    "/home/phra/tesi/802_21/myODTONE/lib/odtone/../../inc/odtone/namespace.hpp"
+    "/home/phra/tesi/802_21/myODTONE/lib/odtone/../../inc/odtone/random.hpp"
+    "/home/phra/tesi/802_21/myODTONE/lib/odtone/../../inc/odtone/string.hpp"
+    "/home/phra/tesi/802_21/myODTONE/lib/odtone/../../inc/odtone/strutil.hpp"
     )
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/odtone" TYPE DIRECTORY FILES "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/../../inc/odtone/mih")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/odtone" TYPE DIRECTORY FILES "/home/phra/tesi/802_21/myODTONE/lib/odtone/../../inc/odtone/mih")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/odtone" TYPE DIRECTORY FILES "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/../../inc/odtone/sap")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/odtone" TYPE DIRECTORY FILES "/home/phra/tesi/802_21/myODTONE/lib/odtone/../../inc/odtone/sap")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/odtone" TYPE DIRECTORY FILES "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/../../inc/odtone/net")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/odtone" TYPE DIRECTORY FILES "/home/phra/tesi/802_21/myODTONE/lib/odtone/../../inc/odtone/net")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
@@ -84,9 +84,9 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   ENDIF (CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
 FILE(INSTALL DESTINATION "/usr/local/lib" TYPE SHARED_LIBRARY FILES
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/libodtone.so.0.5.0"
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/libodtone.so.0.5"
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/libodtone.so"
+    "/home/phra/tesi/802_21/myODTONE/lib/odtone/libodtone.so.0.5.0"
+    "/home/phra/tesi/802_21/myODTONE/lib/odtone/libodtone.so.0.5"
+    "/home/phra/tesi/802_21/myODTONE/lib/odtone/libodtone.so"
     )
   FOREACH(file
       "$ENV{DESTDIR}/usr/local/lib/libodtone.so.0.5.0"

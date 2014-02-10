@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/linux/if_80211.cpp
+/home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/linux/if_80211.cpp
 if_80211.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/linux/if_80211.hpp
+/home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/linux/if_80211.hpp
 boost/thread.hpp
 -
 boost/scope_exit.hpp
@@ -28,7 +28,7 @@ stdexcept
 netlink/route/link.h
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/linux/if_80211.hpp
+/home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/linux/if_80211.hpp
 boost/asio.hpp
 -
 boost/noncopyable.hpp
@@ -42,7 +42,7 @@ odtone/mih/tlv_types.hpp
 nlwrap.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/main.cpp
+/home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/main.cpp
 unistd.h
 -
 odtone/sap/link.hpp
@@ -70,17 +70,17 @@ iostream
 memory
 -
 linux/if_80211.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/linux/if_80211.hpp
+/home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/linux/if_80211.hpp
 timer_task.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/timer_task.hpp
+/home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/timer_task.hpp
 
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/timer_task.cpp
+/home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/timer_task.cpp
 timer_task.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/timer_task.hpp
+/home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/timer_task.hpp
 boost/bind.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/timer_task.hpp
+/home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/timer_task.hpp
 boost/function.hpp
 -
 boost/asio.hpp

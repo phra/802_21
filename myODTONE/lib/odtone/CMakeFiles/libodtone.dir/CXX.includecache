@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/conf.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/conf.cpp
 odtone/conf.hpp
 -
 boost/spirit/include/qi_parse_attr.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/debug.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/debug.cpp
 odtone/debug.hpp
 -
 boost/assert.hpp
@@ -20,7 +20,7 @@ boost/assert.hpp
 cstring
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/debug_linux.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/debug_linux.cpp
 odtone/debug.hpp
 -
 odtone/list_node.hpp
@@ -48,7 +48,7 @@ sys/stat.h
 fcntl.h
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/logger.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/logger.cpp
 odtone/debug.hpp
 -
 odtone/logger.hpp
@@ -56,13 +56,13 @@ odtone/logger.hpp
 boost/make_shared.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/mih/archive.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/mih/archive.cpp
 odtone/mih/archive.hpp
 -
 odtone/cast.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/mih/config.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/mih/config.cpp
 odtone/mih/config.hpp
 -
 boost/program_options/parsers.hpp
@@ -70,13 +70,13 @@ boost/program_options/parsers.hpp
 fstream
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/mih/message.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/mih/message.cpp
 odtone/mih/message.hpp
 -
 odtone/mih/tlv_types.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/mih/types/address.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/mih/types/address.cpp
 odtone/strutil.hpp
 -
 odtone/mih/types/address.hpp
@@ -92,7 +92,7 @@ sstream
 string
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/net/dns/message.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/net/dns/message.cpp
 odtone/net/dns/message.hpp
 -
 odtone/net/dns/utils.hpp
@@ -102,7 +102,7 @@ boost/foreach.hpp
 boost/algorithm/string.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/net/dns/resolver.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/net/dns/resolver.cpp
 stdio.h
 -
 fcntl.h
@@ -146,11 +146,11 @@ boost/foreach.hpp
 boost/algorithm/string.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/net/dns/utils.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/net/dns/utils.cpp
 odtone/net/dns/utils.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/net/ip/icmp/icmp_parser.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/net/ip/icmp/icmp_parser.cpp
 odtone/net/ip/icmp/icmp_parser.hpp
 -
 odtone/net/ip/icmp/icmp.hpp
@@ -158,17 +158,17 @@ odtone/net/ip/icmp/icmp.hpp
 odtone/net/ip/icmp/icmp_options.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/net/ip/prefix.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/net/ip/prefix.cpp
 odtone/net/ip/prefix.hpp
 -
 boost/lexical_cast.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/net/link/address_mac.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/net/link/address_mac.cpp
 odtone/net/link/address_mac.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/sap/link.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/sap/link.cpp
 odtone/sap/link.hpp
 -
 odtone/buffer.hpp
@@ -178,11 +178,11 @@ odtone/bind_rv.hpp
 boost/bind.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/sap/sap.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/sap/sap.cpp
 odtone/sap/sap.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/sap/user.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/sap/user.cpp
 odtone/sap/user.hpp
 -
 odtone/buffer.hpp
@@ -192,13 +192,13 @@ odtone/bind_rv.hpp
 boost/bind.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/strutil.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/strutil.cpp
 odtone/strutil.hpp
 -
 odtone/debug.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/win32.cpp
+/home/phra/tesi/802_21/myODTONE/lib/odtone/win32.cpp
 odtone/win32.hpp
 -
 string

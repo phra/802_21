@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/linux/ethtool.cpp
+/home/phra/tesi/802_21/myODTONE/app/sap_8023/linux/ethtool.cpp
 ethtool.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/linux/ethtool.hpp
+/home/phra/tesi/802_21/myODTONE/app/sap_8023/linux/ethtool.hpp
 net/if.h
 -
 sys/socket.h
@@ -24,13 +24,13 @@ linux/ethtool.h
 stdexcept
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/linux/ethtool.hpp
+/home/phra/tesi/802_21/myODTONE/app/sap_8023/linux/ethtool.hpp
 string
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/linux/if_8023.cpp
+/home/phra/tesi/802_21/myODTONE/app/sap_8023/linux/if_8023.cpp
 if_8023.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/linux/if_8023.hpp
+/home/phra/tesi/802_21/myODTONE/app/sap_8023/linux/if_8023.hpp
 boost/thread.hpp
 -
 boost/scope_exit.hpp
@@ -48,7 +48,7 @@ iostream
 stdexcept
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/linux/if_8023.hpp
+/home/phra/tesi/802_21/myODTONE/app/sap_8023/linux/if_8023.hpp
 boost/asio.hpp
 -
 boost/noncopyable.hpp
@@ -60,11 +60,11 @@ boost/thread.hpp
 odtone/mih/tlv_types.hpp
 -
 ethtool.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/linux/ethtool.hpp
+/home/phra/tesi/802_21/myODTONE/app/sap_8023/linux/ethtool.hpp
 nlwrap.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/main.cpp
+/home/phra/tesi/802_21/myODTONE/app/sap_8023/main.cpp
 unistd.h
 -
 odtone/sap/link.hpp
@@ -92,17 +92,17 @@ iostream
 memory
 -
 linux/if_8023.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/linux/if_8023.hpp
+/home/phra/tesi/802_21/myODTONE/app/sap_8023/linux/if_8023.hpp
 timer_task.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/timer_task.hpp
+/home/phra/tesi/802_21/myODTONE/app/sap_8023/timer_task.hpp
 
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/timer_task.cpp
+/home/phra/tesi/802_21/myODTONE/app/sap_8023/timer_task.cpp
 timer_task.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/timer_task.hpp
+/home/phra/tesi/802_21/myODTONE/app/sap_8023/timer_task.hpp
 boost/bind.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/timer_task.hpp
+/home/phra/tesi/802_21/myODTONE/app/sap_8023/timer_task.hpp
 boost/function.hpp
 -
 boost/asio.hpp

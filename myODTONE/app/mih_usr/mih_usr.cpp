@@ -126,7 +126,7 @@ class interfaces : boost::noncopyable {
     private:
         struct endpoint {
             bool up;
-            boost::asio::ip::udp::endpoint dest;
+            boost::asio::ip::udp::endpoint* dest;
             boost::posix_time::ptime lasthb;
         };
 
@@ -153,18 +153,11 @@ class interfaces : boost::noncopyable {
             log_(0,__FUNCTION__, " sending back ",len," bytes");
             lsock.send_to(boost::asio::buffer(buf,len),src);
         }
-        
-        void set_interface_down(odtone::mih::mac_addr& mac){
-            odtone::sint i = find_interface(mac);
-            if (i >= 0) {
-                this->data[i].up = false;
-            }
-        }
 
         odtone::sint ip_to_index(boost::asio::ip::address addr) {
             odtone::sint i = 0;
             for (; i < MAX_LINKS; i++) {
-                if (destinations[i].dest.address() == addr)
+                if (destinations[i].dest->address() == addr)
                     return i;
             }
             return -1;
@@ -221,9 +214,9 @@ class interfaces : boost::noncopyable {
                         boost::asio::placeholders::error,
                         boost::asio::placeholders::bytes_transferred));
             destinations[1].up = true;
-            destinations[1].dest = boost::asio::ip::udp::endpoint(boost::asio::ip::udp::endpoint(boost::asio::ip::address::from_string("192.168.1.147"),PORT_DEST+1));
+            destinations[1].dest = new boost::asio::ip::udp::endpoint(boost::asio::ip::udp::endpoint(boost::asio::ip::address::from_string("192.168.1.147"),PORT_DEST+1));
             destinations[0].up = true;
-            destinations[0].dest = boost::asio::ip::udp::endpoint(boost::asio::ip::udp::endpoint(boost::asio::ip::address::from_string("192.168.2.2"),PORT_DEST));
+            destinations[0].dest = new boost::asio::ip::udp::endpoint(boost::asio::ip::udp::endpoint(boost::asio::ip::address::from_string("192.168.2.2"),PORT_DEST));
             this->timer = new boost::asio::deadline_timer(iot, boost::posix_time::seconds(HB_TIMEOUT));
             timer->async_wait(boost::bind(&interfaces::send_hb_timer, this, boost::asio::placeholders::error));
             boost::thread t = (boost::bind(&boost::asio::io_service::run, &iol));
@@ -270,7 +263,7 @@ class interfaces : boost::noncopyable {
                 return;
             }
             try {
-                this->data[i].sock->send_to(boost::asio::buffer(buf,len),destinations[l].dest);
+                this->data[i].sock->send_to(boost::asio::buffer(buf,len),*destinations[l].dest);
             } catch(...) {
                 this->data[i].up = false;
             }
@@ -339,17 +332,20 @@ class interfaces : boost::noncopyable {
         void send_hb() {
             odtone::uint i,j;
             for (i = 0; i < MAX_LINKS; i++) {
-                for (j = 0; this->data[i].up && j < MAX_LINKS; j++) {
-                    bool temp1 = IsIPInRange(this->data[i].sock->local_endpoint().address().to_string(),"192.168.0.0","255.255.0.0");
-                    bool temp2 = IsIPInRange(this->destinations[j].dest.address().to_string(),"192.168.0.0.","255.255.0.0");
-                    if (temp1 && temp2 && IsIPInRange(this->data[i].sock->local_endpoint().address().to_string(),this->destinations[j].dest.address().to_string(),"255.255.255.0")) {
-                        log_(0,"scarto hb verso diversa subnet locale");
-                        continue;
-                    }
-                    if (destinations[j].up) {
+                if (!this->data[i].up)
+                    continue;
+                for (j = 0; j < MAX_LINKS; j++) {
+                    if (destinations[j].dest != NULL) {
+                        bool temp1 = IsIPInRange(this->data[i].sock->local_endpoint().address().to_string(),"192.168.0.0","255.255.0.0");
+                        bool temp2 = IsIPInRange(this->destinations[j].dest->address().to_string(),"192.168.0.0.","255.255.0.0");
+                        if (temp1 && temp2 && !IsIPInRange(this->data[i].sock->local_endpoint().address().to_string(),this->destinations[j].dest->address().to_string(),"255.255.255.0")) {
+                            log_(0,"scarto hb verso diversa subnet locale");
+                            continue;
+                        }
+
                         //log_(0,__FUNCTION__, "sending hb to j = ", j, " ", destinations[j].dest.address(), ":",destinations[j].dest.port());
                         try {
-                            this->data[i].sock->send_to(boost::asio::buffer("",0), destinations[j].dest);
+                            this->data[i].sock->send_to(boost::asio::buffer("",0), *destinations[j].dest);
                         } catch (...) {
                             this->data[i].up = false;
                         }
@@ -390,6 +386,13 @@ class interfaces : boost::noncopyable {
                 this->sendback_active = true;
             }
             return i;
+        }
+
+        void set_interface_down(odtone::mih::mac_addr& mac){
+            odtone::sint i = find_interface(mac);
+            if (i >= 0) {
+                this->data[i].up = false;
+            }
         }
 
         void remove_interfaces() {
@@ -703,7 +706,8 @@ void mih_user::event_handler(odtone::mih::message& msg, const boost::system::err
 
         case odtone::mih::indication::link_down:
             log_(0, "MIH-User has received a local event \"link_down\"");
-            this->links.remove_interface(mac);
+            //this->links.remove_interface(mac);
+            this->links.set_interface_down(mac);
             this->links.send_hb();
             break;
 

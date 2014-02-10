@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/phra/tesi/mih/802_21/myODTONE/app/link_sap_icmp/link_sap.cpp
+/home/phra/tesi/802_21/myODTONE/app/link_sap_icmp/link_sap.cpp
 link_sap.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/link_sap_icmp/link_sap.hpp
+/home/phra/tesi/802_21/myODTONE/app/link_sap_icmp/link_sap.hpp
 odtone/bind_rv.hpp
 -
 odtone/logger.hpp
@@ -30,7 +30,7 @@ boost/bind.hpp
 iostream
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/app/link_sap_icmp/link_sap.hpp
+/home/phra/tesi/802_21/myODTONE/app/link_sap_icmp/link_sap.hpp
 odtone/base.hpp
 -
 odtone/debug.hpp
@@ -40,9 +40,9 @@ odtone/mih/types/capabilities.hpp
 odtone/sap/link.hpp
 -
 
-/home/phra/tesi/mih/802_21/myODTONE/app/link_sap_icmp/main.cpp
+/home/phra/tesi/802_21/myODTONE/app/link_sap_icmp/main.cpp
 link_sap.hpp
-/home/phra/tesi/mih/802_21/myODTONE/app/link_sap_icmp/link_sap.hpp
+/home/phra/tesi/802_21/myODTONE/app/link_sap_icmp/link_sap.hpp
 odtone/base.hpp
 -
 odtone/debug.hpp

@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/phra/tesi/mih/802_21/myODTONE
+CMAKE_SOURCE_DIR = /home/phra/tesi/802_21/myODTONE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/phra/tesi/mih/802_21/myODTONE
+CMAKE_BINARY_DIR = /home/phra/tesi/802_21/myODTONE
 
 # Include any dependencies generated for this target.
 include app/dns_usr/CMakeFiles/odtone-dns_usr.dir/depend.make
@@ -51,17 +51,17 @@ include app/dns_usr/CMakeFiles/odtone-dns_usr.dir/flags.make
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.o: app/dns_usr/CMakeFiles/odtone-dns_usr.dir/flags.make
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.o: app/dns_usr/dns_usr.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/phra/tesi/802_21/myODTONE/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object app/dns_usr/CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.o"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.o -c /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/dns_usr.cpp
+	cd /home/phra/tesi/802_21/myODTONE/app/dns_usr && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.o -c /home/phra/tesi/802_21/myODTONE/app/dns_usr/dns_usr.cpp
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.i"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/dns_usr.cpp > CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.i
+	cd /home/phra/tesi/802_21/myODTONE/app/dns_usr && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/phra/tesi/802_21/myODTONE/app/dns_usr/dns_usr.cpp > CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.i
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.s"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/dns_usr.cpp -o CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.s
+	cd /home/phra/tesi/802_21/myODTONE/app/dns_usr && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/phra/tesi/802_21/myODTONE/app/dns_usr/dns_usr.cpp -o CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.s
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.o.requires:
 .PHONY : app/dns_usr/CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.o.requires
@@ -74,17 +74,17 @@ app/dns_usr/CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.o.provides.build: app/dns_
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/log.cpp.o: app/dns_usr/CMakeFiles/odtone-dns_usr.dir/flags.make
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/log.cpp.o: app/dns_usr/log.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/phra/tesi/802_21/myODTONE/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object app/dns_usr/CMakeFiles/odtone-dns_usr.dir/log.cpp.o"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/odtone-dns_usr.dir/log.cpp.o -c /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/log.cpp
+	cd /home/phra/tesi/802_21/myODTONE/app/dns_usr && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/odtone-dns_usr.dir/log.cpp.o -c /home/phra/tesi/802_21/myODTONE/app/dns_usr/log.cpp
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/log.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/odtone-dns_usr.dir/log.cpp.i"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/log.cpp > CMakeFiles/odtone-dns_usr.dir/log.cpp.i
+	cd /home/phra/tesi/802_21/myODTONE/app/dns_usr && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/phra/tesi/802_21/myODTONE/app/dns_usr/log.cpp > CMakeFiles/odtone-dns_usr.dir/log.cpp.i
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/log.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/odtone-dns_usr.dir/log.cpp.s"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/log.cpp -o CMakeFiles/odtone-dns_usr.dir/log.cpp.s
+	cd /home/phra/tesi/802_21/myODTONE/app/dns_usr && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/phra/tesi/802_21/myODTONE/app/dns_usr/log.cpp -o CMakeFiles/odtone-dns_usr.dir/log.cpp.s
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/log.cpp.o.requires:
 .PHONY : app/dns_usr/CMakeFiles/odtone-dns_usr.dir/log.cpp.o.requires
@@ -97,17 +97,17 @@ app/dns_usr/CMakeFiles/odtone-dns_usr.dir/log.cpp.o.provides.build: app/dns_usr/
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/main.cpp.o: app/dns_usr/CMakeFiles/odtone-dns_usr.dir/flags.make
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/main.cpp.o: app/dns_usr/main.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/phra/tesi/802_21/myODTONE/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object app/dns_usr/CMakeFiles/odtone-dns_usr.dir/main.cpp.o"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/odtone-dns_usr.dir/main.cpp.o -c /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/main.cpp
+	cd /home/phra/tesi/802_21/myODTONE/app/dns_usr && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/odtone-dns_usr.dir/main.cpp.o -c /home/phra/tesi/802_21/myODTONE/app/dns_usr/main.cpp
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/odtone-dns_usr.dir/main.cpp.i"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/main.cpp > CMakeFiles/odtone-dns_usr.dir/main.cpp.i
+	cd /home/phra/tesi/802_21/myODTONE/app/dns_usr && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/phra/tesi/802_21/myODTONE/app/dns_usr/main.cpp > CMakeFiles/odtone-dns_usr.dir/main.cpp.i
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/odtone-dns_usr.dir/main.cpp.s"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/main.cpp -o CMakeFiles/odtone-dns_usr.dir/main.cpp.s
+	cd /home/phra/tesi/802_21/myODTONE/app/dns_usr && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/phra/tesi/802_21/myODTONE/app/dns_usr/main.cpp -o CMakeFiles/odtone-dns_usr.dir/main.cpp.s
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/main.cpp.o.requires:
 .PHONY : app/dns_usr/CMakeFiles/odtone-dns_usr.dir/main.cpp.o.requires
@@ -120,17 +120,17 @@ app/dns_usr/CMakeFiles/odtone-dns_usr.dir/main.cpp.o.provides.build: app/dns_usr
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/query_book.cpp.o: app/dns_usr/CMakeFiles/odtone-dns_usr.dir/flags.make
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/query_book.cpp.o: app/dns_usr/query_book.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles $(CMAKE_PROGRESS_4)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/phra/tesi/802_21/myODTONE/CMakeFiles $(CMAKE_PROGRESS_4)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object app/dns_usr/CMakeFiles/odtone-dns_usr.dir/query_book.cpp.o"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/odtone-dns_usr.dir/query_book.cpp.o -c /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/query_book.cpp
+	cd /home/phra/tesi/802_21/myODTONE/app/dns_usr && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/odtone-dns_usr.dir/query_book.cpp.o -c /home/phra/tesi/802_21/myODTONE/app/dns_usr/query_book.cpp
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/query_book.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/odtone-dns_usr.dir/query_book.cpp.i"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/query_book.cpp > CMakeFiles/odtone-dns_usr.dir/query_book.cpp.i
+	cd /home/phra/tesi/802_21/myODTONE/app/dns_usr && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/phra/tesi/802_21/myODTONE/app/dns_usr/query_book.cpp > CMakeFiles/odtone-dns_usr.dir/query_book.cpp.i
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/query_book.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/odtone-dns_usr.dir/query_book.cpp.s"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/query_book.cpp -o CMakeFiles/odtone-dns_usr.dir/query_book.cpp.s
+	cd /home/phra/tesi/802_21/myODTONE/app/dns_usr && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/phra/tesi/802_21/myODTONE/app/dns_usr/query_book.cpp -o CMakeFiles/odtone-dns_usr.dir/query_book.cpp.s
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/query_book.cpp.o.requires:
 .PHONY : app/dns_usr/CMakeFiles/odtone-dns_usr.dir/query_book.cpp.o.requires
@@ -162,7 +162,7 @@ app/dns_usr/odtone-dns_usr: /usr/lib/libboost_program_options-mt.so
 app/dns_usr/odtone-dns_usr: /usr/lib/libboost_thread-mt.so
 app/dns_usr/odtone-dns_usr: app/dns_usr/CMakeFiles/odtone-dns_usr.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable odtone-dns_usr"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/odtone-dns_usr.dir/link.txt --verbose=$(VERBOSE)
+	cd /home/phra/tesi/802_21/myODTONE/app/dns_usr && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/odtone-dns_usr.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build: app/dns_usr/odtone-dns_usr
@@ -175,10 +175,10 @@ app/dns_usr/CMakeFiles/odtone-dns_usr.dir/requires: app/dns_usr/CMakeFiles/odton
 .PHONY : app/dns_usr/CMakeFiles/odtone-dns_usr.dir/requires
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/clean:
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr && $(CMAKE_COMMAND) -P CMakeFiles/odtone-dns_usr.dir/cmake_clean.cmake
+	cd /home/phra/tesi/802_21/myODTONE/app/dns_usr && $(CMAKE_COMMAND) -P CMakeFiles/odtone-dns_usr.dir/cmake_clean.cmake
 .PHONY : app/dns_usr/CMakeFiles/odtone-dns_usr.dir/clean
 
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/depend:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/phra/tesi/mih/802_21/myODTONE /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr /home/phra/tesi/mih/802_21/myODTONE /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/CMakeFiles/odtone-dns_usr.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/phra/tesi/802_21/myODTONE && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/phra/tesi/802_21/myODTONE /home/phra/tesi/802_21/myODTONE/app/dns_usr /home/phra/tesi/802_21/myODTONE /home/phra/tesi/802_21/myODTONE/app/dns_usr /home/phra/tesi/802_21/myODTONE/app/dns_usr/CMakeFiles/odtone-dns_usr.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : app/dns_usr/CMakeFiles/odtone-dns_usr.dir/depend
 

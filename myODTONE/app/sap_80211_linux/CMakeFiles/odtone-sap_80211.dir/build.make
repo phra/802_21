@@ -35,10 +35,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/phra/tesi/mih/802_21/myODTONE
+CMAKE_SOURCE_DIR = /home/phra/tesi/802_21/myODTONE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/phra/tesi/mih/802_21/myODTONE
+CMAKE_BINARY_DIR = /home/phra/tesi/802_21/myODTONE
 
 # Include any dependencies generated for this target.
 include app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/depend.make
@@ -51,17 +51,17 @@ include app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/flags.make
 
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/main.cpp.o: app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/flags.make
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/main.cpp.o: app/sap_80211_linux/main.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles $(CMAKE_PROGRESS_1)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/phra/tesi/802_21/myODTONE/CMakeFiles $(CMAKE_PROGRESS_1)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/main.cpp.o"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/odtone-sap_80211.dir/main.cpp.o -c /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/main.cpp
+	cd /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/odtone-sap_80211.dir/main.cpp.o -c /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/main.cpp
 
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/odtone-sap_80211.dir/main.cpp.i"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/main.cpp > CMakeFiles/odtone-sap_80211.dir/main.cpp.i
+	cd /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/main.cpp > CMakeFiles/odtone-sap_80211.dir/main.cpp.i
 
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/odtone-sap_80211.dir/main.cpp.s"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/main.cpp -o CMakeFiles/odtone-sap_80211.dir/main.cpp.s
+	cd /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/main.cpp -o CMakeFiles/odtone-sap_80211.dir/main.cpp.s
 
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/main.cpp.o.requires:
 .PHONY : app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/main.cpp.o.requires
@@ -74,17 +74,17 @@ app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/main.cpp.o.provides.build: a
 
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/timer_task.cpp.o: app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/flags.make
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/timer_task.cpp.o: app/sap_80211_linux/timer_task.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles $(CMAKE_PROGRESS_2)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/phra/tesi/802_21/myODTONE/CMakeFiles $(CMAKE_PROGRESS_2)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/timer_task.cpp.o"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/odtone-sap_80211.dir/timer_task.cpp.o -c /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/timer_task.cpp
+	cd /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/odtone-sap_80211.dir/timer_task.cpp.o -c /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/timer_task.cpp
 
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/timer_task.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/odtone-sap_80211.dir/timer_task.cpp.i"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/timer_task.cpp > CMakeFiles/odtone-sap_80211.dir/timer_task.cpp.i
+	cd /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/timer_task.cpp > CMakeFiles/odtone-sap_80211.dir/timer_task.cpp.i
 
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/timer_task.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/odtone-sap_80211.dir/timer_task.cpp.s"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/timer_task.cpp -o CMakeFiles/odtone-sap_80211.dir/timer_task.cpp.s
+	cd /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/timer_task.cpp -o CMakeFiles/odtone-sap_80211.dir/timer_task.cpp.s
 
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/timer_task.cpp.o.requires:
 .PHONY : app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/timer_task.cpp.o.requires
@@ -97,17 +97,17 @@ app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/timer_task.cpp.o.provides.bu
 
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/linux/if_80211.cpp.o: app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/flags.make
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/linux/if_80211.cpp.o: app/sap_80211_linux/linux/if_80211.cpp
-	$(CMAKE_COMMAND) -E cmake_progress_report /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles $(CMAKE_PROGRESS_3)
+	$(CMAKE_COMMAND) -E cmake_progress_report /home/phra/tesi/802_21/myODTONE/CMakeFiles $(CMAKE_PROGRESS_3)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Building CXX object app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/linux/if_80211.cpp.o"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/odtone-sap_80211.dir/linux/if_80211.cpp.o -c /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/linux/if_80211.cpp
+	cd /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++   $(CXX_DEFINES) $(CXX_FLAGS) -o CMakeFiles/odtone-sap_80211.dir/linux/if_80211.cpp.o -c /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/linux/if_80211.cpp
 
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/linux/if_80211.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/odtone-sap_80211.dir/linux/if_80211.cpp.i"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/linux/if_80211.cpp > CMakeFiles/odtone-sap_80211.dir/linux/if_80211.cpp.i
+	cd /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -E /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/linux/if_80211.cpp > CMakeFiles/odtone-sap_80211.dir/linux/if_80211.cpp.i
 
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/linux/if_80211.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/odtone-sap_80211.dir/linux/if_80211.cpp.s"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/linux/if_80211.cpp -o CMakeFiles/odtone-sap_80211.dir/linux/if_80211.cpp.s
+	cd /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux && /usr/bin/c++  $(CXX_DEFINES) $(CXX_FLAGS) -S /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/linux/if_80211.cpp -o CMakeFiles/odtone-sap_80211.dir/linux/if_80211.cpp.s
 
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/linux/if_80211.cpp.o.requires:
 .PHONY : app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/linux/if_80211.cpp.o.requires
@@ -138,7 +138,7 @@ app/sap_80211_linux/odtone-sap_80211: /usr/lib/libboost_program_options-mt.so
 app/sap_80211_linux/odtone-sap_80211: /usr/lib/libboost_thread-mt.so
 app/sap_80211_linux/odtone-sap_80211: app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --red --bold "Linking CXX executable odtone-sap_80211"
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/odtone-sap_80211.dir/link.txt --verbose=$(VERBOSE)
+	cd /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/odtone-sap_80211.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/build: app/sap_80211_linux/odtone-sap_80211
@@ -150,10 +150,10 @@ app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/requires: app/sap_80211_linu
 .PHONY : app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/requires
 
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/clean:
-	cd /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux && $(CMAKE_COMMAND) -P CMakeFiles/odtone-sap_80211.dir/cmake_clean.cmake
+	cd /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux && $(CMAKE_COMMAND) -P CMakeFiles/odtone-sap_80211.dir/cmake_clean.cmake
 .PHONY : app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/clean
 
 app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/depend:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/phra/tesi/mih/802_21/myODTONE /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux /home/phra/tesi/mih/802_21/myODTONE /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux /home/phra/tesi/mih/802_21/myODTONE/app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/phra/tesi/802_21/myODTONE && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/phra/tesi/802_21/myODTONE /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux /home/phra/tesi/802_21/myODTONE /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux /home/phra/tesi/802_21/myODTONE/app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : app/sap_80211_linux/CMakeFiles/odtone-sap_80211.dir/depend
 

@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/phra/tesi/mih/802_21/myODTONE
+CMAKE_SOURCE_DIR = /home/phra/tesi/802_21/myODTONE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/phra/tesi/mih/802_21/myODTONE
+CMAKE_BINARY_DIR = /home/phra/tesi/802_21/myODTONE
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -110,9 +110,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/phra/tesi/802_21/myODTONE/CMakeFiles /home/phra/tesi/802_21/myODTONE/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/phra/tesi/802_21/myODTONE/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -203,58 +203,6 @@ libnlwrap: cmake_check_build_system
 libnlwrap/fast:
 	$(MAKE) -f lib/external/libnl/nlwrap/CMakeFiles/libnlwrap.dir/build.make lib/external/libnl/nlwrap/CMakeFiles/libnlwrap.dir/build
 .PHONY : libnlwrap/fast
-
-#=============================================================================
-# Target rules for targets named dhcp_libs_client
-
-# Build rule for target.
-dhcp_libs_client: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dhcp_libs_client
-.PHONY : dhcp_libs_client
-
-# fast build rule for target.
-dhcp_libs_client/fast:
-	$(MAKE) -f app/dhcp_usr/client/CMakeFiles/dhcp_libs_client.dir/build.make app/dhcp_usr/client/CMakeFiles/dhcp_libs_client.dir/build
-.PHONY : dhcp_libs_client/fast
-
-#=============================================================================
-# Target rules for targets named odtone-dhcp_usr
-
-# Build rule for target.
-odtone-dhcp_usr: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 odtone-dhcp_usr
-.PHONY : odtone-dhcp_usr
-
-# fast build rule for target.
-odtone-dhcp_usr/fast:
-	$(MAKE) -f app/dhcp_usr/client/CMakeFiles/odtone-dhcp_usr.dir/build.make app/dhcp_usr/client/CMakeFiles/odtone-dhcp_usr.dir/build
-.PHONY : odtone-dhcp_usr/fast
-
-#=============================================================================
-# Target rules for targets named dhcp_libs_server
-
-# Build rule for target.
-dhcp_libs_server: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 dhcp_libs_server
-.PHONY : dhcp_libs_server
-
-# fast build rule for target.
-dhcp_libs_server/fast:
-	$(MAKE) -f app/dhcp_usr/server/CMakeFiles/dhcp_libs_server.dir/build.make app/dhcp_usr/server/CMakeFiles/dhcp_libs_server.dir/build
-.PHONY : dhcp_libs_server/fast
-
-#=============================================================================
-# Target rules for targets named odtone-dhcp_server
-
-# Build rule for target.
-odtone-dhcp_server: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 odtone-dhcp_server
-.PHONY : odtone-dhcp_server
-
-# fast build rule for target.
-odtone-dhcp_server/fast:
-	$(MAKE) -f app/dhcp_usr/server/CMakeFiles/odtone-dhcp_server.dir/build.make app/dhcp_usr/server/CMakeFiles/odtone-dhcp_server.dir/build
-.PHONY : odtone-dhcp_server/fast
 
 #=============================================================================
 # Target rules for targets named odtone-dns_usr
@@ -364,10 +312,6 @@ help:
 	@echo "... libodtone"
 	@echo "... odtone-mihf"
 	@echo "... libnlwrap"
-	@echo "... dhcp_libs_client"
-	@echo "... odtone-dhcp_usr"
-	@echo "... dhcp_libs_server"
-	@echo "... odtone-dhcp_server"
 	@echo "... odtone-dns_usr"
 	@echo "... odtone-link_sap"
 	@echo "... odtone-link_sap_icmp"

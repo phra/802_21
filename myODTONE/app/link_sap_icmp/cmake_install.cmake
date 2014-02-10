@@ -1,4 +1,4 @@
-# Install script for directory: /home/phra/tesi/mih/802_21/myODTONE/app/link_sap_icmp
+# Install script for directory: /home/phra/tesi/802_21/myODTONE/app/link_sap_icmp
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -41,7 +41,7 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
   IF (CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   ENDIF (CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
-FILE(INSTALL DESTINATION "/etc/odtone" TYPE FILE FILES "/home/phra/tesi/mih/802_21/myODTONE/app/link_sap_icmp/link_sap_icmp.conf")
+FILE(INSTALL DESTINATION "/etc/odtone" TYPE FILE FILES "/home/phra/tesi/802_21/myODTONE/app/link_sap_icmp/link_sap_icmp.conf")
 ENDIF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
 
 IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified")
@@ -51,7 +51,7 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/odtone-link_sap_icmp"
          RPATH "")
   ENDIF()
-  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/phra/tesi/mih/802_21/myODTONE/app/link_sap_icmp/odtone-link_sap_icmp")
+  FILE(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/bin" TYPE EXECUTABLE FILES "/home/phra/tesi/802_21/myODTONE/app/link_sap_icmp/odtone-link_sap_icmp")
   IF(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/odtone-link_sap_icmp" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/odtone-link_sap_icmp")
     FILE(RPATH_REMOVE

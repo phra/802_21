@@ -4,10 +4,10 @@ SET(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 SET(CMAKE_DEPENDS_CHECK_CXX
-  "/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/linux/ethtool.cpp" "/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/CMakeFiles/odtone-sap_8023.dir/linux/ethtool.cpp.o"
-  "/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/linux/if_8023.cpp" "/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/CMakeFiles/odtone-sap_8023.dir/linux/if_8023.cpp.o"
-  "/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/main.cpp" "/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/CMakeFiles/odtone-sap_8023.dir/main.cpp.o"
-  "/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/timer_task.cpp" "/home/phra/tesi/mih/802_21/myODTONE/app/sap_8023/CMakeFiles/odtone-sap_8023.dir/timer_task.cpp.o"
+  "/home/phra/tesi/802_21/myODTONE/app/sap_8023/linux/ethtool.cpp" "/home/phra/tesi/802_21/myODTONE/app/sap_8023/CMakeFiles/odtone-sap_8023.dir/linux/ethtool.cpp.o"
+  "/home/phra/tesi/802_21/myODTONE/app/sap_8023/linux/if_8023.cpp" "/home/phra/tesi/802_21/myODTONE/app/sap_8023/CMakeFiles/odtone-sap_8023.dir/linux/if_8023.cpp.o"
+  "/home/phra/tesi/802_21/myODTONE/app/sap_8023/main.cpp" "/home/phra/tesi/802_21/myODTONE/app/sap_8023/CMakeFiles/odtone-sap_8023.dir/main.cpp.o"
+  "/home/phra/tesi/802_21/myODTONE/app/sap_8023/timer_task.cpp" "/home/phra/tesi/802_21/myODTONE/app/sap_8023/CMakeFiles/odtone-sap_8023.dir/timer_task.cpp.o"
   )
 SET(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -18,8 +18,8 @@ SET(CMAKE_TARGET_DEFINITIONS
 
 # Targets to which this target links.
 SET(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/phra/tesi/mih/802_21/myODTONE/lib/external/libnl/nlwrap/CMakeFiles/libnlwrap.dir/DependInfo.cmake"
-  "/home/phra/tesi/mih/802_21/myODTONE/lib/odtone/CMakeFiles/libodtone.dir/DependInfo.cmake"
+  "/home/phra/tesi/802_21/myODTONE/lib/external/libnl/nlwrap/CMakeFiles/libnlwrap.dir/DependInfo.cmake"
+  "/home/phra/tesi/802_21/myODTONE/lib/odtone/CMakeFiles/libodtone.dir/DependInfo.cmake"
   )
 
 # The include file search paths:

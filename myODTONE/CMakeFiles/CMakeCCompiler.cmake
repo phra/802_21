@@ -1,7 +1,7 @@
 SET(CMAKE_C_COMPILER "/usr/bin/gcc")
 SET(CMAKE_C_COMPILER_ARG1 "")
 SET(CMAKE_C_COMPILER_ID "GNU")
-SET(CMAKE_C_COMPILER_VERSION "4.7.2")
+SET(CMAKE_C_COMPILER_VERSION "4.8.1")
 SET(CMAKE_C_PLATFORM_ID "Linux")
 
 SET(CMAKE_AR "/usr/bin/ar")
@@ -47,7 +47,7 @@ SET(CMAKE_C_HAS_ISYSROOT "")
 
 
 SET(CMAKE_C_IMPLICIT_LINK_LIBRARIES "c")
-SET(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/usr/lib/gcc/i486-linux-gnu/4.7;/usr/lib/i386-linux-gnu;/usr/lib;/lib/i386-linux-gnu;/lib")
+SET(CMAKE_C_IMPLICIT_LINK_DIRECTORIES "/usr/lib/gcc/i486-linux-gnu/4.8;/usr/lib/i386-linux-gnu;/usr/lib;/lib/i386-linux-gnu;/lib")
 
 
 

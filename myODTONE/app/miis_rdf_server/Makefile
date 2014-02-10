@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/phra/tesi/mih/802_21/myODTONE
+CMAKE_SOURCE_DIR = /home/phra/tesi/802_21/myODTONE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/phra/tesi/mih/802_21/myODTONE
+CMAKE_BINARY_DIR = /home/phra/tesi/802_21/myODTONE
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -110,14 +110,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(CMAKE_COMMAND) -E cmake_progress_start /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles /home/phra/tesi/mih/802_21/myODTONE/app/miis_rdf_server/CMakeFiles/progress.marks
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/miis_rdf_server/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles 0
+	cd /home/phra/tesi/802_21/myODTONE && $(CMAKE_COMMAND) -E cmake_progress_start /home/phra/tesi/802_21/myODTONE/CMakeFiles /home/phra/tesi/802_21/myODTONE/app/miis_rdf_server/CMakeFiles/progress.marks
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/miis_rdf_server/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/phra/tesi/802_21/myODTONE/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/miis_rdf_server/clean
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/miis_rdf_server/clean
 .PHONY : clean
 
 # The main clean target
@@ -126,22 +126,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/miis_rdf_server/preinstall
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/miis_rdf_server/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/miis_rdf_server/preinstall
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/miis_rdf_server/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/phra/tesi/802_21/myODTONE && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/rule:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/rule
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/rule
 .PHONY : app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/rule
 
 # Convenience name for target.
@@ -150,7 +150,7 @@ odtone-miis_rdf_server: app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.di
 
 # fast build rule for target.
 odtone-miis_rdf_server/fast:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/build.make app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/build
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/build.make app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/build
 .PHONY : odtone-miis_rdf_server/fast
 
 miis_rdf_server.o: miis_rdf_server.cpp.o
@@ -158,7 +158,7 @@ miis_rdf_server.o: miis_rdf_server.cpp.o
 
 # target to build an object file
 miis_rdf_server.cpp.o:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/build.make app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/miis_rdf_server.cpp.o
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/build.make app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/miis_rdf_server.cpp.o
 .PHONY : miis_rdf_server.cpp.o
 
 miis_rdf_server.i: miis_rdf_server.cpp.i
@@ -166,7 +166,7 @@ miis_rdf_server.i: miis_rdf_server.cpp.i
 
 # target to preprocess a source file
 miis_rdf_server.cpp.i:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/build.make app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/miis_rdf_server.cpp.i
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/build.make app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/miis_rdf_server.cpp.i
 .PHONY : miis_rdf_server.cpp.i
 
 miis_rdf_server.s: miis_rdf_server.cpp.s
@@ -174,7 +174,7 @@ miis_rdf_server.s: miis_rdf_server.cpp.s
 
 # target to generate assembly for a file
 miis_rdf_server.cpp.s:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/build.make app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/miis_rdf_server.cpp.s
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/build.make app/miis_rdf_server/CMakeFiles/odtone-miis_rdf_server.dir/miis_rdf_server.cpp.s
 .PHONY : miis_rdf_server.cpp.s
 
 # Help Target
@@ -204,6 +204,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/phra/tesi/802_21/myODTONE && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

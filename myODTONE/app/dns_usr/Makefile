@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/phra/tesi/mih/802_21/myODTONE
+CMAKE_SOURCE_DIR = /home/phra/tesi/802_21/myODTONE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/phra/tesi/mih/802_21/myODTONE
+CMAKE_BINARY_DIR = /home/phra/tesi/802_21/myODTONE
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -110,14 +110,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(CMAKE_COMMAND) -E cmake_progress_start /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles /home/phra/tesi/mih/802_21/myODTONE/app/dns_usr/CMakeFiles/progress.marks
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/dns_usr/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles 0
+	cd /home/phra/tesi/802_21/myODTONE && $(CMAKE_COMMAND) -E cmake_progress_start /home/phra/tesi/802_21/myODTONE/CMakeFiles /home/phra/tesi/802_21/myODTONE/app/dns_usr/CMakeFiles/progress.marks
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/dns_usr/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/phra/tesi/802_21/myODTONE/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/dns_usr/clean
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/dns_usr/clean
 .PHONY : clean
 
 # The main clean target
@@ -126,22 +126,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/dns_usr/preinstall
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/dns_usr/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/dns_usr/preinstall
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/dns_usr/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/phra/tesi/802_21/myODTONE && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/rule:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/rule
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/dns_usr/CMakeFiles/odtone-dns_usr.dir/rule
 .PHONY : app/dns_usr/CMakeFiles/odtone-dns_usr.dir/rule
 
 # Convenience name for target.
@@ -150,7 +150,7 @@ odtone-dns_usr: app/dns_usr/CMakeFiles/odtone-dns_usr.dir/rule
 
 # fast build rule for target.
 odtone-dns_usr/fast:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build
 .PHONY : odtone-dns_usr/fast
 
 dns_usr.o: dns_usr.cpp.o
@@ -158,7 +158,7 @@ dns_usr.o: dns_usr.cpp.o
 
 # target to build an object file
 dns_usr.cpp.o:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.o
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.o
 .PHONY : dns_usr.cpp.o
 
 dns_usr.i: dns_usr.cpp.i
@@ -166,7 +166,7 @@ dns_usr.i: dns_usr.cpp.i
 
 # target to preprocess a source file
 dns_usr.cpp.i:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.i
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.i
 .PHONY : dns_usr.cpp.i
 
 dns_usr.s: dns_usr.cpp.s
@@ -174,7 +174,7 @@ dns_usr.s: dns_usr.cpp.s
 
 # target to generate assembly for a file
 dns_usr.cpp.s:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.s
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/dns_usr.cpp.s
 .PHONY : dns_usr.cpp.s
 
 log.o: log.cpp.o
@@ -182,7 +182,7 @@ log.o: log.cpp.o
 
 # target to build an object file
 log.cpp.o:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/log.cpp.o
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/log.cpp.o
 .PHONY : log.cpp.o
 
 log.i: log.cpp.i
@@ -190,7 +190,7 @@ log.i: log.cpp.i
 
 # target to preprocess a source file
 log.cpp.i:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/log.cpp.i
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/log.cpp.i
 .PHONY : log.cpp.i
 
 log.s: log.cpp.s
@@ -198,7 +198,7 @@ log.s: log.cpp.s
 
 # target to generate assembly for a file
 log.cpp.s:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/log.cpp.s
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/log.cpp.s
 .PHONY : log.cpp.s
 
 main.o: main.cpp.o
@@ -206,7 +206,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/main.cpp.o
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -214,7 +214,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/main.cpp.i
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -222,7 +222,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/main.cpp.s
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 query_book.o: query_book.cpp.o
@@ -230,7 +230,7 @@ query_book.o: query_book.cpp.o
 
 # target to build an object file
 query_book.cpp.o:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/query_book.cpp.o
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/query_book.cpp.o
 .PHONY : query_book.cpp.o
 
 query_book.i: query_book.cpp.i
@@ -238,7 +238,7 @@ query_book.i: query_book.cpp.i
 
 # target to preprocess a source file
 query_book.cpp.i:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/query_book.cpp.i
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/query_book.cpp.i
 .PHONY : query_book.cpp.i
 
 query_book.s: query_book.cpp.s
@@ -246,7 +246,7 @@ query_book.s: query_book.cpp.s
 
 # target to generate assembly for a file
 query_book.cpp.s:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/query_book.cpp.s
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/dns_usr/CMakeFiles/odtone-dns_usr.dir/build.make app/dns_usr/CMakeFiles/odtone-dns_usr.dir/query_book.cpp.s
 .PHONY : query_book.cpp.s
 
 # Help Target
@@ -285,6 +285,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/phra/tesi/802_21/myODTONE && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

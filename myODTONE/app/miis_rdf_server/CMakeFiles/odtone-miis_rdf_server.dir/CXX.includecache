@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/phra/tesi/mih/802_21/myODTONE/app/miis_rdf_server/miis_rdf_server.cpp
+/home/phra/tesi/802_21/myODTONE/app/miis_rdf_server/miis_rdf_server.cpp
 odtone/base.hpp
 -
 odtone/debug.hpp

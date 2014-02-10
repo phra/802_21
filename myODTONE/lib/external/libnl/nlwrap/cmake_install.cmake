@@ -1,4 +1,4 @@
-# Install script for directory: /home/phra/tesi/mih/802_21/myODTONE/lib/external/libnl/nlwrap
+# Install script for directory: /home/phra/tesi/802_21/myODTONE/lib/external/libnl/nlwrap
 
 # Set the install prefix
 IF(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -54,9 +54,9 @@ IF(NOT CMAKE_INSTALL_COMPONENT OR "${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspeci
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   ENDIF (CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
 FILE(INSTALL DESTINATION "/usr/local/lib" TYPE SHARED_LIBRARY FILES
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/external/libnl/nlwrap/libnlwrap.so.0.5.0"
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/external/libnl/nlwrap/libnlwrap.so.0.5"
-    "/home/phra/tesi/mih/802_21/myODTONE/lib/external/libnl/nlwrap/libnlwrap.so"
+    "/home/phra/tesi/802_21/myODTONE/lib/external/libnl/nlwrap/libnlwrap.so.0.5.0"
+    "/home/phra/tesi/802_21/myODTONE/lib/external/libnl/nlwrap/libnlwrap.so.0.5"
+    "/home/phra/tesi/802_21/myODTONE/lib/external/libnl/nlwrap/libnlwrap.so"
     )
   FOREACH(file
       "$ENV{DESTDIR}/usr/local/lib/libnlwrap.so.0.5.0"

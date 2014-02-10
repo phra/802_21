@@ -39,10 +39,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/phra/tesi/mih/802_21/myODTONE
+CMAKE_SOURCE_DIR = /home/phra/tesi/802_21/myODTONE
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/phra/tesi/mih/802_21/myODTONE
+CMAKE_BINARY_DIR = /home/phra/tesi/802_21/myODTONE
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -110,14 +110,14 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(CMAKE_COMMAND) -E cmake_progress_start /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles /home/phra/tesi/mih/802_21/myODTONE/app/mih_usr/CMakeFiles/progress.marks
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/mih_usr/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/phra/tesi/mih/802_21/myODTONE/CMakeFiles 0
+	cd /home/phra/tesi/802_21/myODTONE && $(CMAKE_COMMAND) -E cmake_progress_start /home/phra/tesi/802_21/myODTONE/CMakeFiles /home/phra/tesi/802_21/myODTONE/app/mih_usr/CMakeFiles/progress.marks
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/mih_usr/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/phra/tesi/802_21/myODTONE/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/mih_usr/clean
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/mih_usr/clean
 .PHONY : clean
 
 # The main clean target
@@ -126,22 +126,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/mih_usr/preinstall
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/mih_usr/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/mih_usr/preinstall
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/mih_usr/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /home/phra/tesi/802_21/myODTONE && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 app/mih_usr/CMakeFiles/odtone-mih_usr.dir/rule:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/mih_usr/CMakeFiles/odtone-mih_usr.dir/rule
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f CMakeFiles/Makefile2 app/mih_usr/CMakeFiles/odtone-mih_usr.dir/rule
 .PHONY : app/mih_usr/CMakeFiles/odtone-mih_usr.dir/rule
 
 # Convenience name for target.
@@ -150,7 +150,7 @@ odtone-mih_usr: app/mih_usr/CMakeFiles/odtone-mih_usr.dir/rule
 
 # fast build rule for target.
 odtone-mih_usr/fast:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/mih_usr/CMakeFiles/odtone-mih_usr.dir/build.make app/mih_usr/CMakeFiles/odtone-mih_usr.dir/build
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/mih_usr/CMakeFiles/odtone-mih_usr.dir/build.make app/mih_usr/CMakeFiles/odtone-mih_usr.dir/build
 .PHONY : odtone-mih_usr/fast
 
 mih_usr.o: mih_usr.cpp.o
@@ -158,7 +158,7 @@ mih_usr.o: mih_usr.cpp.o
 
 # target to build an object file
 mih_usr.cpp.o:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/mih_usr/CMakeFiles/odtone-mih_usr.dir/build.make app/mih_usr/CMakeFiles/odtone-mih_usr.dir/mih_usr.cpp.o
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/mih_usr/CMakeFiles/odtone-mih_usr.dir/build.make app/mih_usr/CMakeFiles/odtone-mih_usr.dir/mih_usr.cpp.o
 .PHONY : mih_usr.cpp.o
 
 mih_usr.i: mih_usr.cpp.i
@@ -166,7 +166,7 @@ mih_usr.i: mih_usr.cpp.i
 
 # target to preprocess a source file
 mih_usr.cpp.i:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/mih_usr/CMakeFiles/odtone-mih_usr.dir/build.make app/mih_usr/CMakeFiles/odtone-mih_usr.dir/mih_usr.cpp.i
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/mih_usr/CMakeFiles/odtone-mih_usr.dir/build.make app/mih_usr/CMakeFiles/odtone-mih_usr.dir/mih_usr.cpp.i
 .PHONY : mih_usr.cpp.i
 
 mih_usr.s: mih_usr.cpp.s
@@ -174,7 +174,7 @@ mih_usr.s: mih_usr.cpp.s
 
 # target to generate assembly for a file
 mih_usr.cpp.s:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(MAKE) -f app/mih_usr/CMakeFiles/odtone-mih_usr.dir/build.make app/mih_usr/CMakeFiles/odtone-mih_usr.dir/mih_usr.cpp.s
+	cd /home/phra/tesi/802_21/myODTONE && $(MAKE) -f app/mih_usr/CMakeFiles/odtone-mih_usr.dir/build.make app/mih_usr/CMakeFiles/odtone-mih_usr.dir/mih_usr.cpp.s
 .PHONY : mih_usr.cpp.s
 
 # Help Target
@@ -204,6 +204,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /home/phra/tesi/mih/802_21/myODTONE && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /home/phra/tesi/802_21/myODTONE && $(CMAKE_COMMAND) -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 
