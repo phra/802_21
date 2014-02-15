@@ -13,3 +13,10 @@
 *.a
 
 *CMakeFiles*
+*CMakeCache*
+*.aux
+*.log
+*.blg
+*.bbl
+*.dvi
+*.ps
