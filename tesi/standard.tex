@@ -1,1 +1,34 @@
 \chapter{Lo standard IEEE 802.21}
+
+\section{Storia}
+Con il continuo diffondersi di nuove tecnologie e dispositivi dotati di più interfacce di rete, è diventato necessario dover formalizzare alcune funzionalità per facilitare un passaggio indolore da una rete all'altra.
+Il {\em working group} cominciò effettivamente i lavori nel marzo 2004 e la prima versione ufficiale dello standard fu pubblicata nel gennaio 2009. Gli eventi principali sono stati i seguenti:
+\begin{itemize}
+\item marzo 2003: creazione IEEE 802.21 ECSG\footnote{Executive Committee Study Group}
+\item marzo 2004: creazione IEEE 802.21 WG\footnote{Working Group}
+\item settembre 2004: analisi dei requisiti
+\item ottobre 2004: raccolta delle proposte
+\item maggio 2005: formulazione di una proposta unica
+\item luglio 2005: inizio discussione della proposta
+\item luglio 2007: IEEE 802 Sponsor Ballot\footnote{http://standards.ieee.org/develop/balloting.html}
+\item gennaio 2009: pubblicazione dello standard
+\end{itemize}
+
+\section{Finalità}
+Lo standard IEEE 802.21 si pone l'obbiettivo di aiutare i nodi mobili a prepararsi ad eventuali azioni di {\em handover} da una rete ad un'altra, ma non specifica come deve avvenire la migrazione. Sono infatti definite tutte le funzionalità per acquisire informazioni sullo stato delle varie interfacce, ma non è specificato come e quando debba effettivamente avvenire l'eventuale passaggio. L'utente è in grado di conoscere lo stato delle connessioni disponibili attraverso la ricezione di eventi dal proprio MIHF\footnote{Media Independent Handover Function}, quali {\em link\_up} e {\em link\_down}, e può richiedere esplicitamente informazioni aggiuntive su una interfaccia inviando delle specifiche richieste ad un particolare SAP\footnote{Service Access Point}, come l'RSSI\footnote{Received signal strength indication} di una propria interfaccia 802.11 attualmente connessa.
+
+\section{Architettura}
+Lo standard IEEE 802.21 definisce più entità, ognuna con il proprio specifico compito:
+\begin{itemize}
+\item MIHF: implementa il core delle funzionalità offerte dallo standard
+\item MIH-SAP: fornisce una astrazione generale per tutti i tipi di interfacce
+\item MIH-LINK-SAP: fornisce servizi aggiuntivi rispetto al precedente ma solo per una singola tecnologia
+\end{itemize}
+
+\subsection{MIHF}
+L'implementazione della Media Independent Handover Function è formata da tre componenti:
+\begin{itemize}
+\item MIES (Media Independent Event Services)
+\item MIIS (Media Independent Information Services)
+\item MICS (Media Independent Command Services)
+\end{itemize}
