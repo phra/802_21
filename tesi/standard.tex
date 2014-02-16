@@ -15,20 +15,37 @@ Il {\em working group} cominciò effettivamente i lavori nel marzo 2004 e la pri
 \end{itemize}
 
 \section{Finalità}
-Lo standard IEEE 802.21 si pone l'obbiettivo di aiutare i nodi mobili a prepararsi ad eventuali azioni di {\em handover} da una rete ad un'altra, ma non specifica come deve avvenire la migrazione. Sono infatti definite tutte le funzionalità per acquisire informazioni sullo stato delle varie interfacce, ma non è specificato come e quando debba effettivamente avvenire l'eventuale passaggio. L'utente è in grado di conoscere lo stato delle connessioni disponibili attraverso la ricezione di eventi dal proprio MIHF\footnote{Media Independent Handover Function}, quali {\em link\_up} e {\em link\_down}, e può richiedere esplicitamente informazioni aggiuntive su una interfaccia inviando delle specifiche richieste ad un particolare SAP\footnote{Service Access Point}, come l'RSSI\footnote{Received signal strength indication} di una propria interfaccia 802.11 attualmente connessa.
+Lo standard IEEE 802.21 si pone l'obbiettivo di aiutare i nodi mobili a prepararsi ad eventuali azioni di {\em handover} da una rete ad un'altra, ma non specifica come deve avvenire la migrazione. Sono infatti definite tutte le funzionalità per acquisire informazioni sullo stato delle varie interfacce, ma non è specificato come e quando debba effettivamente avvenire l'eventuale passaggio. L'utente è in grado di conoscere lo stato delle connessioni disponibili attraverso la ricezione di eventi dal proprio MIHF\footnote{Media Independent Handover Function}, quali {\em link\_up} e {\em link\_down}, e può richiedere esplicitamente informazioni aggiuntive su una interfaccia inviando delle specifiche richieste ad un particolare SAP\footnote{Service Access Point}, come l'RSSI\footnote{Received Signal Strength Indication} di una propria interfaccia 802.11 attualmente connessa. Lo standard 802.21 da solo non basta per gestire i meccanismi di {\em handovers}, poiché, ad esempio, per riuscire ad effettuare una migrazione {\em seamlessly} delle connessione attualmente attive, mantenendo quindi gli stessi flussi di dati attivi prima e dopo l'{\em handover}, sarebbe necessaria anche una migrazione dell'indirizzo di terzo livello attraverso, ad esempio, Mobile IP\footnote{https://en.wikipedia.org/wiki/Mobile\_ip}, altrimenti, anche dopo aver instaurato con successo la nuova connessione, il {\em peer} remoto non potrebbe sapere il nuovo indirizzo del nodo a cui era connesso.
 
 \section{Architettura}
 Lo standard IEEE 802.21 definisce più entità, ognuna con il proprio specifico compito:
 \begin{itemize}
-\item MIHF: implementa il core delle funzionalità offerte dallo standard
-\item MIH-SAP: fornisce una astrazione generale per tutti i tipi di interfacce
-\item MIH-LINK-SAP: fornisce servizi aggiuntivi rispetto al precedente ma solo per una singola tecnologia
+\item MIHF: implementa il core delle funzionalità offerte dallo standard.
+\item MIH-SAP: fornisce una astrazione generale per tutti i tipi di interfacce.
+\item MIH-LINK-SAP: fornisce servizi aggiuntivi rispetto al precedente ma solo per una singola tecnologia.
+\item MIH-User: è l'entità che si sottoscrive ad un MIHF per usufruire dei servizi offerti.
 \end{itemize}
 
 \subsection{MIHF}
-L'implementazione della Media Independent Handover Function è formata da tre componenti:
+Questo componente è il più importante: i nodi mobili devono sottoscriversi ad un MIHF, il quale invierà loro una conferma con informazioni sui collegamenti disponibili, come i rispettivi indirizzi di livello due ed il tipo di tecnologia, ed un elenco di eventi e comandi supportati. In sostanza, l'MIHF fornisce un insieme di servizi astratti ai livelli superiori indipendentemente dalle tecnologie adottate dalle singole interfacce.
+L'implementazione della Media Independent Handover Function è formata da tre sottocomponenti:
 \begin{itemize}
-\item MIES (Media Independent Event Services)
-\item MIIS (Media Independent Information Services)
-\item MICS (Media Independent Command Services)
+\item MIES (Media Independent Event Services): ha il compito di segnalare i cambiamenti di stato a livello {\em data link}, ovvero il secondo strato dello stack di rete, ai protocolli soprastanti. Il flusso dei dati generati da questo componente ha quindi un verso prettamente {\em bottom-up}.
+\item MICS (Media Independent Command Services):è incaricato di propagare i comandi ricevuti dagli strati più alti dello stack di rete verso il basso, ad esempio una richiesta esplicita di riconfigurazione per un'interfaccia, per aiutare il nodo mobile ad eseguire più facilmente procedure di {\em handover}. Il flusso dei dati è {\em top-down}.
+\item MIIS (Media Independent Information Services): è la componente incaricata di gestire richieste di informazioni e le opportune risposte. Ad esempio, un nodo mobile può essere interessato ad informazioni aggiuntive riguardo uno specifico link, come l'RSSI di una interfaccia 802.11, inviando una richiesta all'MIHF a cui è sottoscritto ed aspettando una risposta. Lo scambio di informazioni è effettuato secondo un modello RDF\footnote{https://en.wikipedia.org/wiki/Resource\_Description\_Framework} basato su XML\footnote{https://en.wikipedia.org/wiki/Extensible\_Markup\_Language}, variants\footnote{https://en.wikipedia.org/wiki/Variant\_type} oppure TLV\footnote{https://en.wikipedia.org/wiki/Type-length-value}. In questo caso non è possibile decidere un verso per il flusso delle informazioni, poiché uno strato superiore dello stack potrebbe richiedere informazioni su un {\em layer} sottostante o viceversa.
 \end{itemize}
+
+\subsection{SAPs}
+Questo componente è incaricato di interagire con le interfacce di rete, al fine di esporre delle primitive di servizi di basso livello di una singola interfaccia ad un MIHF, al quale deve essersi preventivamente registrato.
+I Service Access Points possono essere di due tipi: {\em media-independent} e {\em media-dependent}.
+I primi forniscono servizi astratti per tutte le possibili tipologie di interfacce di rete, come la generazione di eventi {\em link\_down} e {\em link\_up}, e, di conseguenza, offrono un minor numero di servizi.
+I secondi forniscono servizi specifici per una singola tecnologia, e.g. 802.3 o 802.11, e per questo motivo sono più espressivi dei primi: ad esempio, in seguito ad una richiesta {\em get\_link\_parameter} è naturale aspettarsi risposte differenti per ogni famiglia di tecnologie, come l'RSSI che assume valori differenti a seconda della tipologia dell'interfaccia interrogata. 
+
+\subsection{MIH-User}
+L'entità che si sottoscrive ad un MIHF è definita MIH-User. Esso invia una richiesta di {\em capability\_discover} e riceve come risposta una lista di interfacce, eventi e comandi disponibili. Una volta ricevuto questo messaggio, l'utente deciderà a quali interfacce è interessato ed invierà di conseguenza una richiesta di sottoscrizione per ogni interfaccia scelta. In seguito l'utente potrà ricevere eventi generati dal cambio di stato di un collegamento ed inviare richieste e comandi al proprio MIHF che si preoccuperà di interagire a sua volta con i SAPs che gestiscono le interfacce interpellate.
+
+\section{Esempio d'uso}
+Supponiamo di disporre di un dispositivo mobile con più interfacce di rete wireless e che sia connesso tramite una di queste. Esso potrebbe richiedere informazioni all'MIHF a cui è registrato su tutti i  collegamenti disponibili, indipendentemente dalla tipologia singole. In questo modo l'utente potrebbe conoscere preventivamente lo stato di un potenziale collegamento tramite una differente tecnologia senza dover accendere fisicamente sul proprio dispositivo la ricetrasmittente adatta, con un potenziale guadagno sui consumi di elettricità e maggior efficienza nello sfruttamento dell'etere. Ovviamente è anche possibile implementare una sorta di {\em network manager} che di volta in volta si preoccupa di sottoscriversi ad ogni MIHF e di decidere l'interfaccia migliore secondo un {\em tradeoff} tra consumo energetico e qualità del segnale, sempre supponendo di aver a disposizione soluzioni di {\em IP mobility}.
+
+\section{Stato dell'arte}
+Attualmente è possibile testare lo standard in due modi: eseguendo una sua implementazione oppure simulandolo. La maggior parte della letteratura esistente si concentra su simulazioni all'interno di {\em ns-2}\footnote{http://www.isi.edu/nsnam/ns/}. L'implementazione più utilizzata, che però al momento è solo parziale, è ODTONE\footnote{http://atnog.github.io/ODTONE/}, la quale sarà analizzata nel dettaglio successivamente.
