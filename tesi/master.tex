@@ -4,13 +4,20 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \pagestyle{empty}
-\textwidth=450pt\oddsidemargin=0pt
+%\textwidth=450pt\oddsidemargin=0pt
+
+\usepackage{minted}
+%\newcommand{\mintedbash}[1]{\begin{minted}[mathescape,linenos,numbersep=5pt,gobble=0,frame=lines,framesep=1mm]{bash} #1 \end{minted}}
+\newcommand{\cmd}[1]{\texttt{#1}\\}
+\newcommand{\cmduser}[1]{\texttt{\$ #1}\\}
+\newcommand{\cmdroot}[1]{\texttt{\# #1}\\}
+
 \begin{document}
 \begin{titlepage}
 \begin{center}
-{{\Large{\textsc{Alma Mater Studiorum $\cdot$ Universit\`a di
-Bologna}}}} \rule[0.1cm]{15.8cm}{0.1mm}
-\rule[0.5cm]{15.8cm}{0.6mm}
+\fontsize{16}{0}{\textsc{Alma Mater Studiorum$\cdot$Università di Bologna}}
+\rule[0.1cm]{13.3cm}{0.1mm}
+\rule[0.5cm]{13.3cm}{0.6mm}
 {\small{\bf SCUOLA DI SCIENZE\\
 Corso di Laurea in Informatica }}
 \end{center}

@@ -1,8 +1,94 @@
 \chapter{ODTONE}
 
 \section{Descrizione}
-Essa è distribuita con licenza LGPLv3\footnote{https://en.wikipedia.org/wiki/LGPL} ed è realizzata in C++ e resa multipiattaforma tramite la libreria {\em Boost}\footnote{http://www.boost.org}: è possibile infatti utilizzare {\em ODTONE} su sistemi Linux, Windows, Android ed OpenWrt.
+Esso è una implementazione open-source dello standard IEEE 802.21 rilasciata con licenza LGPLv3\footnote{https://www.gnu.org/licenses/lgpl.html} ed è realizzato in C++ e reso multipiattaforma tramite la libreria {\em Boost}\footnote{http://www.boost.org}: è possibile infatti eseguire {\em ODTONE} su sistemi Linux, Windows, Android ed OpenWrt.
 
 \section{Funzionalità implementate}
 
-\section{Compilazione ed esecuzione}
+ODTONE è un'implementazione parziale, ovvero sono supportate solo alcune delle funzionalità specificate nello standard. Questo progetto mira a fornire una implementazione dell'MIHF compatibile {\em out-of-the-box} con tutti i principali sistemi operativi esistenti e, di conseguenza, essendo tuttora in stato sperimentale\footnote{è attualmente disponibile la versione 0.6}, fornisce solo le funzionalità principali oppure facilmente implementabili in chiave multi-piattaforma.
+La {\em Media Independent Handover Function} fornita è composta dai tre sottocomponenti definiti dallo standard IEEE 802.21, ovvero {\em Media Independent Event Service} (MIES), {\em Media Independent Command Service} (MIIS) e {\em Media Independent Command Service} (MICS) e supporta le principali procedure come {\em Capability Discovery}, {\em MIHF Registration}, {\em Event Registration}, etc. Per poter scrivere un programma che interagisca con l'MIHF, quindi un MIH-User oppure un SAP, è possibile utilizzare la libreria inclusa {\em libodtone}, la quale fornisce tutte le funzioni necessarie per comunicare correttamente con il core. Si potrebbe essere sia interessati a realizzare un'applicazione che, interrogando l'MIHF, possa decidere quali interfacce convenga utilizzare, ma anche implementare un SAP per una nuova tecnologia o piattaforma, poiché ufficialmente viene fornito un SAP generico per tutte le interfacce e dei LINK\_SAP specifici solo per 802.3 e 802.11. Il SAP generico supporta solo la generazione di eventi {\em link\_down} e {\em link\_up} mentre quelli specifici supportano inoltre la query {\em get\_link\_parameter} che, a seconda della tecnologia, fornisce statistiche sul collegamento gestito, come un contatore di pacchetti persi totali oppure l'RSSI.
+
+\section{Eseguire per la prima volta ODTONE}
+Vengono di seguito illustrati tutti i passaggi per compilare ed eseguire per la prima volta ODTONE recuperando il codice dal repository ufficiale su un sistema Debian\footnote{http://www.debian.org} {\em Wheezy}.
+
+\subsection{Compilazione}
+La procedura per compilare ODTONE dal repository ufficiale è la seguente (al momento c'è un problema con le dipendenze da risolvere manualmente\footnote{http://snapshot.debian.org/archive/debian/20140217T220529Z/}):
+\begin{enumerate}
+\item prelevare l'ultima versione:\\
+\cmduser{git clone https://github.com/ATNoG/ODTONE.git odtone}
+
+\item prelevare i sottomoduli:\\
+\cmduser{git submodule update --init}
+
+\item prelevare la prima parte di dipendenze necessarie:\\
+\cmdroot{apt-get update}
+\cmdroot{apt-get install build-essential realpath cmake autoconf \\automake libboost-all-dev}
+
+\item passare momentaneamente al ramo {\em testing} di Debian:\\
+\cmdroot{vi /etc/apt/sources.list}
+e sostituire la parola {\em stable} o {\em wheezy} in {\em testing}, e.g.:\\
+\cmd{deb http://mi.mirror.garr.it/mirrors/debian/ testing main}
+
+\item prelevare la seconda parte di dipendenze necessarie:\\
+\cmdroot{apt-get update}
+\cmdroot{apt-get install librdf0-dev libnl-3-dev \\libnl-route-3-dev libnl-genl-3-dev}
+
+\item ritornare al ramo {\em stable} di Debian:\\
+\cmdroot{vi /etc/apt/sources.list}
+e.g.:\\
+\cmd{deb http://mi.mirror.garr.it/mirrors/debian/ stable main}
+
+\item procedere alla compilazione:\\
+\cmduser{cd odtone}
+\cmduser{cmake .}
+\cmduser{make -j2}
+
+\end{enumerate}
+
+\subsection{Esecuzione}
+
+Appena finita la compilazione, è necessario rendere disponibili le librerie appena compilate al sistema.
+
+\begin{enumerate}
+
+\item creare dei links simbolici in /usr/lib:\\
+\cmdroot{ln -s \$(realpath lib/odtone/libodtone.so) \\/usr/lib/libodtone.so.0.5}
+\cmdroot{ln -s \$(realpath lib/external/libnl/nlwrap/libnlwrap.so) \\/usr/lib/libnlwrap.so.0.5}
+
+\item eseguire per primo l'MIHF:\\
+\cmduser{./src/mihf/odtone-mihf}
+
+\item eseguire un SAP per ogni interfaccia, inserendo l'indirizzo MAC appropriato:
+
+802.11:\\
+\cmdroot{./app/sap\_80211\_linux/odtone-sap\_80211 \\-{}-link.link\_addr <MAC>}
+
+802.3:\\
+\cmdroot{./app/sap\_8023/odtone-sap\_8023 -{}-link.link\_addr <MAC>}
+
+\item infine eseguire l'MIH-User d'esempio fornito:\\
+\cmduser{./app/mih\_usr/odtone-mih\_usr -{}-dest mihf1}
+
+\end{enumerate}
+
+Una volta che ogni componente sarà avviato, è possibile eseguire l'MIH-User che invierà una richiesta {\em capability\_discover} per sapere quali interfacce sono disponibili e, per ognuna di queste, una richiesta di sottoscrizione. Ora è possibile scollegarsi dalla rete wireless oppure staccare fisicamente il cavo CAT5 per veder l'MIH-User ricevere l'evento {\em link\_down} e segnalarlo su {\em stdout}. Una volta ripristinato il collegamento, vedremo l'MIH-User ricevere un evento {\em link\_up}. Per realizzare il programma MIH-proxy, descritto nel prossimo capitolo, è stato utilizzato come base per il codice l'MIH-User ufficiale.
+
+\section{Risoluzione di eventuali problemi}
+Può capitare che la compilazione non vada a buon fine per degli errori della libreria Boost. In tal caso bisogna modificare il file xtime.hpp della libreria Boost:\\
+\cmdroot{vi /usr/include/boost/thread/xtime.hpp}
+sostituendo "TIME\_UTC" con "TIME\_UTC\_":\\
+\begin{minted}[mathescape,linenos,numbersep=5pt,gobble=0,frame=lines,framesep=1mm]{diff}
+--- xtime.hpp   2014-02-18 03:26:56.291068347 +0100
++++ xtime1.hpp  2014-02-18 03:27:23.679204146 +0100
+@@ -20,7 +20,7 @@
+
+ enum xtime_clock_types
+ {
+-    TIME_UTC=1
++    TIME_UTC_=1
+ //    TIME_TAI,
+ //    TIME_MONOTONIC,
+ //    TIME_PROCESS,
+\end{minted}
+
+Per quanto riguarda l'esecuzione, se dobbiamo eseguire più istanze dello stesso SAP, bisogna modificare il file .conf contenuto nella directory dove si trova l'eseguibile assegnando differenti indirizzi per distinguere l'istanza del SAP e differenti porte su cui mettersi in ascolto per la ricezione di messaggi dall'MIHF.
