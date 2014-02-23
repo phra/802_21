@@ -3,15 +3,20 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\pagestyle{empty}
-
+\usepackage{graphicx}
 \usepackage{minted}
+\usepackage{tikz}
+\usetikzlibrary{shapes,shadows,arrows}
+\usepackage{fancyhdr}
+\pagestyle{empty}
 \newcommand{\cmd}[1]{\texttt{#1}\\}
 \newcommand{\cmduser}[1]{\texttt{\$ #1}\\}
 \newcommand{\cmdroot}[1]{\texttt{\# #1}\\}
+\linespread{1,3}
 
 \begin{document}
 \begin{titlepage}
+\thispagestyle{empty}
 \begin{center}
 \fontsize{16}{0}{\textsc{Alma Mater Studiorum$\cdot$Università di Bologna}}
 \rule[0.1cm]{13.3cm}{0.1mm}
@@ -45,7 +50,16 @@ Francesco Soncina}}
 2012/2013 }}%inserire l'anno accademico a cui si è iscritti
 \end{center}
 \end{titlepage}
+\frontmatter
+\include{prima}
+\pagestyle{fancy}
+\include{citazione}
+\include{abstract}
 \tableofcontents
+\pagestyle{empty}
+\listoffigures
+\mainmatter
+\pagestyle{fancy}
 \include{introduzione}
 \include{standard}
 \include{odtone}

@@ -1,5 +1,7 @@
 \chapter{ODTONE}
 
+In questo capitolo verrà descritta, analizzata e testata l'implementazione denominata ODTONE, descrivendone le funzionalità attualmente implementate ed illustrando punto per punto tutti i passaggi richiesti per compilare ed eseguire con successo questa implementazione, partendo direttamente dal codice disponibile presso il repository ufficiale.
+
 \section{Descrizione}
 Esso è una implementazione open-source dello standard IEEE 802.21 rilasciata con licenza LGPLv3\footnote{https://www.gnu.org/licenses/lgpl.html} ed è realizzato in C++ e reso multipiattaforma tramite la libreria {\em Boost}\footnote{http://www.boost.org}: è possibile infatti eseguire {\em ODTONE} su sistemi Linux, Windows, Android ed OpenWrt.
 
@@ -8,21 +10,22 @@ Esso è una implementazione open-source dello standard IEEE 802.21 rilasciata co
 ODTONE è un'implementazione parziale, ovvero sono supportate solo alcune delle funzionalità specificate nello standard. Questo progetto mira a fornire una implementazione dell'MIHF compatibile {\em out-of-the-box} con tutti i principali sistemi operativi esistenti e, di conseguenza, essendo tuttora in stato sperimentale\footnote{è attualmente disponibile la versione 0.6}, fornisce solo le funzionalità principali oppure facilmente implementabili in chiave multi-piattaforma.
 La {\em Media Independent Handover Function} fornita è composta dai tre sottocomponenti definiti dallo standard IEEE 802.21, ovvero {\em Media Independent Event Service} (MIES), {\em Media Independent Command Service} (MIIS) e {\em Media Independent Command Service} (MICS) e supporta le principali procedure come {\em Capability Discovery}, {\em MIHF Registration}, {\em Event Registration}, etc. Per poter scrivere un programma che interagisca con l'MIHF, quindi un MIH-User oppure un SAP, è possibile utilizzare la libreria inclusa {\em libodtone}, la quale fornisce tutte le funzioni necessarie per comunicare correttamente con il core. Si potrebbe essere sia interessati a realizzare un'applicazione che, interrogando l'MIHF, possa decidere quali interfacce convenga utilizzare, ma anche implementare un SAP per una nuova tecnologia o piattaforma, poiché ufficialmente viene fornito un SAP generico per tutte le interfacce e dei LINK\_SAP specifici solo per 802.3 e 802.11. Il SAP generico supporta solo la generazione di eventi {\em link\_down} e {\em link\_up} mentre quelli specifici supportano inoltre la query {\em get\_link\_parameter} che, a seconda della tecnologia, fornisce statistiche sul collegamento gestito, come un contatore di pacchetti persi totali oppure l'RSSI.
 
-\section{Eseguire per la prima volta ODTONE}
+\section{Compilazione ed esecuzione}
 Vengono di seguito illustrati tutti i passaggi per compilare ed eseguire per la prima volta ODTONE recuperando il codice dal repository ufficiale su un sistema Debian\footnote{http://www.debian.org} {\em Wheezy}.
 
 \subsection{Compilazione}
 La procedura per compilare ODTONE dal repository ufficiale è la seguente (al momento c'è un problema con le dipendenze da risolvere manualmente\footnote{http://snapshot.debian.org/archive/debian/20140217T220529Z/}):
 \begin{enumerate}
+
+\item prelevare la prima parte di dipendenze necessarie:\\
+\cmdroot{apt-get update}
+\cmdroot{apt-get install build-essential git realpath cmake autoconf \\automake libboost-all-dev}
+
 \item prelevare l'ultima versione:\\
 \cmduser{git clone https://github.com/ATNoG/ODTONE.git odtone}
 
 \item prelevare i sottomoduli:\\
 \cmduser{git submodule update --init}
-
-\item prelevare la prima parte di dipendenze necessarie:\\
-\cmdroot{apt-get update}
-\cmdroot{apt-get install build-essential git realpath cmake autoconf \\automake libboost-all-dev}
 
 \item passare momentaneamente al ramo {\em testing} di Debian:\\
 \cmdroot{vi /etc/apt/sources.list}
@@ -73,7 +76,7 @@ Appena finita la compilazione, è necessario rendere disponibili le librerie app
 
 Una volta che ogni componente sarà avviato, è possibile eseguire l'MIH-User che invierà una richiesta {\em capability\_discover} per sapere quali interfacce sono disponibili e, per ognuna di queste, una richiesta di sottoscrizione. Ora è possibile scollegarsi dalla rete wireless oppure staccare fisicamente il cavo CAT5 per veder l'MIH-User ricevere l'evento {\em link\_down} e segnalarlo su {\em stdout}. Una volta ripristinato il collegamento, vedremo l'MIH-User ricevere un evento {\em link\_up}. Per realizzare il programma MIH-proxy, descritto nel prossimo capitolo, è stato utilizzato come base per il codice l'MIH-User ufficiale.
 
-\section{Risoluzione di eventuali problemi}
+\section{Risoluzione problemi}
 Può capitare che la compilazione non vada a buon fine per degli errori della libreria Boost. In tal caso bisogna modificare il file xtime.hpp della libreria Boost:\\
 \cmdroot{vi /usr/include/boost/thread/xtime.hpp}
 sostituendo "TIME\_UTC" con "TIME\_UTC\_":\\

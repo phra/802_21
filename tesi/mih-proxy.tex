@@ -1,19 +1,146 @@
 \chapter{MIH-proxy}
+In questo capitolo verrà presentato il programma MIH-proxy realizzato per testare le potenzialità di ODTONE tramite un'applicazione reale, descrivendone la logica ed il funzionamento. Saranno inoltre descritti tutti i passi necessari per la configurazione e per l'esecuzione.
 \section{Descrizione}
 {\em MIH-proxy} è un proxy ad alta affidabilità che permette di sfruttare più interfacce di rete per inviare e ricevere traffico ed è disponibili in due varianti: unidirezionale e bidirezionale. Nel primo, il trasmettitore può sfruttare più interfacce per inviare pacchetti UDP verso un peer remoto, il quale, per ovvie ragioni, non deve considerare l'IP sorgente, poiché i dati in arrivo potrebbero provenire da più IP sorgenti. Nel secondo, sia il trasmettitore, sia il ricevente possono aver più interfacce di rete su cui può passare traffico bidirezionale, occorre quindi una seconda istanza del proxy anche sul ricevente che si preoccupi di monitorare il traffico in arrivo su più interfacce ed è così possibile anche far collegare due applicazioni che usano TCP trasformando dapprima il flusso in pacchetti UDP, instradandolo sull'interfaccia corretta e ricostruendo il flusso originario una volta a destinazione. Si è deciso di tenere separati l'applicativo per trasformare un flusso TCP in pacchetti UDP e quello per gestire l'invio e ricezione sulle varie interfacce per delegare compiti appropriati e coerenti ad ogni componente, i quali potrebbero avere anche un utilizzo concreto anche se presi singolarmente.
 \section{Funzionamento}
-Entrambe le versioni del proxy sfruttano una implementazione open-source dello standard IEEE 802.21 per conoscere lo stato dei links disponibili. L'implementazione utilizzata è {\em ODTONE}\footnote{http://atnog.github.io/ODTONE/}. Sfortunatamente è solo un'implementazione parziale dello standard, ad esempio implementa solo alcuni degli eventi definiti nello standard tra quelli generabili da ogni interfaccia. 
+Entrambe le versioni del proxy sfruttano una implementazione open-source dello standard IEEE 802.21 per conoscere lo stato dei links disponibili. L'implementazione utilizzata è {\em ODTONE}\footnote{http://atnog.github.io/ODTONE/}. Sfortunatamente è solo un'implementazione parziale dello standard, ad esempio implementa solo alcuni degli eventi definiti nello standard tra quelli generabili da ogni interfaccia.\\
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\tikzset{
+block/.style={rectangle,rounded corners,draw=black, top color=white, bottom color=gray!50,very thick,
+inner sep=1em, minimum size=1em, text centered,node distance=8em},
+mynode/.style={rectangle,fill=gray!30, text centered, text width=5em,minimum height=10mm,node distance=5em},
+myarrow/.style={->, >=latex', shorten >=1pt, very thick},
+dottedarrow/.style={<->, >=latex', shorten >=1pt, thick, dotted},
+mylabel/.style={text width=7em, text centered},
+}
+
+\node [block] (client) {Client};
+\node [block, below of=client] (mihproxy1) {MIH-proxy};
+\node [block, below of=mihproxy1, xshift=-5em] (linksap1) {MIH-Link-Sap};
+\node [block, below of=mihproxy1, xshift=5em] (linksap2) {MIH-Link-Sap};
+\node [block, below of=linksap1] (eth0) {eth0};
+\node [block, below of=linksap2] (wlan0) {wlan0};
+\node [block, right of=client, xshift=8em] (server) {Server};
+\draw[myarrow] (client) -- node[auto,swap] {UDP} (mihproxy1);
+\draw[dottedarrow] (mihproxy1) -- (linksap1);
+\draw[dottedarrow] (mihproxy1) -- (linksap2);
+\draw[dottedarrow] (linksap1) -- (eth0);
+\draw[dottedarrow] (linksap2) -- (wlan0);
+\draw[myarrow] (mihproxy1) -- ++(4.5,0) |-  (wlan0);
+\draw[myarrow] (mihproxy1) -- ++(-4.5,0) |-  (eth0);
+\draw[myarrow] (eth0.south) -- ++(0,-1) -|  (server.south);
+\draw[myarrow] (eth0.south) -- ++(0,-1) -|  (server.south);
+\draw[myarrow] (wlan0.south) -- ++(0,-1) -|  (server.south);
+\end{tikzpicture}
+\caption{MIH-proxy unidirezionale}
+\end{figure}
 \subsection{Unidirezionale}
-La versione unidirezionale gestisce solo un traffico in uscita da più interfacce per limiti tecnici, ovvero, supponendo traffico bidirezionale, nel caso cadesse un'interfaccia del trasmettitore, il ricevente non saprebbe mai che l'IP da cui stava ricevendo non è più disponibile, trattandosi di pacchetti UDP, e quindi continuerebbe ad inviare ad un IP non raggiungibile. Per conoscere lo stato delle interfacce locali disponibili, il proxy rimane in ascolto di eventi {\em link\_down} e {\em link\_up} inviati dall'{\em MIHF} quando c'è un cambiamento di stato in una interfaccia, in modo da sapere attraverso quali interfacce poter inviare dati. 
+La versione unidirezionale gestisce solo un traffico in uscita da più interfacce per limiti tecnici, ovvero, supponendo traffico bidirezionale, nel caso cadesse un'interfaccia del trasmettitore, il ricevente non saprebbe mai che l'IP da cui stava ricevendo non è più disponibile, trattandosi di pacchetti UDP, e quindi continuerebbe ad inviare ad un IP non raggiungibile. Per conoscere lo stato delle interfacce locali disponibili, il proxy rimane in ascolto di eventi {\em link\_down} e {\em link\_up} inviati dall'{\em MIHF} quando c'è un cambiamento di stato in una interfaccia, in modo da sapere attraverso quali interfacce poter inviare dati.\\
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\tikzset{
+block/.style={rectangle,rounded corners,draw=black, top color=white, bottom color=gray!50,very thick,
+inner sep=1em, minimum size=1em, text centered,node distance=8em},
+mynode/.style={rectangle,fill=gray!30, text centered, text width=5em,minimum height=10mm,node distance=5em},
+myarrow/.style={->, >=latex', shorten >=1pt, very thick},
+mydoublearrow/.style={<->, >=latex', shorten >=1pt, very thick},
+dottedarrow/.style={<->, >=latex', shorten >=1pt, thick, dotted},
+mylabel/.style={text width=7em, text centered},
+}
+
+\node [block] (client) {Client};
+\node [block, below of=client] (mihproxy1) {MIH-proxy};
+\node [block, below of=mihproxy1, xshift=-3.5em] (linksap1) {Link-Sap};
+\node [block, below of=mihproxy1, xshift=3.5em] (linksap2) {Link-Sap};
+\node [block, below of=linksap1] (eth0) {eth0};
+\node [block, below of=linksap2] (wlan0) {wlan0};
+\node [block, right of=client, xshift=10em] (server) {Server};
+\node [block, below of=server] (mihproxy2) {MIH-proxy};
+\node [block, below of=mihproxy2, xshift=-3.5em] (linksap3) {Link-Sap};
+\node [block, below of=mihproxy2, xshift=3.5em] (linksap4) {Link-Sap};
+\node [block, below of=linksap3] (eth01) {eth0};
+\node [block, below of=linksap4] (eth11) {eth1};
+\draw[mydoublearrow] (client) -- node[auto,swap] {UDP} (mihproxy1);
+\draw[dottedarrow] (mihproxy1) -- (linksap1);
+\draw[dottedarrow] (mihproxy1) -- (linksap2);
+\draw[dottedarrow] (linksap1) -- (eth0);
+\draw[dottedarrow] (linksap2) -- (wlan0);
+\draw[mydoublearrow] (mihproxy1) -- ++(3.1,0) |-  (wlan0);
+\draw[mydoublearrow] (mihproxy1) -- ++(-3.1,0) |-  (eth0);
+\draw[mydoublearrow] (server) -- node[auto,swap] {UDP} (mihproxy2);
+\draw[dottedarrow] (mihproxy2) -- (linksap3);
+\draw[dottedarrow] (mihproxy2) -- (linksap4);
+\draw[dottedarrow] (linksap3) -- (eth01);
+\draw[dottedarrow] (linksap4) -- (eth11);
+\draw[mydoublearrow] (mihproxy2) -- ++(3.1,0) |-  (eth11);
+\draw[mydoublearrow] (mihproxy2) -- ++(-3.1,0) |-  (eth01);
+\draw[mydoublearrow] (eth01.south) -- ++(0,-1) -| (eth0.south);
+\draw[mydoublearrow] (eth11.south) -- ++(0,-1) -| (wlan0.south);
+\end{tikzpicture}
+\caption{MIH-proxy bidirezionale senza phoxy}
+\end{figure}
 \subsection{Bidirezionale}
-La versione bidirezionale necessita di due istanze del proxy, poiché ognuna deve poter inviare e ricevere su più interfacce. Per conoscere lo stato locale si comporta come la versione unidirezionale, per lo stato del peer remoto è stato necessario introdurre un sistema di {\em heartbeat} temporizzato con pacchetti vuoti per segnalare alla controparte i links funzionanti. Se dopo un certo periodo non si ricevono pacchetti da un dato IP, quella destinazione viene contrassegnata {\em down} e quindi non si invieranno più dati verso quell'IP fino a quando non sarà ricevuto un pacchetto di {\em heartbeat}. In questo modo ogni istanza è a conoscenza dello stato delle interfacce di rete locali e remote. Per poter gestire il traffico generato da due applicazioni che si connettono tra loro tramite il protocollo TCP è possibile aggiungere un nuovo componente tra l'applicazione e il proxy in entrambi i peers che si occuperanno di trasformare il flusso TCP in datagrammi, gestire pacchetti persi, doppi o fuori ordine e ricostruire il flusso originario prima di consegnarlo al destinatario. Inoltre è possibile richiedere una cifratura {\em AES256} nella conversione da flusso a datagrammi.
+La versione bidirezionale necessita di due istanze del proxy, poiché ognuna deve poter inviare e ricevere su più interfacce. Per conoscere lo stato locale si comporta come la versione unidirezionale, per lo stato del peer remoto è stato necessario introdurre un sistema di {\em heartbeat} temporizzato con pacchetti vuoti per segnalare alla controparte i links funzionanti. Se dopo un certo periodo non si ricevono pacchetti da un dato IP, quella destinazione viene contrassegnata {\em down} e quindi non si invieranno più dati verso quell'IP fino a quando non sarà ricevuto un pacchetto di {\em heartbeat}. In questo modo ogni istanza è a conoscenza dello stato delle interfacce di rete locali e remote. Per poter gestire il traffico generato da due applicazioni che si connettono tra loro tramite il protocollo TCP è possibile aggiungere un nuovo componente tra l'applicazione e il proxy in entrambi i peers che si occuperanno di trasformare il flusso TCP in datagrammi, gestire pacchetti persi, doppi o fuori ordine e ricostruire il flusso originario prima di consegnarlo al destinatario. Inoltre è possibile richiedere una cifratura {\em AES256} nella conversione da flusso a datagrammi.\\
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\tikzset{
+block/.style={rectangle,rounded corners,draw=black, top color=white, bottom color=gray!50,very thick,
+inner sep=1em, minimum size=1em, text centered,node distance=8em},
+mynode/.style={rectangle,fill=gray!30, text centered, text width=5em,minimum height=10mm,node distance=5em},
+myarrow/.style={->, >=latex', shorten >=1pt, very thick},
+mydoublearrow/.style={<->, >=latex', shorten >=1pt, very thick},
+dottedarrow/.style={<->, >=latex', shorten >=1pt, thick, dotted},
+mylabel/.style={text width=7em, text centered},
+}
+
+\node [block] (client) {Client};
+\node [block, below of=client] (phoxy1) {phoxy};
+\node [block, below of=phoxy1] (mihproxy1) {MIH-proxy};
+\node [block, below of=mihproxy1, xshift=-3.5em] (linksap1) {Link-Sap};
+\node [block, below of=mihproxy1, xshift=3.5em] (linksap2) {Link-Sap};
+\node [block, below of=linksap1] (eth0) {eth0};
+\node [block, below of=linksap2] (wlan0) {wlan0};
+\node [block, right of=client, xshift=10em] (server) {Server};
+\node [block, below of=server] (phoxy2) {phoxy};
+\node [block, below of=phoxy2] (mihproxy2) {MIH-proxy};
+\node [block, below of=mihproxy2, xshift=-3.5em] (linksap3) {Link-Sap};
+\node [block, below of=mihproxy2, xshift=3.5em] (linksap4) {Link-Sap};
+\node [block, below of=linksap3] (eth01) {eth0};
+\node [block, below of=linksap4] (eth11) {eth1};
+\draw[mydoublearrow] (client) -- node[auto,swap] {TCP} (phoxy1);
+\draw[mydoublearrow] (phoxy1) -- node[auto,swap] {UDP+AES} (mihproxy1);
+\draw[dottedarrow] (mihproxy1) -- (linksap1);
+\draw[dottedarrow] (mihproxy1) -- (linksap2);
+\draw[dottedarrow] (linksap1) -- (eth0);
+\draw[dottedarrow] (linksap2) -- (wlan0);
+\draw[mydoublearrow] (mihproxy1) -- ++(3.1,0) |- (wlan0);
+\draw[mydoublearrow] (mihproxy1) -- ++(-3.1,0) |- (eth0);
+\draw[mydoublearrow] (server) -- node[auto,swap] {TCP} (phoxy2);
+\draw[mydoublearrow] (phoxy2) -- node[auto,swap] {UDP+AES} (mihproxy2);
+\draw[dottedarrow] (mihproxy2) -- (linksap3);
+\draw[dottedarrow] (mihproxy2) -- (linksap4);
+\draw[dottedarrow] (linksap3) -- (eth01);
+\draw[dottedarrow] (linksap4) -- (eth11);
+\draw[mydoublearrow] (mihproxy2) -- ++(3.1,0) |- (eth11);
+\draw[mydoublearrow] (mihproxy2) -- ++(-3.1,0) |- (eth01);
+\draw[mydoublearrow] (eth01.south) -- ++(0,-1) -| (eth0.south);
+\draw[mydoublearrow] (eth11.south) -- ++(0,-1) -| (wlan0.south);
+\end{tikzpicture}
+\caption{MIH-proxy bidirezionale con phoxy}
+\end{figure}
 \section{Compilazione ed Esecuzione}
 Prima di tutto, bisogna recuperare il codice con il seguente comando:\\
 \cmduser{git clone https://github.com/phra/802\_21.git}
 Nel repository è contenuto tutto il codice necessario per eseguire MIH-proxy, quindi bisognerà seguire la stessa procedura per ODTONE per compilarlo direttamente nella cartella oppure, se si ha a disposizione già ODTONE, basterà sostituire il file {\em app/mih\_usr/mih\_usr.cpp}.
 
 \subsection{Unidirezionale}
-Per compilare la versione unidirezionale dovremo rinominare il file {\em app/mih\_usr/mih\_usr\_unidirectional.cpp}:
+Per compilare la versione unidirezionale dovremo rinominare il file \\{\em app/mih\_usr/mih\_usr\_unidirectional.cpp}:\\
 \cmduser{pushd app/mih\_usr/}
 \cmduser{mv mih\_usr.cpp mih\_usr\_bidirectional.cpp}
 \cmduser{mv mih\_usr\_unidirectional.cpp mih\_usr.cpp}
@@ -40,21 +167,11 @@ Questa modifica manuale è obbligata poiché non esiste un modo {\em cross-platf
 \begin{minted}[mathescape,linenos,numbersep=5pt,gobble=0,frame=lines,framesep=1mm]{c++}
 class interfaces : boost::noncopyable {
     private:
-        struct info {
-            bool up;
-            odtone::mih::mac_addr* mac;
-            odtone::mih::link_type type;
-            boost::asio::ip::udp::socket* sock;
-        };
-        struct info data[MAX_LINKS];
-        boost::asio::io_service io,iol;
-        boost::asio::ip::udp::socket lsock = 
-            boost::asio::ip::udp::socket(iol);
+        ...
         boost::asio::ip::udp::endpoint dest = 
             boost::asio::ip::udp::endpoint(
                 boost::asio::ip::address::from_string(
                     "127.0.0.1"),9999);
-        char buf[MAX_BUF];
         ...
 }
 \end{minted}

@@ -1,5 +1,11 @@
 \chapter{Lo standard IEEE 802.21}
 
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.6]{ieee80221_cloud.ps}
+\caption{Rapporto con gli altri standards}
+\end{figure}
+
 \section{Storia}
 Con il continuo diffondersi di nuove tecnologie e dispositivi dotati di più interfacce di rete, è diventato necessario dover formalizzare alcune funzionalità per facilitare un passaggio indolore da una rete all'altra.
 Il {\em working group} cominciò effettivamente i lavori nel marzo 2004 e la prima versione ufficiale dello standard fu pubblicata nel gennaio 2009. Gli eventi principali sono stati i seguenti:
@@ -14,18 +20,30 @@ Il {\em working group} cominciò effettivamente i lavori nel marzo 2004 e la pri
 \item gennaio 2009: pubblicazione dello standard
 \end{itemize}
 
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.65]{ieee_timeline.ps}
+\caption{IEEE 802.21 Timeline}
+\end{figure}
+
 \section{Finalità}
-Lo standard IEEE 802.21 si pone l'obbiettivo di aiutare i nodi mobili a prepararsi ad eventuali azioni di {\em handover} da una rete ad un'altra, ma non specifica come deve avvenire la migrazione. Sono infatti definite tutte le funzionalità per acquisire informazioni sullo stato delle varie interfacce, ma non è specificato come e quando debba effettivamente avvenire l'eventuale passaggio. L'utente è in grado di conoscere lo stato delle connessioni disponibili attraverso la ricezione di eventi dal proprio MIHF\footnote{Media Independent Handover Function}, quali {\em link\_up} e {\em link\_down}, e può richiedere esplicitamente informazioni aggiuntive su una interfaccia inviando delle specifiche richieste ad un particolare SAP\footnote{Service Access Point}, come l'RSSI\footnote{Received Signal Strength Indication} di una propria interfaccia 802.11 attualmente connessa. Lo standard 802.21 da solo non basta per gestire i meccanismi di {\em handovers}, poiché, ad esempio, per riuscire ad effettuare una migrazione {\em seamlessly} delle connessione attualmente attive, mantenendo quindi gli stessi flussi di dati attivi prima e dopo l'{\em handover}, sarebbe necessaria anche una migrazione dell'indirizzo di terzo livello attraverso, ad esempio, Mobile IP\footnote{https://en.wikipedia.org/wiki/Mobile\_ip}, altrimenti, anche dopo aver instaurato con successo la nuova connessione, il {\em peer} remoto non potrebbe sapere il nuovo indirizzo del nodo a cui era connesso.
+Lo standard IEEE 802.21 si pone l'obbiettivo di aiutare i nodi mobili a prepararsi ad eventuali azioni di {\em handover} da una rete ad un'altra, ma non specifica come deve avvenire la migrazione. Sono infatti definite tutte le funzionalità per acquisire informazioni sullo stato delle varie interfacce, ma non è specificato come e quando debba effettivamente avvenire l'eventuale passaggio. L'utente è in grado di conoscere lo stato delle connessioni disponibili attraverso la ricezione di eventi dal proprio MIHF\footnote{Media Independent Handover Function}, quali {\em link\_up} e {\em link\_down}, e può richiedere esplicitamente informazioni aggiuntive su una interfaccia inviando delle specifiche richieste ad un particolare SAP\footnote{Service Access Point}, come l'RSSI\footnote{Received Signal Strength Indication} di una propria interfaccia 802.11 attualmente connessa. Lo standard 802.21 da solo non basta per gestire i meccanismi di {\em handovers}, poiché, ad esempio, per riuscire ad effettuare una migrazione {\em seamlessly} delle connessioni attualmente attive, mantenendo quindi lo stato dei flussi aperti prima e dopo l'{\em handover}, sarebbe necessaria anche una migrazione dell'indirizzo di terzo livello attraverso, ad esempio, Mobile IP\footnote{https://en.wikipedia.org/wiki/Mobile\_ip}, altrimenti, anche dopo aver instaurato con successo la nuova connessione, il {\em peer} remoto non potrebbe sapere il nuovo indirizzo del nodo a cui era connesso.
 
 \section{Architettura}
 Lo standard IEEE 802.21 definisce più entità, ognuna con il proprio specifico compito:
 \begin{itemize}
 \item MIHF: implementa il core delle funzionalità offerte dallo standard.
 \item MIH-SAP: fornisce una astrazione generale per tutti i tipi di interfacce.
-\item MIH-LINK-SAP: fornisce servizi aggiuntivi rispetto al precedente ma solo per una singola tecnologia.
+\item MIH-LINK-SAP: fornisce una astrazione {\em media-specific} per una singola tecnologia.
+\item MIH-NET-SAP: permette la gestione di MIHF remoti.
 \item MIH-User: è l'entità che si sottoscrive ad un MIHF per usufruire dei servizi offerti.
 \end{itemize}
 
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.8]{ieee80221.ps}
+\caption{Architettura IEEE 802.21}
+\end{figure}
 \subsection{MIHF}
 Questo componente è il più importante: i nodi mobili devono sottoscriversi ad un MIHF, il quale invierà loro una conferma con informazioni sui collegamenti disponibili, come i rispettivi indirizzi di livello due ed il tipo di tecnologia, ed un elenco di eventi e comandi supportati. In sostanza, l'MIHF fornisce un insieme di servizi astratti ai livelli superiori indipendentemente dalle tecnologie adottate dalle singole interfacce.
 L'implementazione della Media Independent Handover Function è formata da tre sottocomponenti:
@@ -37,7 +55,7 @@ L'implementazione della Media Independent Handover Function è formata da tre so
 
 \subsection{SAPs}
 Questo componente è incaricato di interagire con le interfacce di rete, al fine di esporre delle primitive di servizi di basso livello di una singola interfaccia ad un MIHF, al quale deve essersi preventivamente registrato.
-I Service Access Points possono essere di due tipi: {\em media-independent} e {\em media-dependent}.
+I Service Access Points possono essere di due tipi: {\em media-independent} e {\em media-specific}.
 I primi forniscono servizi astratti per tutte le possibili tipologie di interfacce di rete, come la generazione di eventi {\em link\_down} e {\em link\_up}, e, di conseguenza, offrono un minor numero di servizi.
 I secondi forniscono servizi specifici per una singola tecnologia, e.g. 802.3 o 802.11, e per questo motivo sono più espressivi dei primi: ad esempio, in seguito ad una richiesta {\em get\_link\_parameter} è naturale aspettarsi risposte differenti per ogni famiglia di tecnologie, come l'RSSI che assume valori differenti a seconda della tipologia dell'interfaccia interrogata. 
 
