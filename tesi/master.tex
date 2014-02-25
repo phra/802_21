@@ -8,11 +8,19 @@
 \usepackage{tikz}
 \usetikzlibrary{shapes,shadows,arrows}
 \usepackage{fancyhdr}
+\usepackage{epigraph}
+\setlength{\epigraphwidth}{35em}
+\usepackage{float}
+\restylefloat{table}
 \pagestyle{empty}
 \newcommand{\cmd}[1]{\texttt{#1}\\}
 \newcommand{\cmduser}[1]{\texttt{\$ #1}\\}
 \newcommand{\cmdroot}[1]{\texttt{\# #1}\\}
 \linespread{1,3}
+
+\title{IEEE 802.21: Media Independent Handover}
+\author{Francesco Soncina}
+\date{18 Marzo 2014}
 
 \begin{document}
 \begin{titlepage}
@@ -51,13 +59,15 @@ Francesco Soncina}}
 \end{center}
 \end{titlepage}
 \frontmatter
-\include{prima}
+%\include{prima}
+\maketitle
 \pagestyle{fancy}
 \include{citazione}
 \include{abstract}
 \tableofcontents
 \pagestyle{empty}
 \listoffigures
+\listoftables
 \mainmatter
 \pagestyle{fancy}
 \include{introduzione}
@@ -65,4 +75,6 @@ Francesco Soncina}}
 \include{odtone}
 \include{mih-proxy}
 \include{conclusioni}
+\bibliographystyle{nature}
+\bibliography{biblio}
 \end{document}

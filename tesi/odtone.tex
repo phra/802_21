@@ -7,8 +7,134 @@ Esso è una implementazione open-source dello standard IEEE 802.21 rilasciata co
 
 \section{Funzionalità implementate}
 
-ODTONE è un'implementazione parziale, ovvero sono supportate solo alcune delle funzionalità specificate nello standard. Questo progetto mira a fornire una implementazione dell'MIHF compatibile {\em out-of-the-box} con tutti i principali sistemi operativi esistenti e, di conseguenza, essendo tuttora in stato sperimentale\footnote{è attualmente disponibile la versione 0.6}, fornisce solo le funzionalità principali oppure facilmente implementabili in chiave multi-piattaforma.
-La {\em Media Independent Handover Function} fornita è composta dai tre sottocomponenti definiti dallo standard IEEE 802.21, ovvero {\em Media Independent Event Service} (MIES), {\em Media Independent Command Service} (MIIS) e {\em Media Independent Command Service} (MICS) e supporta le principali procedure come {\em Capability Discovery}, {\em MIHF Registration}, {\em Event Registration}, etc. Per poter scrivere un programma che interagisca con l'MIHF, quindi un MIH-User oppure un SAP, è possibile utilizzare la libreria inclusa {\em libodtone}, la quale fornisce tutte le funzioni necessarie per comunicare correttamente con il core. Si potrebbe essere sia interessati a realizzare un'applicazione che, interrogando l'MIHF, possa decidere quali interfacce convenga utilizzare, ma anche implementare un SAP per una nuova tecnologia o piattaforma, poiché ufficialmente viene fornito un SAP generico per tutte le interfacce e dei LINK\_SAP specifici solo per 802.3 e 802.11. Il SAP generico supporta solo la generazione di eventi {\em link\_down} e {\em link\_up} mentre quelli specifici supportano inoltre la query {\em get\_link\_parameter} che, a seconda della tecnologia, fornisce statistiche sul collegamento gestito, come un contatore di pacchetti persi totali oppure l'RSSI.
+Questo progetto mira a fornire una implementazione dell'MIHF compatibile {\em out-of-the-box} con tutti i principali sistemi operativi esistenti e, di conseguenza, essendo tuttora in stato sperimentale\footnote{è attualmente disponibile la versione 0.6}, fornisce solo le funzionalità principali oppure facilmente implementabili in chiave multi-piattaforma. ODTONE è un'implementazione quasi completa, ovvero il core supporta praticamente tutto lo standard mentre i SAPs forniti, al momento, sono solo per sistemi Linux e Windows e limitatamente per interfacce 802.3 e 802.11.
+
+\subsection{MIHF}
+La {\em Media Independent Handover Function} fornita è composta dai tre sottocomponenti definiti dallo standard IEEE 802.21:
+\begin{itemize}
+\item {\em Media Independent Event Service} (MIES): ha il compito di vagliare gli eventi ricevuti per controllare che siano conformi allo standard e di propagarli alle entità che hanno richiesto la sottoscrizione. Più nel dettaglio:
+\begin{itemize}
+\item Event Validator: controlla che l'evento sia conforme allo standard.
+
+\item Event Subscriber: si occupa delle sottoscrizioni agli eventi.
+
+\item Event Publisher: si occupa di propagare gli eventi agli interessati.
+\end{itemize}
+
+\item {\em Media Independent Command Service} (MICS): ha il compito di vagliare i comandi ricevuti e recapitarli a destinazione. Più nel dettaglio:
+\begin{itemize}
+\item Command Validator: controlla che i comandi ricevuti siano conformi allo standard.
+
+\item Command Publisher: propaga i comandi ai diretti interessati.
+\end{itemize}
+
+\item {\em Media Independent Command Service} (MIIS): ha il compito propagare le richieste all'IS\footnote{Information Service} e inviare indietro le risposte.
+\end{itemize}
+
+Questi componenti forniscono i servizi basilari definiti nello standard. In aggiunta, ODTONE implementa altri componenti per fornire ulteriori funzionalità e arricchire quelle già esistenti:
+\begin{itemize}
+\item Service Manager: è responsabile della gestione delle richieste {\em Capability\_Discover}, le quali servono per richiedere la lista di eventi e comandi supportati dall'MIHF.
+
+\item Communication handler: raccoglie i messaggi ricevuti da tutti i SAPs o altre entità e li invia al modulo Service Access Controller.
+
+\item Service access controller: è responsabile di analizzare l'{\em header} dei messaggi ricevuti e farli gestire dai dovuti servizi. La decisione è presa in base all'identificativo del tipo di messaggio ed ai {\em callbacks} registrati.
+
+\item Link manager: gestisce le informazioni sui Link SAPs disponibili.
+
+\item MIH-User manager: gestisce le informazioni su MIH-Users registrati.
+
+\item Peer MIHF manager: gestisce le informazioni su MIHFs remoti.
+
+\item Transaction state machine controller: mantiene gli stati di ogni transazione con MIHFs remoti ed è responsabile di inviare messaggi di {\em acknowledge} ed individuare messaggi duplicati.
+
+\end{itemize}
+
+\begin{figure}
+\centering
+\includegraphics[]{mihfarch.jpg}
+\caption{Visione concettuale del MIHF di ODTONE}
+\end{figure}
+
+\subsection{MIH-Sap}
+Fornisce un'astrazione {\em media-independent} per un gran numero di interfacce, ma supporta solo la generazione di eventi {\em link\_up} e {\em link\_down}. Su sistemi Linux utilizza {\em rtnetlink} e la libreria {\em libnl}\footnote{http://www.carisma.slowglass.com/~tgr/libnl/} per gestire le interfacce mentre su Windows utilizza le {\em SDK Libraries} ufficiali.
+Le tecnologie supportate sono:
+\begin{itemize}
+\item IEEE 802.3
+\item IEEE 802.11
+\item IEEE 802.16
+\item IEEE 802.20
+\item IEEE 802.22
+\item 3GPP GSM
+\item 3GPP GPRS
+\item 3GPP EDGE
+\item 3GPP CDMA2000
+\item 3GPP CDMA2000-HRPD
+\item 3GPP UMTS
+\end{itemize}
+
+\subsection{MIH-Link-Sap 802.3}
+Fornisce un SAP specifico per la tecnologia IEEE 802.3. Supporta la generazione dei seguenti eventi:
+\begin{itemize}
+\item Link\_Up: generato quando viene stabilita una connessione a livello {\em datalink}, i.e. viene settato il flag {\em IF\_OPER\_UP}.
+\item Link\_Down: generato quando la connessione viene interrotta, i.e. viene disattivato il flag {\em IF\_OPER\_UP}.
+\item Link\_Parameters\_Report: generato in risposta ad una richiesta \\{\em Link\_Get\_Parameters}, allo scadere di un timer periodico impostabile oppure quando scatta uno dei {\em triggers} specificati con la richiesta {\em Link\_Configure\_Thresholds}. Al momento supporta solo i parametri {\em DATA\_RATE} e {\em PACKET\_ERROR\_RATE}, ottenuti tramite il comando Netlink {\em RTNL\_GET\_LINK}. Si noti che il dato sui pacchetti persi è una statistica {\em all-time}.
+\end{itemize}
+Supporta i seguenti comandi:
+\begin{itemize}
+\item Capability\_Discover: risponde con una lista di eventi e comandi supportati dal SAP.
+\item Event\_Subscribe: permette di sottoscriversi agli eventi richiesti.
+\item Event\_Unsubscribe: permette di annullare l'iscrizione agli eventi specificati.
+\item Link\_Get\_Parameters: permette di richiedere esplicitamente l'invio di un {\em Link\_Parameters\_Report}.
+\item Link\_Configure\_Thresholds: permette di configurare dei valori-soglia che quando oltrepassati faranno generare uno specifico evento.
+\item Link\_Action: permette di richiedere al kernel tramite il modulo {\em if\_8023} certe operazioni sull'interfaccia. Al momento supporta solo i comandi:
+\begin{itemize}
+\item {\em LINK\_DISCONNECT}: richiede la disconnessione.
+\item {\em LINK\_POWER\_UP}: accende l'interfaccia.
+\item {\em LINK\_POWER\_DOWN}: spegne l'interfaccia.
+\end{itemize}
+Per poter usufruire di queste funzionalità bisogna avviare il SAP tramite un utente che abbia la capability {\em CAP\_NET\_ADMIN}, e.g. root.
+\end{itemize}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.8]{sap.jpg}
+\caption{Visione concettuale del Link\_SAP per 802.3}
+\end{figure}
+
+\subsection{MIH-Link-Sap 802.11}
+Fornisce un SAP specifico per la tecnologia IEEE 802.11. Supporta la generazione dei seguenti eventi:
+\begin{itemize}
+\item Link\_Detected: al termine di ogni scan delle reti 802.11 disponibili, il kernel invia un messaggio  {\em NL80211\_CMD\_NEW\_SCAN\_RESULTS}. Per ogni {\em entry} ottenuta, il SAP esegue una chiamata \\{\em NL80211\_CMD\_GET\_SCAN} per ottenere le informazioni da scrivere nell'evento.
+\item Link\_Up: generato quando il modulo {\em if\_80211} riceve l'evento \\{\em NL80211\_CMD\_CONNECT} dal kernel.
+\item Link\_Down: generato quando il modulo {\em if\_80211} riceve l'evento \\{\em NL80211\_CMD\_DISCONNECT} dal kernel.
+\item Link\_Parameters\_Report: generato in risposta ad una richiesta \\{\em Link\_Get\_Parameters}, allo scadere di un timer periodico impostabile oppure quando scatta uno dei {\em triggers} specificati con la richiesta {\em Link\_Configure\_Thresholds}. Al momento supporta i parametri \\{\em DATA\_RATE}, {\em PACKET\_ERROR\_RATE} e {\em SIGNAL\_STRENGTH}, ottenuti tramite il comando Netlink {\em RTNL\_GET\_LINK}. Si noti che il dato sui pacchetti persi è una statistica {\em all-time} e {\em SIGNAL\_STRENGTH} non è altro che l'RSSI.
+\end{itemize}
+Supporta i seguenti comandi:
+\begin{itemize}
+\item Capability\_Discover: risponde con una lista di eventi e comandi supportati dal SAP.
+\item Event\_Subscribe: permette di sottoscriversi agli eventi richiesti.
+\item Event\_Unsubscribe: permette di annullare l'iscrizione agli eventi specificati.
+\item Link\_Get\_Parameters: permette di richiedere esplicitamente l'invio di un {\em Link\_Parameters\_Report}.
+\item Link\_Configure\_Thresholds: permette di configurare dei valori-soglia che quando oltrepassati faranno generare uno specifico evento.
+\item Link\_Action: permette di richiedere al kernel tramite il modulo {\em if\_8023} certe operazioni sull'interfaccia. Al momento supporta i comandi:
+
+\begin{itemize}
+\item {\em LINK\_DISCONNECT}: richiede la disconnessione.
+
+\item {\em LINK\_POWER\_UP}: accende l'interfaccia.
+
+\item {\em LINK\_POWER\_UP}: spegne l'interfaccia.
+
+\item {\em LINK\_LOW\_POWER}: mette l'interfaccia in modalità a basso consumo energetico. (non supportato da vecchie versioni del kernel)
+
+\item {\em LINK\_SCAN}: richiede esplicitamente uno scan della rete.
+
+\end{itemize}
+Per poter usufruire di queste funzionalità bisogna avviare il SAP tramite un utente che abbia la capability {\em CAP\_NET\_ADMIN}, e.g. root.
+\end{itemize}
+
+\subsection{La libreria libodtone}
+Per poter scrivere un programma che interagisca con l'MIHF, quindi un MIH-User oppure un SAP, è possibile utilizzare la libreria inclusa {\em libodtone}, la quale fornisce tutte le funzioni necessarie per comunicare correttamente con il core: è disponibile come unica libreria solo dalla versione 0.6 di ODTONE ed è l'unione delle precedenti librerie 'base', 'mih', 'sap' e 'net'\footnote{http://atnog.github.io/ODTONE/documentation/odtone/changelog.html}. Fornisce tutte le classi {\em helper} necessarie per facilitare lo sviluppo delle applicazioni utente, come servizi di debug, gestione di liste, log, gestione delle eccezioni e generazione di numeri pseudo-casuali. Definisce inoltre tutti i tipi di dato del protocollo MIH specificati nello standard e fornisce delle classi per facilitare la creazione dei messaggi, il loro {\em parsing}, la loro ricezione ed il loro l'invio. Per gli ultimi due, i servizi sono implementati sulla base della classe della libreria Boost {\em boost::asio} che fornisce comunicazione tramite I/O asincrono, unica tipologia di comunicazione offerta dalla libreria: è necessario infatti eseguire qualsiasi operazione in modo asincrono, registrando gli opportuni {\em callbacks} tramite la funzione {\em boost::bind()}.
 
 \section{Compilazione ed esecuzione}
 Vengono di seguito illustrati tutti i passaggi per compilare ed eseguire per la prima volta ODTONE recuperando il codice dal repository ufficiale su un sistema Debian\footnote{http://www.debian.org} {\em Wheezy}.
@@ -95,3 +221,6 @@ sostituendo "TIME\_UTC" con "TIME\_UTC\_":\\
 \end{minted}
 
 Per quanto riguarda l'esecuzione, se dobbiamo eseguire più istanze dello stesso SAP, bisogna modificare il file .conf contenuto nella directory dove si trova l'eseguibile assegnando differenti indirizzi per distinguere l'istanza del SAP e differenti porte su cui mettersi in ascolto per la ricezione di messaggi dall'MIHF.
+
+\section{Sviluppi futuri}
+Si potrebbe essere sia interessati a realizzare un'applicazione che, interrogando l'MIHF, possa decidere quali interfacce convenga utilizzare, ma anche implementare un SAP per una nuova tecnologia o piattaforma, poiché ufficialmente viene fornito un SAP generico per tutte le interfacce e dei LINK\_SAP specifici solo per 802.3 e 802.11.
