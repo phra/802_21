@@ -3,8 +3,9 @@ In questo capitolo verrà presentato il programma MIH-proxy realizzato per testa
 
 \section{Descrizione}
 {\em MIH-proxy} è un proxy ad alta affidabilità che permette di sfruttare più interfacce di rete per inviare e ricevere traffico ed è disponibili in due varianti: unidirezionale e bidirezionale. Nel primo, il trasmettitore può sfruttare più interfacce per inviare pacchetti UDP verso un peer remoto, il quale, per ovvie ragioni, non deve considerare l'IP sorgente, poiché i dati in arrivo potrebbero provenire da più IP sorgenti. Nel secondo, sia il trasmettitore, sia il ricevente possono aver più interfacce di rete su cui può passare traffico bidirezionale, occorre quindi una seconda istanza del proxy anche sul ricevente che si preoccupi di monitorare il traffico in arrivo su più interfacce ed è così possibile anche far collegare due applicazioni che usano TCP trasformando dapprima il flusso in pacchetti UDP, instradandolo sull'interfaccia corretta e ricostruendo il flusso originario una volta a destinazione. Si è deciso di tenere separati l'applicativo per trasformare un flusso TCP in pacchetti UDP e quello per gestire l'invio e ricezione sulle varie interfacce per delegare compiti appropriati e coerenti ad ogni componente, i quali potrebbero avere anche un utilizzo concreto anche se presi singolarmente.
+
 \section{Funzionamento}
-Entrambe le versioni del proxy sfruttano una implementazione open-source dello standard IEEE 802.21 per conoscere lo stato dei links disponibili. L'implementazione utilizzata è {\em ODTONE}\footnote{http://atnog.github.io/ODTONE/}. Sfortunatamente è solo un'implementazione parziale dello standard, ad esempio implementa solo alcuni degli eventi definiti nello standard tra quelli generabili da ogni interfaccia.\\
+Entrambe le versioni del proxy sfruttano una implementazione open-source dello standard IEEE 802.21 per conoscere lo stato dei links disponibili. L'implementazione utilizzata è {\em ODTONE}\cite{odtone}. Sfortunatamente è solo un'implementazione parziale dello standard, ad esempio implementa solo alcuni degli eventi definiti nello standard tra quelli generabili da ogni interfaccia.\\
 
 \begin{figure}[h!]
 \centering
@@ -177,7 +178,7 @@ class interfaces : boost::noncopyable {
 }
 \end{minted}
 
-Successivamente bisognerà avviare come indicato nel capitolo precedente l'MIHF, ogni SAP per interfaccia ed il MIH-User modificato. Per testare il collegamento è fornito il server UDP {\em app/mih\_usr/testproxy/udpserver.c} che stampa a schermo ciò che riceve indicando anche il mittente del datagramma. Non è possibile testarlo con {\em netcat}\footnote{http://netcat.sourceforge.net} poiché, in modalità UDP, riceve solo pacchetti dal primo mittente, quindi siccome il traffico potrebbe uscire potenzialmente da più interfacce, scarterebbe tutti i pacchetti non inviati dal primo mittente. Per compilare il server fornito basterà fare:\\
+Successivamente bisognerà avviare come indicato nel capitolo precedente l'MIHF, ogni SAP per interfaccia ed il MIH-User modificato. Per testare il collegamento è fornito il server UDP {\em app/mih\_usr/testproxy/udpserver.c} che stampa a schermo ciò che riceve indicando anche il mittente del datagramma. Non è possibile testarlo con {\em netcat}\cite{netcat} poiché, in modalità UDP, riceve solo pacchetti dal primo mittente, quindi siccome il traffico potrebbe uscire potenzialmente da più interfacce, scarterebbe tutti i pacchetti non inviati dal primo mittente. Per compilare il server fornito basterà fare:\\
 \cmduser{pushd app/mih\_usr/testproxy}
 \cmduser{make}
 \cmduser{popd}
@@ -218,7 +219,7 @@ class interfaces : boost::noncopyable {
     ...
 }
 \end{minted}
-Una volta che ogni sistema avrà in esecuzione tutte le istanze con gli indirizzi configurati correttamente sarà possibile eseguire {\em netcat} invocandolo nel seguente modo:
+Una volta che ogni sistema avrà in esecuzione tutte le istanze con gli indirizzi configurati correttamente sarà possibile eseguire {\em netcat} invocandolo nel seguente modo:\\
 \cmduser{nc -up<PORT\_SENDBACK> 127.0.0.1 <PORT\_LSOCK>}
 Sarà ora possibile far comunicare le due istanze di {\em netcat} tra di loro in modo bidirezionale, ovvero potremo inviare dati dall'una all'altra e viceversa e, supponendo di aver due interfacce di rete per ogni elaboratore, sarà possibile disattivare al più una interfaccia per {\em peer}, anche contemporaneamente, senza far cadere la connessione tra i due processi. Se si vuole utilizzare questo sistema anche con processi basati su flussi TCP bisognerà aggiungere un ulteriore componente, {\em phoxy}, disponibile anch'esso attraverso il repository fornito, il quale si preoccuperà di trasformare il flusso TCP in datagrammi UDP prima di inviare i dati all'MIH-proxy, viceversa per la ricezione, gestendo il riordinamento dei pacchetti, il loro rinvio nel caso il pacchetto vada perso e l'eliminazione di doppi pacchetti. Inoltre è possibile cifrare il traffico attraverso l'algoritmo a cifratura simmetrica {\em AES256}, ovvero con chiavi a 256 bit. Per compilare {\em phoxy} bastare fare:\\
 \cmduser{pushd phoxy}

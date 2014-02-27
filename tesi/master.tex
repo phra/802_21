@@ -12,6 +12,14 @@
 \setlength{\epigraphwidth}{35em}
 \usepackage{float}
 \restylefloat{table}
+\usepackage{url}
+\usepackage[bookmarks,pdftex,
+pdfauthor={Francesco Soncina},
+pdftitle={IEEE 802.21: Media Independent Handover},
+pdfsubject={IEEE 802.21},
+pdfkeywords={IEEE, 802.21, ODTONE},
+pdfproducer={Latex with hyperref},
+pdfcreator={pdflatex}]{hyperref}
 \pagestyle{empty}
 \newcommand{\cmd}[1]{\texttt{#1}\\}
 \newcommand{\cmduser}[1]{\texttt{\$ #1}\\}
@@ -21,6 +29,14 @@
 \title{IEEE 802.21: Media Independent Handover}
 \author{Francesco Soncina}
 \date{18 Marzo 2014}
+
+\pdfinfo{
+/Author (Nicola Talbot)
+/Title  (Creating a PDF document using PDFLaTeX)
+/CreationDate (D:20040502195600)
+/Subject (PDFLaTeX)
+/Keywords (PDF;LaTeX)
+}
 
 \begin{document}
 \begin{titlepage}
@@ -75,6 +91,6 @@ Francesco Soncina}}
 \include{odtone}
 \include{mih-proxy}
 \include{conclusioni}
-\bibliographystyle{nature}
+\bibliographystyle{unsrt}
 \bibliography{biblio}
 \end{document}

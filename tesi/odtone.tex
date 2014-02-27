@@ -1,9 +1,9 @@
 \chapter{ODTONE}
 
-In questo capitolo verrà descritta, analizzata e testata l'implementazione denominata ODTONE, descrivendone le funzionalità attualmente implementate ed illustrando punto per punto tutti i passaggi richiesti per compilare ed eseguire con successo questa implementazione, partendo direttamente dal codice disponibile presso il repository ufficiale.
+In questo capitolo verrà descritta, analizzata e testata l'implementazione denominata ODTONE\cite{odtone}, descrivendone le funzionalità attualmente implementate ed illustrando punto per punto tutti i passaggi richiesti per compilare ed eseguire con successo questa implementazione, partendo direttamente dal codice disponibile presso il repository ufficiale.
 
 \section{Descrizione}
-Esso è una implementazione open-source dello standard IEEE 802.21 rilasciata con licenza LGPLv3\footnote{https://www.gnu.org/licenses/lgpl.html} ed è realizzato in C++ e reso multipiattaforma tramite la libreria {\em Boost}\footnote{http://www.boost.org}: è possibile infatti eseguire {\em ODTONE} su sistemi Linux, Windows, Android ed OpenWrt.
+Esso è una implementazione open-source dello standard IEEE 802.21 rilasciata con licenza LGPLv3\cite{lgpl} ed è realizzato in C++ e reso multipiattaforma tramite la libreria {\em Boost}\cite{boost}: è possibile infatti eseguire ODTONE su sistemi Linux, Windows, Android ed OpenWrt.
 
 \section{Funzionalità implementate}
 
@@ -56,7 +56,7 @@ Questi componenti forniscono i servizi basilari definiti nello standard. In aggi
 \end{figure}
 
 \subsection{MIH-Sap}
-Fornisce un'astrazione {\em media-independent} per un gran numero di interfacce, ma supporta solo la generazione di eventi {\em link\_up} e {\em link\_down}. Su sistemi Linux utilizza {\em rtnetlink} e la libreria {\em libnl}\footnote{http://www.carisma.slowglass.com/~tgr/libnl/} per gestire le interfacce mentre su Windows utilizza le {\em SDK Libraries} ufficiali.
+Fornisce un'astrazione {\em media-independent} per un gran numero di interfacce, ma supporta solo la generazione di eventi {\em link\_up} e {\em link\_down}. Su sistemi Linux utilizza {\em rtnetlink} e la libreria {\em libnl}\cite{libnl} per gestire le interfacce mentre su Windows utilizza le {\em SDK Libraries} ufficiali.
 Le tecnologie supportate sono:
 \begin{itemize}
 \item IEEE 802.3
@@ -134,13 +134,13 @@ Per poter usufruire di queste funzionalità bisogna avviare il SAP tramite un ut
 \end{itemize}
 
 \subsection{La libreria libodtone}
-Per poter scrivere un programma che interagisca con l'MIHF, quindi un MIH-User oppure un SAP, è possibile utilizzare la libreria inclusa {\em libodtone}, la quale fornisce tutte le funzioni necessarie per comunicare correttamente con il core: è disponibile come unica libreria solo dalla versione 0.6 di ODTONE ed è l'unione delle precedenti librerie 'base', 'mih', 'sap' e 'net'\footnote{http://atnog.github.io/ODTONE/documentation/odtone/changelog.html}. Fornisce tutte le classi {\em helper} necessarie per facilitare lo sviluppo delle applicazioni utente, come servizi di debug, gestione di liste, log, gestione delle eccezioni e generazione di numeri pseudo-casuali. Definisce inoltre tutti i tipi di dato del protocollo MIH specificati nello standard e fornisce delle classi per facilitare la creazione dei messaggi, il loro {\em parsing}, la loro ricezione ed il loro l'invio. Per gli ultimi due, i servizi sono implementati sulla base della classe della libreria Boost {\em boost::asio} che fornisce comunicazione tramite I/O asincrono, unica tipologia di comunicazione offerta dalla libreria: è necessario infatti eseguire qualsiasi operazione in modo asincrono, registrando gli opportuni {\em callbacks} tramite la funzione {\em boost::bind()}.
+Per poter scrivere un programma che interagisca con l'MIHF, quindi un MIH-User oppure un SAP, è possibile utilizzare la libreria inclusa {\em libodtone}, la quale fornisce tutte le funzioni necessarie per comunicare correttamente con il core: è disponibile come unica libreria solo dalla versione 0.6 di ODTONE ed è l'unione delle precedenti librerie 'base', 'mih', 'sap' e 'net'\cite{changelog}. Fornisce tutte le classi {\em helper} necessarie per facilitare lo sviluppo delle applicazioni utente, come servizi di debug, gestione di liste, log, gestione delle eccezioni e generazione di numeri pseudo-casuali. Definisce inoltre tutti i tipi di dato del protocollo MIH specificati nello standard e fornisce delle classi per facilitare la creazione dei messaggi, il loro {\em parsing}, la loro ricezione ed il loro l'invio. Per gli ultimi due, i servizi sono implementati sulla base della classe della libreria Boost {\em boost::asio} che fornisce comunicazione tramite I/O asincrono, unica tipologia di comunicazione offerta dalla libreria: è necessario infatti eseguire qualsiasi operazione asincronicamente, registrando gli opportuni {\em callbacks} tramite la funzione {\em boost::bind()}.
 
 \section{Compilazione ed esecuzione}
-Vengono di seguito illustrati tutti i passaggi per compilare ed eseguire per la prima volta ODTONE recuperando il codice dal repository ufficiale su un sistema Debian\footnote{http://www.debian.org} {\em Wheezy}.
+Vengono di seguito illustrati tutti i passaggi per compilare ed eseguire per la prima volta ODTONE recuperando il codice dal repository ufficiale su un sistema Debian\cite{debian} {\em Wheezy}.
 
 \subsection{Compilazione}
-La procedura per compilare ODTONE dal repository ufficiale è la seguente (al momento c'è un problema con le dipendenze da risolvere manualmente\footnote{http://snapshot.debian.org/archive/debian/20140217T220529Z/}):
+La procedura per compilare ODTONE dal repository ufficiale è la seguente (al momento c'è un problema con le dipendenze da risolvere manualmente\cite{snapshot}):
 \begin{enumerate}
 
 \item prelevare la prima parte di dipendenze necessarie:\\
@@ -223,4 +223,4 @@ sostituendo "TIME\_UTC" con "TIME\_UTC\_":\\
 Per quanto riguarda l'esecuzione, se dobbiamo eseguire più istanze dello stesso SAP, bisogna modificare il file .conf contenuto nella directory dove si trova l'eseguibile assegnando differenti indirizzi per distinguere l'istanza del SAP e differenti porte su cui mettersi in ascolto per la ricezione di messaggi dall'MIHF.
 
 \section{Sviluppi futuri}
-Si potrebbe essere sia interessati a realizzare un'applicazione che, interrogando l'MIHF, possa decidere quali interfacce convenga utilizzare, ma anche implementare un SAP per una nuova tecnologia o piattaforma, poiché ufficialmente viene fornito un SAP generico per tutte le interfacce e dei LINK\_SAP specifici solo per 802.3 e 802.11.
+Per quanto riguarda lo sviluppo di ODTONE, la priorità maggiore rimane arricchire l'insieme dei SAPs disponibili poiché ufficialmente viene fornito un SAP generico per tutte le interfacce, ma che supporta solo gli eventi {\em link\_up} e {\em link\_down}, e dei LINK\_SAP specifici solo per 802.3 e 802.11 per sistemi Linux e Windows. Bisogna quindi completare il lavoro implementando il supporto per altre tecnologie, specialmente per la famiglia 3GPP, e completare la lista di comandi ed eventi supportati da ogni SAP.
