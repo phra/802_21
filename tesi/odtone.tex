@@ -116,7 +116,7 @@ Supporta i seguenti comandi:
 \item Event\_Unsubscribe: permette di annullare l'iscrizione agli eventi specificati.
 \item Link\_Get\_Parameters: permette di richiedere esplicitamente l'invio di un {\em Link\_Parameters\_Report}.
 \item Link\_Configure\_Thresholds: permette di configurare dei valori-soglia che quando oltrepassati faranno generare uno specifico evento.
-\item Link\_Action: permette di richiedere al kernel tramite il modulo {\em if\_8023} certe operazioni sull'interfaccia. Al momento supporta i comandi:
+\item Link\_Action: permette di richiedere al kernel tramite il modulo {\em if\_80211} certe operazioni sull'interfaccia. Al momento supporta i comandi:
 
 \begin{itemize}
 \item {\em LINK\_DISCONNECT}: richiede la disconnessione.
@@ -127,7 +127,7 @@ Supporta i seguenti comandi:
 
 \item {\em LINK\_LOW\_POWER}: mette l'interfaccia in modalità a basso consumo energetico. (non supportato da vecchie versioni del kernel)
 
-\item {\em LINK\_SCAN}: richiede esplicitamente uno scan della rete.
+\item {\em LINK\_SCAN}: richiede esplicitamente uno scan della reti Wi-Fi disponibili.
 
 \end{itemize}
 Per poter usufruire di queste funzionalità bisogna avviare il SAP tramite un utente che abbia la capability {\em CAP\_NET\_ADMIN}, e.g. root.

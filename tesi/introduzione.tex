@@ -1,11 +1,14 @@
 \chapter{Introduzione}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.5]{handovers.jpg}
+\caption{Handovers}
+\end{figure}
+
 In questo capitolo verranno esposte le motivazioni e gli obbiettivi di questo lavoro, a partire dalla situazione odierna per descriverne i problemi che hanno portato allo sviluppo dello standard IEEE 802.21.
 
-%\begin{figure}[h!]
-%\centering
-%\includegraphics[scale=0.2]{internet.ps}
-%\caption{Internet}
-%\end{figure}
+
 \section{La situazione odierna}
 Il mondo di oggi è in continua evoluzione, ogni giorno abbiamo nuovi dispositivi con hardware sempre migliore non solo sotto un punto di vista qualitativo, bensì anche quantitativo, nel senso che i nuovi {\em devices} hanno sempre più elettronica a bordo per poter sfruttare le nuove tecnologie, in particolare riguardo alla connettività, diventata negli ultimi anni un aspetto fondamentale della vita di tutti i giorni. Il fatto che ormai la maggioranza dei nuovi dispositivi sia dotata di più interfacce di rete spiana la strada a molte opportunità, ma, allo stesso tempo, pone anche degli ostacoli lungo il cammino.
 Chiunque possieda uno smartphone recente può connettersi alla rete in più modi, come Wi-Fi, GSM, UMTS, HSDPA, LTE, etc. Se, per esempio, siamo attualmente connessi tramite una connessione wireless ed usciamo dalla zona di copertura dell'{\em access point}, il {\em device} si collegherà automaticamente attraverso un'altra tecnologia, attivando le ricetrasmittenti adatte oppure se usciamo dalla zona di copertura della nostra attuale connessione GSM, il dispositivo si connetterà autonomamente ad un'altra torretta. L'atto di cambiare l'{\em access point} oppure addirittura la tecnologia utilizzata per ristabilire la connessione è detto {\em handover} e può essere più tipi.
@@ -14,13 +17,13 @@ Chiunque possieda uno smartphone recente può connettersi alla rete in più modi
 I due esempi sopra citati descrivono rispettivamente uno scenario di {\em handover} verticale ed orizzontale, a seconda della tecnologia utilizzata prima e dopo il passaggio. Oltre a questo classificazione, è possibile descrivere altri due tipi di {\em handover}, a seconda che le connessioni aperte al momento del passaggio vengano o meno preservate nel passaggio.
 
 \subsection{Horizontal handover}
-Nel caso del telefonino che cambia la propria BTS\footnote{Base Transceiver Station}, si parla di un {\em handover} orizzontale, i.e. la tecnologia adoperata a livello {\em datalink} non cambia. Stesso scenario se, muovendoci, ci si collega man mano agli {\em access points} Wi-Fi con miglior ricezione e ciò può anche essere effettuato utilizzando due interfacce 802.11 contemporaneamente in modo da avere potenzialmente entrambe le connessioni attive al momento del passaggio, ma si parlerà sempre di un {\em handover} orizzontale.
+Nel caso del telefonino che cambia la propria BTS\footnote{Base Transceiver Station}, quando esce dal raggio di azione della prima, si parla di un {\em handover} orizzontale, i.e. la tecnologia adoperata a livello {\em datalink} non cambia. Stesso tipologia di {\em handover} se, muovendoci, ci si collega man mano agli {\em access points} Wi-Fi con miglior ricezione e ciò può anche essere effettuato utilizzando due interfacce 802.11 contemporaneamente in modo da avere potenzialmente entrambe le connessioni attive al momento del passaggio.
 
 \subsection{Vertical handover}
-Se è necessario, invece, cambiare il livello {\em datalink} durante il passaggio, allora si tratta di un {\em handover} verticale. Sono i più utili da un punto di vista applicativo poiché permettono di sfruttare le diverse caratteristiche intrinseche di ogni particolare tecnologia, ovvero si potrebbe essere interessati ad utilizzare una connessione Wi-Fi qualora disponibile e passare su HSDPA quando si esce dalla zona di copertura dell'attuale {\em access point}, in modo da poter mantenere attiva la connessione, indipendentemente dal mezzo trasmissivo.
+Se è necessario, invece, cambiare il livello {\em datalink} durante il passaggio, allora si tratta di un {\em handover} verticale. Sono i più utili da un punto di vista applicativo poiché permettono di sfruttare le diverse caratteristiche intrinseche di ogni particolare tecnologia, ovvero si potrebbe essere interessati ad utilizzare una connessione Wi-Fi qualora disponibile e passare su HSDPA solo quando si esce dalla zona di copertura dell'attuale {\em access point}, in modo da poter mantenere attiva la connessione, anche cambiando il mezzo trasmissivo e, di conseguenza, il livello {\em datalink}.
 
 \subsection{Hard handover}
-Si tratta di un {\em handover} dove le connessioni attive prima del passaggio vengono chiuse, incaricando il dispositivo stesso di ripristinarle da zero successivamente. Viene anche definito come {\em break-before-make}.
+Si tratta di un {\em handover} dove le connessioni attive prima del passaggio vengono chiuse, incaricando il dispositivo stesso di ripristinarle da zero successivamente, quando avrà stabilito con successo un nuovo collegamento. Viene anche definito come {\em break-before-make}.
 
 \subsection{Soft handover}
 In questo caso le connessioni aperte vengono mantenute anche dopo il passaggio, in modo da preservare lo stato della rete e consentire un passaggio trasparente ed indolore all'utente. Questo è realizzato stabilendo una connessione verso il nuovo {\em access point} preventivamente, in modo che, prima che il collegamento salti, si abbia già un altro canale pronto all'uso. Viene anche definito come {\em make-before-break}.
