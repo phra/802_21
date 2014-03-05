@@ -1,18 +1,18 @@
 \chapter{ODTONE}
 
-In questo capitolo verrà descritta, analizzata e testata l'implementazione denominata ODTONE\cite{odtone}, descrivendone le funzionalità attualmente implementate ed illustrando punto per punto tutti i passaggi richiesti per compilare ed eseguire con successo questa implementazione, partendo direttamente dal codice disponibile presso il repository ufficiale.
+In questo capitolo verrà descritta, analizzata e testata l'implementazione denominata ODTONE\cite{odtone}, descrivendone le funzionalità attualmente implementate ed illustrando punto per punto tutti i passaggi richiesti per compilare ed eseguire per la prima volta con successo questa implementazione, partendo direttamente dal codice disponibile presso il repository ufficiale.
 
 \section{Descrizione}
-Esso è una implementazione open-source dello standard IEEE 802.21 rilasciata con licenza LGPLv3\cite{lgpl} ed è realizzato in C++ e reso multipiattaforma tramite la libreria {\em Boost}\cite{boost}: è possibile infatti eseguire ODTONE su sistemi GNU/Linux, Windows, Android ed OpenWrt.\cite{getstart}
+Essa è una implementazione open-source dello standard IEEE 802.21 rilasciata con licenza LGPLv3\cite{lgpl} ed è realizzata in C++ e resa multipiattaforma tramite la libreria {\em Boost}\cite{boost}: è possibile infatti eseguire ODTONE su sistemi GNU/Linux, Windows, Android ed OpenWrt.\cite{getstart}
 
 \section{Funzionalità implementate}
 
-Questo progetto mira a fornire una implementazione dell'MIHF compatibile {\em out-of-the-box} con tutti i principali sistemi operativi esistenti e, di conseguenza, essendo tuttora in stato sperimentale\footnote{è attualmente disponibile la versione 0.6}, fornisce solo le funzionalità principali oppure facilmente implementabili in chiave multi-piattaforma. ODTONE è un'implementazione quasi completa, ovvero il core supporta praticamente tutto lo standard mentre i SAPs forniti, al momento, sono solo per sistemi Linux e Windows e limitatamente per interfacce 802.3 e 802.11.
+Questo progetto mira a fornire una implementazione dell'MIHF compatibile {\em out-of-the-box} con tutti i principali sistemi operativi esistenti e, di conseguenza, essendo tuttora in stato sperimentale\footnote{è attualmente disponibile la versione 0.6}, fornisce solo le funzionalità principali oppure facilmente implementabili in chiave multi-piattaforma. ODTONE è un'implementazione quasi completa, ovvero il core supporta praticamente tutto lo standard mentre i SAPs forniti, al momento della scrittura, sono solo per sistemi GNU/Linux e Windows, limitatamente per interfacce 802.3 e 802.11, e supportano solo gli eventi {\em link\_up} e {\em link\_down}.
 
 \subsection{MIHF}
-La {\em Media Independent Handover Function} fornita è composta dai tre sottocomponenti definiti dallo standard IEEE 802.21:
+La {\em Media Independent Handover Function} fornita è composta dai tre sottocomponenti principali definiti dallo standard IEEE 802.21:
 \begin{itemize}
-\item {\em Media Independent Event Service} (MIES): ha il compito di vagliare gli eventi ricevuti per controllare che siano conformi allo standard e di propagarli alle entità che hanno richiesto la sottoscrizione. Più nel dettaglio:
+\item {\em Media Independent Event Service} (MIES): ha il compito di vagliare gli eventi ricevuti per controllare che siano conformi allo standard e di propagarli alle entità che ne hanno richiesto la sottoscrizione. Più nel dettaglio è composto da:
 \begin{itemize}
 \item Event Validator: controlla che l'evento sia conforme allo standard.
 
@@ -21,7 +21,7 @@ La {\em Media Independent Handover Function} fornita è composta dai tre sottoco
 \item Event Publisher: si occupa di propagare gli eventi agli interessati.
 \end{itemize}
 
-\item {\em Media Independent Command Service} (MICS): ha il compito di vagliare i comandi ricevuti e recapitarli a destinazione. Più nel dettaglio:
+\item {\em Media Independent Command Service} (MICS): ha il compito di vagliare i comandi ricevuti e di recapitarli a destinazione. Più nel dettaglio è suddiviso in:
 \begin{itemize}
 \item Command Validator: controlla che i comandi ricevuti siano conformi allo standard.
 
@@ -31,21 +31,21 @@ La {\em Media Independent Handover Function} fornita è composta dai tre sottoco
 \item {\em Media Independent Command Service} (MIIS): ha il compito propagare le richieste all'IS\footnote{Information Service} e inviare indietro le risposte.
 \end{itemize}
 
-Questi componenti forniscono i servizi basilari definiti nello standard. In aggiunta, ODTONE implementa altri componenti per fornire ulteriori funzionalità e arricchire quelle già esistenti:
+Questi componenti forniscono i servizi basilari definiti nello standard. Oltre ad essi, come rappresentato graficamente in figura \ref{fig:mihfarch}, ODTONE implementa altri componenti per fornire ulteriori funzionalità e arricchire quelle già esistenti:
 \begin{itemize}
 \item Service Manager: è responsabile della gestione delle richieste {\em Capability\_Discover}, le quali servono per richiedere la lista di eventi e comandi supportati dall'MIHF.
 
-\item Communication handler: raccoglie i messaggi ricevuti da tutti i SAPs o altre entità e li invia al modulo Service Access Controller.
+\item Communication Handler: raccoglie i messaggi ricevuti da tutti i SAPs od altre entità e li invia al modulo Service Access Controller.
 
-\item Service access controller: è responsabile di analizzare l'{\em header} dei messaggi ricevuti e farli gestire dai dovuti servizi. La decisione è presa in base all'identificativo del tipo di messaggio ed ai {\em callbacks} registrati.
+\item Service Access Controller: è responsabile dell'analisi degli {\em headers} di ogni messaggio ricevuto ed al loro smistamento ai servizi interessati. La decisione è presa in base all'identificativo del tipo di messaggio ed ai {\em callbacks} registrati.
 
-\item Link manager: gestisce le informazioni sui Link SAPs disponibili.
+\item Link Manager: gestisce le informazioni sui Link SAPs disponibili.
 
-\item MIH-User manager: gestisce le informazioni su MIH-Users registrati.
+\item MIH-User Manager: gestisce le informazioni su MIH-Users registrati.
 
-\item Peer MIHF manager: gestisce le informazioni su MIHFs remoti.
+\item Peer MIHF Manager: gestisce le informazioni su MIHFs remoti.
 
-\item Transaction state machine controller: mantiene gli stati di ogni transazione con MIHFs remoti ed è responsabile di inviare messaggi di {\em acknowledge} ed individuare messaggi duplicati.
+\item Transaction State Machine Controller: mantiene gli stati di ogni transazione con MIHFs remoti ed è responsabile di inviare messaggi di {\em acknowledge} ed individuare messaggi duplicati.
 
 \end{itemize}
 
@@ -53,6 +53,7 @@ Questi componenti forniscono i servizi basilari definiti nello standard. In aggi
 \centering
 \includegraphics[]{mihfarch.jpg}
 \caption{Visione concettuale dell'MIHF di ODTONE}
+\label{fig:mihfarch}
 \end{figure}
 
 \subsection{MIH-Sap}
@@ -73,7 +74,7 @@ Le tecnologie supportate sono:
 \end{itemize}
 
 \subsection{MIH-Link-Sap 802.3}
-Fornisce un SAP specifico per la tecnologia IEEE 802.3. Supporta la generazione dei seguenti eventi:
+Fornisce un SAP specifico per la tecnologia IEEE 802.3 (schematizzato in figura \ref{fig:sap3}). Supporta la generazione dei seguenti eventi:
 \begin{itemize}
 \item Link\_Up: generato quando viene stabilita una connessione a livello {\em datalink}, i.e. viene settato il flag {\em IF\_OPER\_UP}.
 \item Link\_Down: generato quando la connessione viene interrotta, i.e. viene disattivato il flag {\em IF\_OPER\_UP}.
@@ -99,6 +100,7 @@ Per poter usufruire di queste funzionalità bisogna avviare il SAP tramite un ut
 \centering
 \includegraphics[scale=0.8]{sap.jpg}
 \caption{Visione concettuale del Link\_SAP per 802.3}
+\label{fig:sap3}
 \end{figure}
 
 \subsection{MIH-Link-Sap 802.11}

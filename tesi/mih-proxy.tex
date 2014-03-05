@@ -2,10 +2,10 @@
 In questo capitolo verrà presentato il programma MIH-proxy realizzato per testare le potenzialità di ODTONE tramite un'applicazione reale, descrivendone la logica ed il funzionamento. Saranno inoltre descritti tutti i passi necessari per la configurazione e per l'esecuzione, al fine di creare prima un flusso unidirezionale che possa sfruttare tutte le interfacce disponibili per inviare dati e poi anche bidirezionale in modo che possa sfruttare tutti i collegamenti anche per ricevere.
 
 \section{Descrizione}
-{\em MIH-proxy} è un proxy ad alta affidabilità che permette di sfruttare più interfacce di rete per inviare e ricevere traffico ed è disponibili in due varianti: unidirezionale e bidirezionale. Nel primo, il trasmettitore può sfruttare più interfacce per inviare pacchetti UDP verso un peer remoto, il quale, per ovvie ragioni, non deve considerare l'IP sorgente, poiché i dati in arrivo potrebbero provenire da più IP sorgenti. Nel secondo, sia il trasmettitore sia il ricevente possono aver più interfacce di rete su cui può passare traffico bidirezionale, occorre quindi una seconda istanza del proxy anche sul ricevente che si preoccupi di monitorare il traffico in arrivo su più interfacce ed è così possibile anche far collegare due applicazioni che usano TCP, trasformando dapprima il flusso in pacchetti UDP, instradandolo sull'interfaccia corretta e ricostruendo il flusso originario una volta a destinazione. Si è deciso di tenere separati l'applicativo per trasformare un flusso TCP in pacchetti UDP e quello per gestire l'invio e ricezione sulle varie interfacce per delegare compiti appropriati e coerenti ad ogni componente, i quali potrebbero avere anche un utilizzo concreto anche se presi singolarmente.
+{\em MIH-proxy} è un proxy ad alta affidabilità che permette di sfruttare più interfacce di rete per inviare e ricevere traffico ed è disponibili in due varianti: unidirezionale e bidirezionale. Nel primo, il trasmettitore può sfruttare più interfacce per inviare pacchetti UDP verso un peer remoto, il quale, per ovvie ragioni, non deve considerare l'IP sorgente, poiché i dati in arrivo potrebbero provenire da più IP sorgenti. Nel secondo, sia il trasmettitore sia il ricevente possono aver più interfacce di rete da utilizzare, occorre quindi una seconda istanza del proxy anche sul {\em peer} ricevente che si preoccupi di monitorare il traffico in arrivo su tutte le interfacce: è così possibile far comunicare due applicazioni che utilizzano bidirezionalmente il protocollo UDP oppure TCP. In questo ultimo caso è necessario trasformare dapprima il flusso TCP in datagrammi UDP, instradarli sull'interfaccia corretta e ricostruire il flusso originario una volta a destinazione: questo compito è affidato a {\em phoxy}, un'applicazione separata da MIH-proxy. Si è preferito tenere separati gli applicativi per trasformare un flusso TCP in pacchetti UDP e per gestire l'invio e la ricezione sulle varie interfacce in modo da delegare compiti appropriati e coerenti ad ogni componente, i quali potrebbero avere anche un utilizzo concreto anche se utilizzati singolarmente.
 
 \section{Funzionamento}
-Entrambe le versioni del proxy sfruttano una implementazione open-source dello standard IEEE 802.21 per conoscere lo stato dei links disponibili. L'implementazione utilizzata è {\em ODTONE}\cite{odtone}. Sfortunatamente è solo un'implementazione parziale dello standard, ad esempio implementa solo alcuni degli eventi definiti nello standard tra quelli generabili da ogni interfaccia.\\
+Entrambe le versioni del proxy sfruttano una implementazione open-source dello standard IEEE 802.21 per conoscere lo stato dei {\em links} disponibili. L'implementazione utilizzata è {\em ODTONE}\cite{odtone}. Come discusso prima, ODTONE non fornisce tutte le funzionalità specificate dallo standard, ad esempio sono attualmente generabili solo alcuni eventi tra tutti quelli definiti nello standard.\\
 
 \begin{figure}[h!]
 \centering
@@ -38,9 +38,10 @@ mylabel/.style={text width=7em, text centered},
 \draw[myarrow] (wlan0.south) -- ++(0,-1) -|  (server.south);
 \end{tikzpicture}
 \caption{MIH-proxy unidirezionale}
+\label{fig:mihproxyuni}
 \end{figure}
 \subsection{Unidirezionale}
-La versione unidirezionale gestisce solo un traffico in uscita da più interfacce per limiti tecnici, ovvero, supponendo traffico bidirezionale, nel caso cadesse un'interfaccia del trasmettitore, il ricevente non saprebbe mai che l'IP da cui stava ricevendo non è più disponibile, trattandosi di pacchetti UDP, e quindi continuerebbe ad inviare ad un IP non raggiungibile. Per conoscere lo stato delle interfacce locali disponibili, il proxy rimane in ascolto di eventi {\em link\_down} e {\em link\_up} inviati dall'{\em MIHF} quando c'è un cambiamento di stato in una interfaccia, in modo da sapere attraverso quali interfacce poter inviare dati.\\
+La versione unidirezionale, rappresentata graficamente in figura \ref{fig:mihproxyuni}, gestisce traffico in sola uscita, smistandolo sulle interfacce disponibili. Con una sola istanza dell'MIH-proxy la comunicazione può avvenire in un solo senso per limiti tecnici, poiché, supponendo traffico bidirezionale, nel caso cadesse un'interfaccia del trasmettitore, l'applicazione ricevente non potrebbe sapere che l'IP con cui stava precedentemente comunicando non è più disponibile e di conseguenza invierebbe pacchetti ad un indirizzo non più raggiungibile. Per conoscere lo stato delle interfacce locali e scegliere quali collegamenti utilizzare, il proxy rimane in ascolto di eventi {\em link\_down} e {\em link\_up} inviati dall'{\em MIHF} quando c'è un cambiamento di stato in una interfaccia. %in modo da sapere attraverso quali interfacce poter inviare dati.\\
 
 \begin{figure}[h!]
 \centering
@@ -85,9 +86,10 @@ mylabel/.style={text width=7em, text centered},
 \draw[mydoublearrow] (eth11.south) -- ++(0,-1) -| (wlan0.south);
 \end{tikzpicture}
 \caption{MIH-proxy bidirezionale senza phoxy}
+\label{fig:mihproxybi}
 \end{figure}
 \subsection{Bidirezionale}
-La versione bidirezionale necessita di due istanze del proxy, poiché ognuna deve poter inviare e ricevere su più interfacce. Per conoscere lo stato locale si comporta come la versione unidirezionale, per lo stato del peer remoto è stato necessario introdurre un sistema di {\em heartbeat} temporizzato con pacchetti vuoti per segnalare alla controparte i links funzionanti. Se dopo un certo periodo non si ricevono pacchetti da un dato IP, quella destinazione viene contrassegnata {\em down} e quindi non si invieranno più dati verso quell'IP fino a quando non sarà ricevuto un pacchetto di {\em heartbeat}. In questo modo ogni istanza è a conoscenza dello stato delle interfacce di rete locali e remote. Per poter gestire il traffico generato da due applicazioni che si connettono tra loro tramite il protocollo TCP è possibile aggiungere un nuovo componente tra l'applicazione e il proxy in entrambi i peers che si occuperanno di trasformare il flusso TCP in datagrammi, gestire pacchetti persi, doppi o fuori ordine e ricostruire il flusso originario prima di consegnarlo al destinatario. Inoltre è possibile richiedere una cifratura {\em AES256} nella conversione da flusso a datagrammi.\\
+La versione bidirezionale (figura \ref{fig:mihproxybi}) necessita di due istanze del proxy, poiché ognuna deve poter inviare e ricevere su più interfacce. Per conoscere lo stato locale si comporta come la versione unidirezionale, per lo stato del peer remoto è stato necessario introdurre un sistema di {\em heartbeat} temporizzato con pacchetti vuoti per segnalare alla controparte i {\em links} funzionanti. Se dopo un certo periodo non si ricevono pacchetti da un dato IP, quella destinazione viene contrassegnata {\em down} e quindi non si invieranno più dati verso quell'IP fino a quando non sarà ricevuto un pacchetto di {\em heartbeat}. In questo modo ogni istanza è a conoscenza dello stato delle interfacce di rete locali e remote. Per poter gestire il traffico generato da due applicazioni che si connettono tra loro tramite il protocollo TCP è possibile aggiungere un nuovo componente tra l'applicazione e il proxy in entrambi i {\em peers} che si occuperà di trasformare il flusso TCP in datagrammi UDP (figura \ref{fig:mihproxybiphoxy}), gestendo pacchetti persi, doppi o fuori ordine e ricostruendo il flusso originario prima di consegnarlo al destinatario. Inoltre è possibile richiedere una cifratura {\em AES256} nella conversione da flusso a datagrammi.\\
 \begin{figure}[h!]
 \centering
 \begin{tikzpicture}
@@ -135,6 +137,7 @@ mylabel/.style={text width=7em, text centered},
 \draw[mydoublearrow] (eth11.south) -- ++(0,-1) -| (wlan0.south);
 \end{tikzpicture}
 \caption{MIH-proxy bidirezionale con phoxy}
+\label{fig:mihproxybiphoxy}
 \end{figure}
 \section{Compilazione ed Esecuzione}
 Prima di tutto, bisogna recuperare il codice con il seguente comando:\\

@@ -22,3 +22,6 @@
 *.ps
 *.toc
 *.lof
+*.lot
+*.out
+*.synctex.gz
