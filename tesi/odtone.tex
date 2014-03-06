@@ -139,15 +139,15 @@ Per poter usufruire di queste funzionalità bisogna avviare il SAP tramite un ut
 Per poter scrivere un programma che interagisca con l'MIHF, quindi un MIH-User oppure un SAP, è possibile utilizzare la libreria inclusa {\em libodtone}, la quale fornisce tutte le funzioni necessarie per comunicare correttamente con il core: è disponibile come unica libreria solo dalla versione 0.6 di ODTONE ed è l'unione delle precedenti librerie 'base', 'mih', 'sap' e 'net'\cite{changelog}. Fornisce tutte le classi {\em helper} necessarie per facilitare lo sviluppo delle applicazioni utente, come servizi di debug, gestione di liste, log, gestione delle eccezioni e generazione di numeri pseudo-casuali. Definisce inoltre tutti i tipi di dato del protocollo MIH specificati nello standard e fornisce delle classi per facilitare la creazione dei messaggi, il loro {\em parsing}, la loro ricezione ed il loro l'invio. Per gli ultimi due, i servizi sono implementati sulla base della classe della libreria Boost {\em boost::asio} che fornisce comunicazione tramite I/O asincrono, unica tipologia di comunicazione offerta dalla libreria: è necessario infatti eseguire qualsiasi operazione asincronicamente, registrando gli opportuni {\em callbacks} tramite la funzione {\em boost::bind()}.
 
 \section{Compilazione ed esecuzione}
-Vengono di seguito illustrati tutti i passaggi per compilare ed eseguire per la prima volta ODTONE recuperando il codice dal repository ufficiale su un sistema Debian\cite{debian} {\em Wheezy}.
+Saranno ora illustrati tutti i passaggi per compilare ed eseguire per la prima volta ODTONE recuperando il codice dal repository ufficiale su un sistema Debian\cite{debian} {\em Wheezy}.
 
 \subsection{Compilazione}
-La procedura per compilare ODTONE dal repository ufficiale è la seguente (al momento c'è un problema con le dipendenze da risolvere manualmente\cite{snapshot}):
+La procedura per compilare ODTONE dal repository ufficiale è la seguente (al momento c'è un problema con le dipendenze da risolvere manualmente\cite{snapshot}):\\
 \begin{enumerate}
 
 \item prelevare la prima parte di dipendenze necessarie:\\
 \cmdroot{apt-get update}
-\cmdroot{apt-get install build-essential git realpath cmake autoconf \\automake libboost-all-dev}
+\cmdroot{apt-get install build-essential git realpath cmake autoconf \\automake libboost-all-dev}\\
 
 \item prelevare l'ultima versione:\\
 \cmduser{git clone https://github.com/ATNoG/ODTONE.git odtone}
@@ -168,6 +168,7 @@ e sostituire la parola {\em stable} o {\em wheezy} in {\em testing}, e.g.:\\
 \cmdroot{vi /etc/apt/sources.list}
 e.g.:\\
 \cmd{deb http://mi.mirror.garr.it/mirrors/debian/ stable main}
+\cmdroot{apt-get update}
 
 \item procedere alla compilazione:\\
 \cmduser{cd odtone}
@@ -190,24 +191,27 @@ Appena finita la compilazione, è necessario rendere disponibili le librerie app
 \cmduser{./src/mihf/odtone-mihf}
 
 \item eseguire un SAP per ogni interfaccia, inserendo l'indirizzo MAC appropriato:
+\begin{itemize}
 
-802.11:\\
+\item 802.11:\\
 \cmdroot{./app/sap\_80211\_linux/odtone-sap\_80211 \\-{}-link.link\_addr <MAC>}
 
-802.3:\\
+\item 802.3:\\
 \cmdroot{./app/sap\_8023/odtone-sap\_8023 -{}-link.link\_addr <MAC>}
-
+\end{itemize}
 \item infine eseguire l'MIH-User d'esempio fornito:\\
 \cmduser{./app/mih\_usr/odtone-mih\_usr -{}-dest mihf1}
 
 \end{enumerate}
 
-Una volta che ogni componente sarà avviato, è possibile eseguire l'MIH-User che invierà una richiesta {\em capability\_discover} per sapere quali interfacce sono disponibili e, per ognuna di queste, una richiesta di sottoscrizione. Ora è possibile scollegarsi dalla rete wireless oppure staccare fisicamente il cavo CAT5 per veder l'MIH-User ricevere l'evento {\em link\_down} e segnalarlo su {\em stdout}. Una volta ripristinato il collegamento, vedremo l'MIH-User ricevere un evento {\em link\_up}. Per realizzare il programma MIH-proxy, descritto nel prossimo capitolo, è stato utilizzato come base per il codice l'MIH-User ufficiale.
+Una volta che ogni componente sarà avviato, è possibile eseguire l'MIH-User che invierà una richiesta {\em capability\_discover} per sapere quali interfacce sono disponibili e, per ognuna di queste, una richiesta di sottoscrizione. Ora è possibile scollegarsi dalla rete wireless oppure staccare fisicamente il cavo CAT5 per veder l'MIH-User ricevere l'evento {\em link\_down} e segnalarlo su {\em stdout}. Una volta ripristinato il collegamento, si osserverà l'MIH-User ricevere un evento {\em link\_up}. Per realizzare il programma MIH-proxy, descritto nel prossimo capitolo, è stato utilizzato come base per il codice l'MIH-User ufficiale.
 
 \section{Risoluzione problemi}
 Può capitare che la compilazione non vada a buon fine per degli errori della libreria Boost. In tal caso bisogna modificare il file xtime.hpp della libreria Boost:\\
 \cmdroot{vi /usr/include/boost/thread/xtime.hpp}
-sostituendo "TIME\_UTC" con "TIME\_UTC\_":\\
+sostituendo "TIME\_UTC" con "TIME\_UTC\_", come mostrato in figura \ref{fig:patch}:\\
+
+\begin{figure}
 \begin{minted}[mathescape,linenos,numbersep=5pt,gobble=0,frame=lines,framesep=1mm]{diff}
 --- xtime.hpp   2014-02-18 03:26:56.291068347 +0100
 +++ xtime1.hpp  2014-02-18 03:27:23.679204146 +0100
@@ -221,7 +225,9 @@ sostituendo "TIME\_UTC" con "TIME\_UTC\_":\\
  //    TIME_MONOTONIC,
  //    TIME_PROCESS,
 \end{minted}
-
+\caption{xtime.hpp patch}
+\label{fig:patch}
+\end{figure}
 Per quanto riguarda l'esecuzione, se dobbiamo eseguire più istanze dello stesso SAP, bisogna modificare il file .conf contenuto nella directory dove si trova l'eseguibile assegnando differenti indirizzi per distinguere l'istanza del SAP e differenti porte su cui mettersi in ascolto per la ricezione di messaggi dall'MIHF.
 
 \section{Sviluppi futuri}

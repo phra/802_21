@@ -84,7 +84,7 @@ Link\_Handover\_Complete & è utilizzato per segnalare alle entità interessate 
 \end{itemize}
 
 \subsection{SAPs}
-Questo componente è incaricato di interagire direttamente con le interfacce di rete, al fine di esporre delle astrazioni di servizi di basso livello di una singola interfaccia ad un MIHF, al quale deve essersi preventivamente registrato.
+Questo componente è incaricato di interagire direttamente con le interfacce di rete, al fine di esporre dei servizi di basso livello di una singola interfaccia ad un MIHF, al quale deve essersi preventivamente registrato.
 I Service Access Points possono essere di due tipi: {\em media-independent} e {\em media-specific}.
 I primi forniscono servizi astratti per tutte le possibili tipologie di interfacce di rete, come la generazione di eventi {\em link\_down} e {\em link\_up}, e, di conseguenza, offrono un minor numero di servizi.
 I secondi forniscono servizi specifici per una singola tecnologia, e.g. IEEE 802.3 od IEEE 802.11, e, per questo motivo, sono più espressivi dei primi: ad esempio, in seguito ad una richiesta {\em get\_link\_parameter} è naturale aspettarsi risposte differenti per ogni famiglia di tecnologie, come il valore dell'intensità del segnale che assume valori differenti a seconda della tipologia dell'interfaccia interrogata. 
@@ -141,11 +141,11 @@ Lo standard IEEE 802.21 specifica una serie di eventi e di comandi per gestire t
 \item Link\_Handover\_Complete: è utilizzato per segnalare alle entità interessate che la procedura di {\em handover} è stata completata con successo.
 \end{itemize}
 
-I comandi previsti dallo standard IEEE 802.21, raccolti in tabella \ref{mihcommands}, servono a richiedere informazioni aggiuntive su specifiche interfacce, gestirne lo stato e la loro riconfigurazione oppure per iniziare le procedure di {\em handover}. Nel dettaglio, i comandi sono i seguenti:
+I comandi previsti dallo standard IEEE 802.21, raccolti in tabella \ref{mihcommands}, servono a richiedere informazioni aggiuntive su specifiche interfacce, gestirne lo stato e la loro riconfigurazione oppure per iniziare le procedure di {\em handover}. Nel dettaglio, i comandi previsti sono i seguenti:
 \begin{itemize}
 \item Link\_Get\_Parameters: permette di richiedere informazioni aggiuntive riguardo un collegamento specifico, come statistiche sui pacchetti persi, il {\em data rate} attuale, l'RSSI di interfacce wireless, etc.
-\item Link\_Configure\_Thresholds: permette di definire dei valori-soglia che facciano scattare la generazione di {\em report} sulle statistiche del collegamento per informare le entità interessate di eventuali cambiamenti nelle caratteristiche del {\em link}.
-\item Link\_Capability\_Discover: permettere di ottenere la lista di eventi e comandi supportati da un MIHF, per permettere all'MIH-User di definire dinamicamente gli opportuni {\em callbacks} a seconda delle funzionalità implementate da ogni singolo MIHF.
+\item Link\_Configure\_Thresholds: permette di definire dei valori-soglia che facciano scattare la generazione di {\em reports} sulle statistiche del collegamento per informare le entità interessate di eventuali cambiamenti nelle caratteristiche del {\em link}.
+\item Link\_Capability\_Discover: permettere di ottenere la lista di eventi e comandi supportati da un MIHF, per consentire all'MIH-User di definire dinamicamente gli opportuni {\em callbacks} a seconda delle funzionalità implementate da ogni singolo MIHF.
 \item Link\_Event\_Subscribe: permettere di sottoscriversi alla ricezione di eventi da parte dei SAPs richiesti per essere avvisati di eventuali cambiamenti di stato di una particolare interfaccia.
 \item Link\_Event\_Unsubscribe: permette di rescindere la sottoscrizione effettuata con il comando precedente.
 \item Link\_Actions: permette di comandare esplicitamente l'interfaccia, ad esempio è possibile accendere o spegnere fisicamente una ricetrasmittente a seconda del suo utilizzo, in modo da ottimizzare i consumi energetici quando non è in uso.

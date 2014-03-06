@@ -2,7 +2,7 @@
 In questo capitolo verrà presentato il programma MIH-proxy realizzato per testare le potenzialità di ODTONE tramite un'applicazione reale, descrivendone la logica ed il funzionamento. Saranno inoltre descritti tutti i passi necessari per la configurazione e per l'esecuzione, al fine di creare prima un flusso unidirezionale che possa sfruttare tutte le interfacce disponibili per inviare dati e poi anche bidirezionale in modo che possa sfruttare tutti i collegamenti anche per ricevere.
 
 \section{Descrizione}
-{\em MIH-proxy} è un proxy ad alta affidabilità che permette di sfruttare più interfacce di rete per inviare e ricevere traffico ed è disponibili in due varianti: unidirezionale e bidirezionale. Nel primo, il trasmettitore può sfruttare più interfacce per inviare pacchetti UDP verso un peer remoto, il quale, per ovvie ragioni, non deve considerare l'IP sorgente, poiché i dati in arrivo potrebbero provenire da più IP sorgenti. Nel secondo, sia il trasmettitore sia il ricevente possono aver più interfacce di rete da utilizzare, occorre quindi una seconda istanza del proxy anche sul {\em peer} ricevente che si preoccupi di monitorare il traffico in arrivo su tutte le interfacce: è così possibile far comunicare due applicazioni che utilizzano bidirezionalmente il protocollo UDP oppure TCP. In questo ultimo caso è necessario trasformare dapprima il flusso TCP in datagrammi UDP, instradarli sull'interfaccia corretta e ricostruire il flusso originario una volta a destinazione: questo compito è affidato a {\em phoxy}, un'applicazione separata da MIH-proxy. Si è preferito tenere separati gli applicativi per trasformare un flusso TCP in pacchetti UDP e per gestire l'invio e la ricezione sulle varie interfacce in modo da delegare compiti appropriati e coerenti ad ogni componente, i quali potrebbero avere anche un utilizzo concreto anche se utilizzati singolarmente.
+{\em MIH-proxy} è un proxy ad alta affidabilità che permette di sfruttare più interfacce di rete per inviare e ricevere traffico ed è disponibile in due varianti: unidirezionale e bidirezionale. Nel primo, il trasmettitore può sfruttare più interfacce per inviare pacchetti UDP verso un peer remoto, il quale, per ovvie ragioni, non deve considerare l'IP sorgente, poiché i dati in arrivo potrebbero provenire da più IP sorgenti. Nel secondo, sia il trasmettitore sia il ricevente possono aver più interfacce di rete da utilizzare, occorre quindi una seconda istanza del proxy anche sul {\em peer} ricevente che si preoccupi di monitorare il traffico in arrivo su tutte le interfacce: è così possibile far comunicare due applicazioni che utilizzano bidirezionalmente il protocollo UDP oppure TCP. In questo ultimo caso è necessario trasformare dapprima il flusso TCP in datagrammi UDP, instradarli sull'interfaccia corretta e ricostruire il flusso originario una volta a destinazione: questo compito è affidato a {\em phoxy}, un'applicazione separata da MIH-proxy. Si è preferito tenere separati gli applicativi per trasformare un flusso TCP in pacchetti UDP e per gestire l'invio e la ricezione sulle varie interfacce in modo da delegare compiti appropriati e coerenti ad ogni componente, i quali potrebbero avere anche un utilizzo concreto anche se utilizzati singolarmente.
 
 \section{Funzionamento}
 Entrambe le versioni del proxy sfruttano una implementazione open-source dello standard IEEE 802.21 per conoscere lo stato dei {\em links} disponibili. L'implementazione utilizzata è {\em ODTONE}\cite{odtone}. Come discusso prima, ODTONE non fornisce tutte le funzionalità specificate dallo standard, ad esempio sono attualmente generabili solo alcuni eventi tra tutti quelli definiti nello standard.\\
@@ -140,19 +140,20 @@ mylabel/.style={text width=7em, text centered},
 \label{fig:mihproxybiphoxy}
 \end{figure}
 \section{Compilazione ed Esecuzione}
-Prima di tutto, bisogna recuperare il codice con il seguente comando:\\
+Prima di tutto, bisogna recuperare il codice con il seguente comando:
 \cmduser{git clone https://github.com/phra/802\_21.git}
 Nel repository è contenuto tutto il codice necessario per eseguire MIH-proxy, quindi bisognerà seguire la stessa procedura per ODTONE per compilarlo direttamente nella cartella oppure, se si ha a disposizione già ODTONE, basterà sostituire il file {\em app/mih\_usr/mih\_usr.cpp}.
 
 \subsection{Unidirezionale}
-Per compilare la versione unidirezionale dovremo rinominare il file \\{\em app/mih\_usr/mih\_usr\_unidirectional.cpp}:\\
+Per compilare la versione unidirezionale dovremo rinominare il file \\{\em app/mih\_usr/mih\_usr\_unidirectional.cpp}:
 \cmduser{pushd app/mih\_usr/}
 \cmduser{mv mih\_usr.cpp mih\_usr\_bidirectional.cpp}
 \cmduser{mv mih\_usr\_unidirectional.cpp mih\_usr.cpp}
 \cmduser{popd}
 
-Ora è necessario impostare i giusti IP per ogni MAC address, in modo che l'MIH-proxy possa sapere su quali indirizzi fare {\em bind(2)} per poter scegliere l'interfaccia desiderata, modificando coerentemente la funzione {\em interfaces::mac\_to\_ip()} in {\em app/mih\_usr/mih\_usr.cpp}.
+Ora è necessario impostare i giusti IP per ogni MAC address, in modo che l'MIH-proxy possa sapere su quali indirizzi fare {\em bind(2)} per poter scegliere l'interfaccia desiderata, modificando coerentemente la funzione {\em interfaces::mac\_to\_ip()} in {\em app/mih\_usr/mih\_usr.cpp}, come mostrato in figura \ref{fig:mactoip}.
 
+\begin{figure}
 \begin{minted}[mathescape,linenos,numbersep=5pt,gobble=0,frame=lines,framesep=1mm]{c++}
 std::string mac_to_ip(odtone::mih::mac_addr& mac) {
     odtone::mih::mac_addr eth0mac("aa:bb:cc:dd:ee:ff");
@@ -166,9 +167,12 @@ std::string mac_to_ip(odtone::mih::mac_addr& mac) {
 }
 
 \end{minted}
+\caption{Sezione da modificare per l'associazione tra IPs e MAC addresses}
+\label{fig:mactoip}
+\end{figure}
+Questa modifica manuale è obbligata poiché non esiste un modo {\em cross-platform} per conoscere gli IP associati ad una interfaccia. Bisogna poi impostare l'IP del destinatario nelle variabili private della classe {\em interfaces}, come mostrato in figura \ref{fig:sourcecode}.
 
-Questa modifica manuale è obbligata poiché non esiste un modo {\em cross-platform} per conoscere gli IP associati ad una interfaccia. Bisogna poi impostare l'IP del destinatario nelle variabili private della classe {\em interfaces}:
-
+\begin{figure}
 \begin{minted}[mathescape,linenos,numbersep=5pt,gobble=0,frame=lines,framesep=1mm]{c++}
 class interfaces : boost::noncopyable {
     private:
@@ -180,21 +184,23 @@ class interfaces : boost::noncopyable {
         ...
 }
 \end{minted}
-
-Successivamente bisognerà avviare come indicato nel capitolo precedente l'MIHF, ogni SAP per interfaccia ed il MIH-User modificato. Per testare il collegamento è fornito il server UDP {\em app/mih\_usr/testproxy/udpserver.c} che stampa a schermo ciò che riceve indicando anche il mittente del datagramma. Non è possibile testarlo con {\em netcat}\cite{netcat} poiché, in modalità UDP, riceve solo pacchetti dal primo mittente, quindi siccome il traffico potrebbe uscire potenzialmente da più interfacce, scarterebbe tutti i pacchetti non inviati dal primo mittente. Per compilare il server fornito basterà fare:\\
+\caption{Sezione da modificare per impostare gli IPs locali}
+\label{fig:sourcecode}
+\end{figure}
+Successivamente bisognerà avviare come indicato nel capitolo precedente l'MIHF, ogni SAP per interfaccia ed il MIH-User modificato. Per testare il collegamento è fornito il server UDP {\em app/mih\_usr/testproxy/udpserver.c} che stampa a schermo ciò che riceve indicando anche il mittente del datagramma. Non è possibile testarlo con {\em netcat}\cite{netcat} poiché, in modalità UDP, riceve solo pacchetti dal primo mittente, quindi siccome il traffico potrebbe uscire potenzialmente da più interfacce, scarterebbe tutti i pacchetti non inviati dal primo mittente. \\Per compilare il server fornito basterà fare:
 \cmduser{pushd app/mih\_usr/testproxy}
 \cmduser{make}
 \cmduser{popd}
-e per metterlo in {\em listening} sulla porta locale 9999:\\
-\cmduser{./app/mih\_usr/testproxy/udpserver 9999}
-Dopo aver eseguito tutti i passaggi basterà aprire {\em netcat} in modalità UDP per inviare pacchetti all'MIH-proxy e controllare il loro arrivo a destinazione:\\
-\cmduser{nc -u 127.0.0.1 10000}
+e per metterlo in {\em listening} sulla porta locale 9999:
+\cmduser{./app/mih\_usr/testproxy/udpserver 9999}\\
+Dopo aver eseguito tutti i passaggi basterà aprire {\em netcat} in modalità UDP per inviare pacchetti all'MIH-proxy e controllare il loro arrivo a destinazione:
+\cmduser{nc -u 127.0.0.1 10000}\\
 Sarà ora possibile scollegare una interfaccia per segnalare al proxy di non utilizzare più quel collegamento e verificare che i pacchetti arrivino a destinazione tramite l'interfaccia rimasta attiva e successivamente ripristinare la connessione per controllare che il {\em link} venga effettivamente riutilizzato.
 
 \subsection{Bidirezionale}
 
-Per poter testare la versione bidirezionale, il procedimento è più complesso. Prima di tutto bisogna necessariamente avere a disposizione due computer ed ognuno dovrà avere in esecuzione MIHF ed i SAPs appropriati\footnote{se più SAPs per la stessa tecnologia bisogna editare il file .conf}. Bisognerà poi modificare la funzione {\em interfaces::mac\_to\_ip()} in modo coerente su entrambi i sistemi e siccome si potrebbero avere sia più interfacce per inviare, ma potenzialmente anche più destinazioni, bisognerà impostare queste ultime inizializzando le celle necessarie del vettore {\em interfaces::destinations} nel costruttore della classe:
-
+Per poter testare la versione bidirezionale, il procedimento è più complesso. Prima di tutto bisogna necessariamente avere a disposizione due computer ed ognuno dovrà avere in esecuzione MIHF ed i SAPs appropriati\footnote{se più SAPs per la stessa tecnologia bisogna editare il file .conf}. Bisognerà poi modificare la funzione {\em interfaces::mac\_to\_ip()} in modo coerente su entrambi i sistemi e siccome si potrebbero avere sia più interfacce per inviare, ma potenzialmente anche più destinazioni, bisognerà impostare queste ultime inizializzando le celle necessarie del vettore {\em interfaces::destinations} nel costruttore della classe, come mostrato in figura \ref{fig:destinationcode}.
+\begin{figure}
 \begin{minted}[mathescape,linenos,numbersep=5pt,gobble=0,frame=lines,framesep=1mm]{c++}
 #define LINK_TIMEOUT 10L /*timeout collegamento*/
 #define HB_TIMEOUT 3 /*frequenza heartbeats*/
@@ -222,16 +228,19 @@ class interfaces : boost::noncopyable {
     ...
 }
 \end{minted}
-Una volta che ogni sistema avrà in esecuzione tutte le istanze con gli indirizzi configurati correttamente sarà possibile eseguire {\em netcat} invocandolo nel seguente modo:\\
-\cmduser{nc -up<PORT\_SENDBACK> 127.0.0.1 <PORT\_LSOCK>}
+\caption{Sezione da modificare per impostare le destinazioni}
+\label{fig:destinationcode}
+\end{figure}
+Una volta che ogni sistema avrà in esecuzione tutte le istanze con gli indirizzi configurati correttamente sarà possibile eseguire {\em netcat} invocandolo nel seguente modo:
+\cmduser{nc -up<PORT\_SENDBACK> 127.0.0.1 <PORT\_LSOCK>}\\
 Sarà ora possibile far comunicare le due istanze di {\em netcat} tra di loro in modo bidirezionale, ovvero potremo inviare dati dall'una all'altra e viceversa e, supponendo di aver due interfacce di rete per ogni elaboratore, sarà possibile disattivare al più una interfaccia per {\em peer}, anche contemporaneamente, senza far cadere la connessione tra i due processi. Se si vuole utilizzare questo sistema anche con processi basati su flussi TCP bisognerà aggiungere un ulteriore componente, {\em phoxy}, disponibile anch'esso attraverso il repository fornito, il quale si preoccuperà di trasformare il flusso TCP in datagrammi UDP prima di inviare i dati all'MIH-proxy, viceversa per la ricezione, gestendo il riordinamento dei pacchetti, il loro rinvio nel caso il pacchetto vada perso e l'eliminazione di doppi pacchetti. Inoltre è possibile cifrare il traffico attraverso l'algoritmo a cifratura simmetrica {\em AES256}, ovvero con chiavi a 256 bit. Per compilare {\em phoxy} basterà fare:\\
 \cmduser{pushd phoxy}
 \cmduser{make}
 \cmduser{popd}
 Per lanciarlo:\\
-\cmduser{./proxy -t <portTCP> -u <portUDP> -r <IPtoSEND> -p <portTOsendUDP> [-e] [-c <ipTOconnect>] [-b <BUFFSIZE=200000>] [-m <MAXPKTS=1>] [-w <waitTOresend=3500000>] [-s <SIZEPKTS=10000>]}
+\cmduser{./proxy -t <portTCP> -u <portUDP> -r <IPtoSEND> -p <portTOsendUDP> [-e] [-c <ipTOconnect>] [-b <BUFFSIZE=200000>] [-m <MAXPKTS=1>] [-w <waitTOresend=3500000>] [-s <SIZEPKTS=10000>]}\\
 Per attivare la cifratura dovremo invocarlo con il parametro opzionale "-e" ed il programma chiederà all'utente di scrivere la password direttamente su {\em stdin}.
-
+\newpage
 \section{Possibili utilizzi}
 Una volta ottenuta la possibilità di instradare su più interfacce il traffico, è naturale chiedersi quali possibili utilizzi possa avere questo progetto:
 è possibile, ad esempio, stabilire una particolare politica di {\em scheduling} dei {\em sockets} da usare per effettuare {\em load balancing} del traffico sui vari canali disponibili oppure creare un canale ad alta affidabilità che utilizzi una interfaccia tra quelle disponibili, magari decidendone una preferita. Tutto ciò può essere effettuato semplicemente modificando le funzioni {\em interfaces::find\_best\_interface()} e {\em interfaces::find\_best\_destination()} nel codice.
