@@ -33,19 +33,19 @@ La {\em Media Independent Handover Function} fornita è composta dai tre sottoco
 
 Questi componenti forniscono i servizi basilari definiti nello standard. Oltre ad essi, come rappresentato graficamente in figura \ref{fig:mihfarch}, ODTONE implementa altri componenti per fornire ulteriori funzionalità e arricchire quelle già esistenti:
 \begin{itemize}
-\item Service Manager: è responsabile della gestione delle richieste {\em Capability\_Discover}, le quali servono per richiedere la lista di eventi e comandi supportati dall'MIHF.
+\item {\em Service Manager}: è responsabile della gestione delle richieste {\em Capability\_Discover}, le quali servono per richiedere la lista di eventi e comandi supportati dall'MIHF.
 
-\item Communication Handler: raccoglie i messaggi ricevuti da tutti i SAPs od altre entità e li invia al modulo Service Access Controller.
+\item {\em Communication Handler}: raccoglie i messaggi ricevuti da tutti i SAPs od altre entità e li invia al modulo Service Access Controller.
 
-\item Service Access Controller: è responsabile dell'analisi degli {\em headers} di ogni messaggio ricevuto ed al loro smistamento ai servizi interessati. La decisione è presa in base all'identificativo del tipo di messaggio ed ai {\em callbacks} registrati.
+\item {\em Service Access Controller}: è responsabile dell'analisi degli {\em headers} di ogni messaggio ricevuto ed al loro smistamento ai servizi interessati. La decisione è presa in base all'identificativo del tipo di messaggio ed ai {\em callbacks} registrati.
 
-\item Link Manager: gestisce le informazioni sui Link SAPs disponibili.
+\item {\em Link Manager}: gestisce le informazioni sui Link SAPs disponibili.
 
-\item MIH-User Manager: gestisce le informazioni su MIH-Users registrati.
+\item {\em MIH-User Manager}: gestisce le informazioni su MIH-Users registrati.
 
-\item Peer MIHF Manager: gestisce le informazioni su MIHFs remoti.
+\item {\em Peer MIHF Manager}: gestisce le informazioni su MIHFs remoti.
 
-\item Transaction State Machine Controller: mantiene gli stati di ogni transazione con MIHFs remoti ed è responsabile di inviare messaggi di {\em acknowledge} ed individuare messaggi duplicati.
+\item {\em Transaction State Machine Controller}: mantiene gli stati di ogni transazione con MIHFs remoti ed è responsabile di inviare messaggi di {\em acknowledge} ed individuare messaggi duplicati.
 
 \end{itemize}
 
@@ -136,7 +136,8 @@ Per poter usufruire di queste funzionalità bisogna avviare il SAP tramite un ut
 \end{itemize}
 
 \subsection{La libreria libodtone}
-Per poter scrivere un programma che interagisca con l'MIHF, quindi un MIH-User oppure un SAP, è possibile utilizzare la libreria inclusa {\em libodtone}, la quale fornisce tutte le funzioni necessarie per comunicare correttamente con il core: è disponibile come unica libreria solo dalla versione 0.6 di ODTONE ed è l'unione delle precedenti librerie 'base', 'mih', 'sap' e 'net'\cite{changelog}. Fornisce tutte le classi {\em helper} necessarie per facilitare lo sviluppo delle applicazioni utente, come servizi di debug, gestione di liste, log, gestione delle eccezioni e generazione di numeri pseudo-casuali. Definisce inoltre tutti i tipi di dato del protocollo MIH specificati nello standard e fornisce delle classi per facilitare la creazione dei messaggi, il loro {\em parsing}, la loro ricezione ed il loro l'invio. Per gli ultimi due, i servizi sono implementati sulla base della classe della libreria Boost {\em boost::asio} che fornisce comunicazione tramite I/O asincrono, unica tipologia di comunicazione offerta dalla libreria: è necessario infatti eseguire qualsiasi operazione asincronicamente, registrando gli opportuni {\em callbacks} tramite la funzione {\em boost::bind()}.
+Per poter scrivere un programma che interagisca con l'MIHF, quindi un MIH-User oppure un SAP, è possibile utilizzare la libreria inclusa {\em libodtone}, la quale fornisce tutte le funzioni necessarie per comunicare correttamente con il core: è disponibile come unica libreria solo dalla versione 0.6 di ODTONE ed è l'unione delle precedenti librerie 'base', 'mih', 'sap' e 'net'\cite{changelog}. \\
+Fornisce tutte le classi {\em helper} necessarie per facilitare lo sviluppo delle applicazioni utente, come servizi di debug, gestione di liste, log, gestione delle eccezioni e generazione di numeri pseudo-casuali. Definisce inoltre tutti i tipi di dato del protocollo MIH specificati nello standard e fornisce delle classi per facilitare la creazione dei messaggi, il loro {\em parsing}, la loro ricezione ed il loro l'invio. Per gli ultimi due, i servizi sono implementati sulla base della classe della libreria Boost {\em boost::asio} che fornisce comunicazione tramite I/O asincrono, unica tipologia di comunicazione offerta dalla libreria: è necessario infatti eseguire qualsiasi operazione asincronicamente, registrando gli opportuni {\em callbacks} tramite la funzione {\em boost::bind()}.
 
 \section{Compilazione ed esecuzione}
 Saranno ora illustrati tutti i passaggi per compilare ed eseguire per la prima volta ODTONE recuperando il codice dal repository ufficiale su un sistema Debian\cite{debian} {\em Wheezy}.
