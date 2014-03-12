@@ -77,7 +77,7 @@
 }
 
 \newcommand{\cmd}[1]{\\\texttt{#1}\\}
-\newcommand{\cmduser}[1]{\\\texttt{\$ #1}\\}
+\newcommand{\cmduser}[1]{\texttt{\$ #1}\\}
 \newcommand{\cmdroot}[1]{\\\texttt{\# #1}\\}
 \usepackage{graphicx} % Allows including images
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
@@ -373,7 +373,7 @@ mylabel/.style={text width=1em, text height=1em, text centered},
 
 \bibitem[Repository, 2014]{repo} Repository di questo lavoro reperibile con i seguenti comandi:
 \newblock \cmduser{git clone https://github.com/phra/802\_21.git}
-oppure
+oppure\\
 \cmduser{wget https://github.com/phra/802\_21/archive/master.tar.gz}
 \vspace{2em}
 \bibitem[IEEE, 2008]{standard} IEEE 802.21 Working Group (2008)
