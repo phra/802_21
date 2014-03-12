@@ -25,3 +25,6 @@
 *.lot
 *.out
 *.synctex.gz
+*.nav
+*.pyg
+*.snm   

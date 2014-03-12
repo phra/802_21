@@ -12,5 +12,5 @@ sudo ln -s `realpath lib/odtone/libodtone.so` /usr/lib/libodtone.so.0.5
 sudo ln -s `realpath lib/external/libnl/nlwrap/libnlwrap.so` /usr/lib/libnlwrap.so.0.5
 
 TO COMPILE DOCUMENTATION:
-sudo apt-get install texstudio texlive-latex-extra python-pygments texlive-lang-italian
+sudo apt-get install texstudio texlive-latex-extra python-pygments texlive-lang-italian texlive-fonts-extra
 edit in texstudio cmd of latex and pdflatex adding "-shell-escape"
