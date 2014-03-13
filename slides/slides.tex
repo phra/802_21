@@ -157,14 +157,14 @@ L'{\em Handover} è l'atto di cambiare l'{\em access point} al fine di mantenere
 \begin{enumerate}
 \item Tecnologia prima e dopo il passaggio
 \begin{itemize}
-\item Horizontal handover (intra-rat)
-\item Vertical handover (inter-rat)
+\item Horizontal handover (intra-rat): la tecnologia a livello {\em data link} non cambia (e.g. WiFi $\to$ WiFi)
+\item Vertical handover (inter-rat): la tecnologia a livello {\em data link} cambia (e.g. WiFi $\to$ LTE)
 \end{itemize}
 
 \item Stato della sessione prima e dopo il passaggio
 \begin{itemize}
-\item Hard handover (break-before-make)
-\item Soft handover (make-before-break)
+\item Hard handover (break-before-make): tutte le connessioni aperte vengono interrotte prima di effettuare il passaggio
+\item Soft handover (make-before-break):  le connessioni vengono ristabilite attraverso il nuovo {\em link} prima di chiudere le precedenti
 \end{itemize}
 \end{enumerate}
 \end{frame}
@@ -209,9 +209,9 @@ Ogni giorno ci sono sempre più {\em devices} dotati di più interfacce di rete 
 \frametitle{Finalità}
 Lo standard IEEE 802.21 si assume l'onere di risolvere il primo dei precedenti problemi, ovvero come debbano avvenire le decisioni di {\em handover}, in particolare:
 \begin{itemize}
-\item raccolta delle informazioni necessarie sullo stato dei vari collegamenti disponibili
-\item propagazione di eventi e comandi alle entità interessate
-\item logica di funzionamento {\em media-independent}
+\item recupero delle informazioni necessarie sullo stato dei vari collegamenti disponibili: specifica tutti i servizi necessari per acquisire informazioni utili sullo stato delle interfacce per facilitare le future azioni di {\em handover}
+\item propagazione di eventi e comandi alle entità interessate: gestisce lo smistamento dei messaggi verso le entità interessate, per comunicare ad un utente degli eventi oppure per impartire dei comandi ad un'interfaccia, al fine di facilitare il passaggio
+\item logica di funzionamento {\em media-independent}: è possibile per specifica ottenere informazioni su tutti i tipi di interfacce, senza differenze per tecnologia adottata.
 \end{itemize}
 \end{frame}
 
@@ -296,6 +296,46 @@ Per poter testare sia lo standard IEEE 802.21 sia l'implementazione ODTONE è st
 \subsection{Graficamente}
 \begin{frame}
 \frametitle{Graficamente}
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}
+\tikzset{
+block/.style={rectangle,rounded corners,draw=black, top color=white, bottom color=gray!50,very thick, node distance=3.5em},
+%inner sep=1em, minimum size=1em, text centered,node distance=3em},
+mynode/.style={rectangle,fill=gray!30, text centered, text width=2em,minimum height=2mm,node distance=1em},
+myarrow/.style={->, >=latex', shorten >=1pt, very thick},
+mydoublearrow/.style={<->, >=latex', shorten >=1pt, very thick},
+dottedarrow/.style={<->, >=latex', shorten >=1pt, thick, dotted},
+mylabel/.style={text width=1em, text height=1em, text centered},
+}
+
+\node [block] (client) {Client};
+\node [block, below of=client] (mihproxy1) {MIH-proxy};
+\node [block, below of=mihproxy1] (mihf) {MIHF};
+\node [block, below of=mihf, xshift=-4em] (linksap1) {MIH-Link-Sap};
+\node [block, below of=mihf, xshift=4em] (linksap2) {MIH-Link-Sap};
+\node [block, below of=linksap1] (eth0) {eth0};
+\node [block, below of=linksap2] (wlan0) {wlan0};
+\node [block, right of=client, xshift=8em] (server) {Server};
+\draw[myarrow] (client) -- node[auto,swap] {UDP} (mihproxy1);
+\draw[dottedarrow] (mihproxy1) -- (mihf);
+\draw[dottedarrow] (mihf) -- (linksap1);
+\draw[dottedarrow] (mihf) -- (linksap2);
+\draw[dottedarrow] (linksap1) -- (eth0);
+\draw[dottedarrow] (linksap2) -- (wlan0);
+\draw[myarrow] (mihproxy1) -- ++(3,0) |-  (wlan0);
+\draw[myarrow] (mihproxy1) -- ++(-3,0) |-  (eth0);
+\draw[myarrow] (eth0.south) -- ++(0,-1) -|  (server.south);
+\draw[myarrow] (eth0.south) -- ++(0,-1) -|  (server.south);
+\draw[myarrow] (wlan0.south) -- ++(0,-1) -| (server.south);
+\end{tikzpicture}
+\caption{MIH-proxy unidirezionale}
+\label{fig:mihproxyuni}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Graficamente}
 
 \begin{figure}[h!]
 \centering
@@ -364,8 +404,17 @@ mylabel/.style={text width=1em, text height=1em, text centered},
 %------------------------------------------------
 \section{Conclusione}
 %------------------------------------------------
-\subsection{References}
+\subsection{Risultati e sviluppi futuri}
+\begin{frame}
+\frametitle{Risultati e sviluppi futuri}
+\begin{itemize}
+\item \textbf{Risultati}: dopo aver realizzato questa applicazione, è possibile dare un giudizio sia sullo standard IEEE 802.21 sia su ODTONE. Lo standard IEEE 802.21 si è dimostrato adeguato per fornire ai nodi mobili tutte le informazioni necessarie per gestire le decisioni di {\em handover}, nonostante il ristretto sottoinsieme di funzionalità che è stato possibile testare. ODTONE si è dimostrato una buona implementazione {\em open-source}, anche se tuttora in stato sperimentale, ed è stato efficace per realizzare l'applicazione proposta. 
+\item \textbf{Sviluppi futuri}: nel prossimo futuro bisogna completare il corredo di {\em standards} necessari per eseguire effettivamente gli {\em handover} tra i vari tipi di tecnologie e completare il {\em deployment} di IEEE 802.21 in modo da renderlo pienamente utilizzabile nella realtà.
+Per quanto riguarda ODTONE, la priorità è quella di aggiungere dei {\em Link\_SAP} specifici per le tecnologie mancanti, {\em in primis} quelle della famiglia 3GPP.
+\end{itemize}
+\end{frame}
 
+\subsection{References}
 \begin{frame}
 \frametitle{References}
 \footnotesize{
