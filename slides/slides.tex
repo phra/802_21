@@ -114,7 +114,7 @@
 
 \title[IEEE 802.21]{IEEE 802.21: Media Independent Handover} % The short title appears at the bottom of every slide, the full title is only on the title page
 
-\author{Francesco Soncina} % Your name
+%\author{Francesco Soncina} % Your name
 %\institute[] % Your institution as it will appear on the bottom of every slide, may be shorthand to save space
 {
 %University of California \\ % Your institution for the title page
@@ -157,8 +157,8 @@ L'{\em Handover} è l'atto di cambiare l'{\em access point} al fine di mantenere
 \begin{enumerate}
 \item Tecnologia prima e dopo il passaggio
 \begin{itemize}
-\item Horizontal handover (intra-rat): la tecnologia a livello {\em data link} non cambia (e.g. WiFi $\to$ WiFi)
-\item Vertical handover (inter-rat): la tecnologia a livello {\em data link} cambia (e.g. WiFi $\to$ LTE)
+\item Horizontal handover: la tecnologia a livello {\em data link} non cambia (e.g. WiFi $\to$ WiFi)
+\item Vertical handover: la tecnologia a livello {\em data link} cambia \\(e.g. WiFi $\to$ LTE)
 \end{itemize}
 
 \item Stato della sessione prima e dopo il passaggio
@@ -169,25 +169,25 @@ L'{\em Handover} è l'atto di cambiare l'{\em access point} al fine di mantenere
 \end{enumerate}
 \end{frame}
 
-\subsection{Graficamente}
-\begin{frame}
-\frametitle{Graficamente}
-\begin{figure}[h!]
-\centering
-\includegraphics[scale=0.4]{handovers.jpg}
-\caption{Esempi di {\em handovers}}
-\label{fig:handovers}
-\end{figure}
-\end{frame}
+%\subsection{Graficamente}
+%\begin{frame}
+%\frametitle{Graficamente}
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[scale=0.4]{handovers.jpg}
+%\caption{Esempi di {\em handovers}}
+%\label{fig:handovers}
+%\end{figure}
+%\end{frame}
 
-\subsection{Problematiche}
+\subsection{Problematiche di mobilità}
 \begin{frame}
-\frametitle{Problematiche}
+\frametitle{Problematiche di mobilità}
 Ogni giorno ci sono sempre più {\em devices} dotati di più interfacce di rete e quindi la gestione del processo di {\em handover} è diventata sempre più importante. I principali problemi da gestire sono:
 \begin{enumerate}
-\item Decisioni di {\em handover}: come e quando debbano essere effettuate delle decisioni di passaggio da un {\em access point} all'altro, quindi il recupero di informazioni sullo stato dei collegamenti disponibili, la comunicazione tra le varie entità specificate per coordinare le azioni, etc. (IEEE 802.21)
-\item Mantenimento sessione in {\em handovers} nella stessa rete: come debba effettivamente avvenire il passaggio tra un {\em access point} ed un altro, entrambi appartenenti alla stessa rete, al fine di mantenere lo stato della sessione durante il passaggio (IEEE 802.11r-2008)
-\item Mantenimento sessione in {\em handovers} tra reti diverse: come debba effettivamente avvenire il passaggio tra {\em access points} di reti differenti, al fine di mantenere lo stato della sessione precedente (IETF Mobile IPv4/IPv6)
+\item Decisioni di {\em handover}: come e quando debbano essere effettuate delle decisioni di passaggio da un {\em access point} all'altro, quindi il recupero di informazioni sullo stato dei collegamenti disponibili, la comunicazione tra le varie entità specificate per coordinare le azioni, etc. (e.g. IEEE 802.21)
+\item Mantenimento sessione in {\em handovers} nella stessa rete: come debba effettivamente avvenire il passaggio tra un {\em access point} ed un altro, entrambi appartenenti alla stessa rete, al fine di mantenere lo stato della sessione durante il passaggio (e.g. IEEE 802.11r-2008 per reti Wi-Fi)
+\item Mantenimento sessione in {\em handovers} tra reti diverse: come debba effettivamente avvenire il passaggio tra {\em access points} di reti differenti, al fine di mantenere lo stato della sessione precedente (e.g. IETF Mobile IPv4/IPv6)
 \end{enumerate}
 \end{frame}
 
@@ -239,9 +239,9 @@ Le entità previste dallo standard sono:
 \end{frame}
 
 \section{ODTONE}
-\subsection{Funzionalità implementate}
+\subsection{Valutazione dell'implementazione ODTONE}
 \begin{frame}
-\frametitle{Funzionalità implementate}
+\frametitle{Valutazione dell'implementazione ODTONE}
 ODTONE è una implementazione dello standard IEEE 802.21 {\em open-source} (LGPLv3), resa {\em cross-platform} attraverso la libreria Boost (eseguibile su sistemi GNU/Linux, Windows, Android ed OpenWrt) e fornisce:
 
 \begin{itemize}
@@ -255,9 +255,9 @@ ODTONE è una implementazione dello standard IEEE 802.21 {\em open-source} (LGPL
 
 
 \end{frame}
-\subsection{Pro e contro}
+\subsection{Pregi e difetti di ODTONE}
 \begin{frame}
-\frametitle{Pro e contro}
+\frametitle{Pregi e difetti di ODTONE}
 \begin{block}{Pro}
 
 \begin{itemize}
@@ -293,9 +293,9 @@ Per poter testare sia lo standard IEEE 802.21 sia l'implementazione ODTONE è st
 %\end{block}
 \end{frame}
 
-\subsection{Graficamente}
+\subsection{Struttura}
 \begin{frame}
-\frametitle{Graficamente}
+\frametitle{Struttura}
 \begin{figure}[h!]
 \centering
 \begin{tikzpicture}
@@ -335,8 +335,7 @@ mylabel/.style={text width=1em, text height=1em, text centered},
 \end{frame}
 
 \begin{frame}
-\frametitle{Graficamente}
-
+\frametitle{Struttura}
 \begin{figure}[h!]
 \centering
 \begin{tikzpicture}
@@ -397,7 +396,7 @@ mylabel/.style={text width=1em, text height=1em, text centered},
 \frametitle{Internals}
 \begin{itemize}
 \item \textbf{Unidirezionale}: rimane in ascolto di eventi dell'MIHF per stabilire quali interfacce sono disponibili e invia tutto ciò che riceve dal client verso il server utilizzando potenzialmente anche più interfacce contemporaneamente, a seconda della politica di {\em scheduling} implementata. Gestisce solo pacchetti UDP, la comunicazione è in un sol verso e quindi basta una sola istanza dell'MIH-proxy.
-\item \textbf{Bidirezionale}: rappresentato in figura \ref{fig:mihproxybiphoxy}, per poter trasferire traffico bidirezionale sono necessarie due istanze dell'MIH-proxy, i.e. una per {\em peer}. Questa versione è in grado di poter inviare i pacchetti a più destinatari attraverso più interfacce. Per sapere lo stato delle interfacce locali utilizza lo standard IEEE 802.21 mentre per lo stato delle interfacce del destinatario utilizza un sistema di {\em heartbeats} temporizzati. Per abilitare il supporto per flussi TCP è necessario aggiungere un altro programma, {\em phoxy}, incaricato di trasformare lo {\em stream} in datagrammi, gestire il loro rinvio in caso andassero persi, il loro riordinamento in caso arrivassero disordinati e può, a richiesta, cifrare i datagrammi con l'algoritmo a chiave simmetrica {\em AES256}.
+\item \textbf{Bidirezionale}: rappresentato in figura \ref{fig:mihproxybiphoxy}, per poter trasferire traffico bidirezionale sono necessarie due istanze dell'MIH-proxy, i.e. una per {\em peer}. Questa versione è in grado di poter inviare i pacchetti a più destinatari attraverso più interfacce. Per sapere lo stato delle interfacce locali utilizza lo standard IEEE 802.21 mentre per lo stato delle interfacce del destinatario utilizza un sistema di {\em heartbeats} temporizzati (estranei allo standard). Per abilitare il supporto per flussi TCP è necessario aggiungere un altro programma, {\em phoxy}, incaricato di trasformare lo {\em stream} in datagrammi, gestire il loro rinvio in caso andassero persi, il loro riordinamento in caso arrivassero disordinati e può, a richiesta, cifrare i datagrammi con l'algoritmo a chiave simmetrica {\em AES256}.
 \end{itemize}
 \end{frame}
 
@@ -409,7 +408,7 @@ mylabel/.style={text width=1em, text height=1em, text centered},
 \frametitle{Risultati e sviluppi futuri}
 \begin{itemize}
 \item \textbf{Risultati}: dopo aver realizzato questa applicazione, è possibile dare un giudizio sia sullo standard IEEE 802.21 sia su ODTONE. Lo standard IEEE 802.21 si è dimostrato adeguato per fornire ai nodi mobili tutte le informazioni necessarie per gestire le decisioni di {\em handover}, nonostante il ristretto sottoinsieme di funzionalità che è stato possibile testare. ODTONE si è dimostrato una buona implementazione {\em open-source}, anche se tuttora in stato sperimentale, ed è stato efficace per realizzare l'applicazione proposta. 
-\item \textbf{Sviluppi futuri}: nel prossimo futuro bisogna completare il corredo di {\em standards} necessari per eseguire effettivamente gli {\em handover} tra i vari tipi di tecnologie e completare il {\em deployment} di IEEE 802.21 in modo da renderlo pienamente utilizzabile nella realtà.
+\item \textbf{Sviluppi futuri}: nel prossimo futuro bisogna completare il corredo di {\em standards} necessari per eseguire effettivamente gli {\em handovers} tra i vari tipi di tecnologie e completare il {\em deployment} di IEEE 802.21 in modo da renderlo pienamente utilizzabile nella realtà.
 Per quanto riguarda ODTONE, la priorità è quella di aggiungere dei {\em Link\_SAP} specifici per le tecnologie mancanti, {\em in primis} quelle della famiglia 3GPP.
 \end{itemize}
 \end{frame}
